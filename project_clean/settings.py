@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'project_clean.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project_clean',
+        'NAME': 'project_clean_db',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',
@@ -94,12 +94,19 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',   
     ),
     'DEFAULT_PERMISSION_CLASESS':(
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ),
 }
 
+AUTH_USER_MODEL = 'authapp.User'
+
 DJOSER = {
-    'LOGIN_FIELD':'email'
+    'LOGIN_FIELD':'email',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SERIALIZERS':{
+        'user_create': 'authapp.serializers.UserCreateSerializer',
+        'user': 'authapp.serializers.UserSerializer',
+    }
 }
 
 
