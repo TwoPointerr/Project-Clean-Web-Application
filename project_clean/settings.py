@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'authapp',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -78,10 +80,32 @@ WSGI_APPLICATION = 'project_clean.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project_clean',
+        'NAME': 'project_clean_db',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',   
+    ),
+    'DEFAULT_PERMISSION_CLASESS':(
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+AUTH_USER_MODEL = 'authapp.User'
+
+DJOSER = {
+    'LOGIN_FIELD':'email',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SERIALIZERS':{
+        'user_create': 'authapp.serializers.UserCreateSerializer',
+        'user': 'authapp.serializers.UserSerializer',
     }
 }
 
