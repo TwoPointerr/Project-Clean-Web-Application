@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-metihnura(x1lxt#7dq5zej6f@zz))(w4%511uzlgt8ai$rfiw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
