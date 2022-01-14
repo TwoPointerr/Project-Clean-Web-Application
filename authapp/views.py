@@ -15,6 +15,7 @@ def get_data(request, *args, **kwargs):
     return Response(data="this is my data")
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_all_user(request, *args, **kwargs):
     users = User.objects.all()
     serializer = UserDisplaySrializer(users,many=True)
