@@ -12,3 +12,8 @@ class UserDisplaySrializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','email','username')
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ('title','post_img')
