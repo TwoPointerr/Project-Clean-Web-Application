@@ -1,3 +1,5 @@
+from pyexpat import model
+from statistics import mode
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -11,3 +13,8 @@ class User(AbstractUser):
 
     def get_username(self):
         return self.email
+
+
+class Post(models.Model):
+    title = models.CharField(null= True,max_length=255)
+    post_img = models.ImageField(upload_to="products",blank=True)
