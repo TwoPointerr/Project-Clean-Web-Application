@@ -24,7 +24,7 @@ def get_all_user(request, *args, **kwargs):
 
 class PostCreate(APIView):
     parser_classes = [MultiPartParser, FormParser]
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def post(self, request, format=None):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
