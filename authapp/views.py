@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from authapp import serializers
 from rest_framework.views import APIView
-from authapp.models import User
+from authapp.models import Post, User
 from authapp.serializers import UserDisplaySrializer, PostSerializer
 
 @api_view(['GET'])
@@ -21,6 +21,12 @@ def get_all_user(request, *args, **kwargs):
     users = User.objects.all()
     serializer = UserDisplaySrializer(users,many=True)
     return Response(data={"userdata":serializer.data})
+    
+@api_view(['GET'])
+def get_post(request, *args, **kwargs):
+    posts = Post.objects.all()
+    serializer = PostSerializer(posts)
+    return Response(data={"POsts":serializer.data})
 
 class PostCreate(APIView):
     parser_classes = [MultiPartParser, FormParser]
