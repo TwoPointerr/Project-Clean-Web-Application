@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'authapp',
     'dashboard',
+    'grievance_data',
     'djoser',
 ]
 
@@ -162,7 +163,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WHITENOISE_USE_FINDERS = True
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+#STATICFILES_DIRS = [BASE_DIR / "static"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

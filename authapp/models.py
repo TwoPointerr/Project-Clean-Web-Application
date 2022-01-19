@@ -4,13 +4,13 @@ from statistics import mode
 from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from grievance_data.models import *
 
 # Create your models here.
 
 class User(AbstractUser):
     email = models.EmailField(verbose_name='email',max_length=255,unique=True)
     phone = models.CharField(null=True, max_length=255)
+    isMcUser = models.BooleanField(default=False)
     REQUIRED_FIELDS = ['username','phone','first_name','last_name']
     USERNAME_FIELD = 'email'
 
@@ -27,6 +27,20 @@ class CitizenProfile(models.Model):
     def __str__(self):
         return self.citi_user.first_name
 
+class Location(models.Model):
+    loc_long = models.FloatField()
+    loc_lat = models.FloatField()
+    loc_display_name = models.TextField()
+    loc_suburb = models.CharField(max_length=250)
+    loc_town = models.CharField(max_length=250)
+    loc_city = models.CharField(max_length=250)
+    loc_municipality = models.TextField()
+    loc_state_distric = models.CharField(max_length=250)
+    loc_state = models.CharField(max_length=250)
+    loc_postcode = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.loc_display_name
 
 class MCProfile(models.Model):
     mc_user = models.OneToOneField(User,on_delete=models.CASCADE)

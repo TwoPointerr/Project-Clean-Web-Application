@@ -1,5 +1,6 @@
 from django.db import models
-from authapp.models import CitizenProfile, User, MCProfile
+from authapp.models import CitizenProfile, User, MCProfile, Location
+import datetime
 
 
 class Category(models.Model):
@@ -17,29 +18,18 @@ class Grievance(models.Model):
     gri_severity = models.IntegerField()
     gri_priority = models.IntegerField()
     gri_uploaded_user = models.ForeignKey(CitizenProfile,on_delete=models.CASCADE)
+    gri_location = models.OneToOneField(Location,on_delete=models.SET_NULL,null=True)
+    gri_timeStamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.gri_title
-
-class Location(models.Model):
-    loc_long = models.FloatField()
-    loc_lat = models.FloatField()
-    loc_display_name = models.TextField()
-    loc_suburb = models.CharField(max_length=250)
-    loc_town = models.CharField(max_length=250)
-    loc_city = models.CharField(max_length=250)
-    loc_municipality = models.TextField()
-    loc_state_distric = models.CharField(max_length=250)
-    loc_state = models.CharField(max_length=250)
-    loc_postcode = models.PositiveIntegerField()
-
-    def __str__(self):
-        return self.loc_display_name
 
 class Status(models.Model):
     status_name = models.CharField(max_length=250)
     status_grievance = models.ForeignKey(Grievance,on_delete=models.CASCADE)
     status_active = models.BooleanField(default=False)
+    status_timeStamp = models.DateTimeField(auto_now=True)
+    status_issuedByMC = models.ForeignKey(MCProfile,on_delete=models.SET_NULL,null=True)
 
     def __str__(self):
         return self.status_name
