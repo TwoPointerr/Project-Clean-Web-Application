@@ -21,11 +21,11 @@ def get_all_user(request, *args, **kwargs):
     users = User.objects.all()
     serializer = UserDisplaySrializer(users,many=True)
     return Response(data={"userdata":serializer.data})
-    
+
 @api_view(['GET'])
 def get_post(request, *args, **kwargs):
     posts = Post.objects.all()
-    serializer = PostSerializer(posts)
+    serializer = PostSerializer(posts,many=True)
     return Response(data={"POsts":serializer.data})
 
 class PostCreate(APIView):
