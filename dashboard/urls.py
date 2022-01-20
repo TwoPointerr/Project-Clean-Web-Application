@@ -6,5 +6,6 @@ app_name="dashboard"
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path('signin/', views.signin, name="signin"),
-    path('register/', views.register, name="register")
+    path('register/', views.register, name="register"),
+    path('colors',views.colorDemo)
 ]

@@ -8,6 +8,9 @@ def dashboard(request):
 
     return render(request,'dashboard.html')
 
+def colorDemo(request):
+    return render(request,'tabDemo.html')
+
 
 def signin(request):
     if request.method == 'POST':
