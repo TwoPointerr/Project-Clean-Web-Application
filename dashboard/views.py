@@ -11,6 +11,8 @@ def dashboard(request):
 def colorDemo(request):
     return render(request,'tabDemo.html')
 
+def searchDemo(request):
+    return render(request,'widgets.html')
 
 def signin(request):
     if request.method == 'POST':
