@@ -5,11 +5,13 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def dashboard(request):
-
     return render(request,'dashboard.html')
 
 def colorDemo(request):
     return render(request,'muncipalDashboard.html')
+
+def workSpace(request):
+    return render(request,"WorkspaceDashboard.html")
 
 def searchDemo(request):
     return render(request,'search-results.html')
