@@ -9,7 +9,7 @@ def dashboard(request):
     return render(request,'dashboard.html')
 
 def colorDemo(request):
-    return render(request,'tabDemo.html')
+    return render(request,'muncipalDashboard.html')
 
 def searchDemo(request):
     return render(request,'widgets.html')
