@@ -12,7 +12,7 @@ def colorDemo(request):
     return render(request,'muncipalDashboard.html')
 
 def searchDemo(request):
-    return render(request,'widgets.html')
+    return render(request,'search-results.html')
 
 def signin(request):
     if request.method == 'POST':
