@@ -1,15 +1,11 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% load static %} {% block content %}
 <div class="page-wrapper">
   <div class="container-xl">
     <!-- Page title -->
     <div class="page-header d-print-none">
       <div class="row align-items-center">
         <div class="col">
-          <h2 class="page-title">
-            Search results
-          </h2>
+          <h2 class="page-title">Search results</h2>
           <div class="text-muted mt-1">About 2,410 result (0.19 seconds)</div>
         </div>
       </div>
@@ -22,19 +18,31 @@
           <form action="" method="get">
             <div class="subheader mb-2">Category</div>
             <div class="list-group list-group-transparent mb-3">
-              <a class="list-group-item list-group-item-action d-flex align-items-center active" href="#">
+              <a
+                class="list-group-item list-group-item-action d-flex align-items-center active"
+                href="#"
+              >
                 Games
                 <small class="text-muted ms-auto">24</small>
               </a>
-              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
+              <a
+                class="list-group-item list-group-item-action d-flex align-items-center"
+                href="#"
+              >
                 Clothing
                 <small class="text-muted ms-auto">149</small>
               </a>
-              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
+              <a
+                class="list-group-item list-group-item-action d-flex align-items-center"
+                href="#"
+              >
                 Jewelery
                 <small class="text-muted ms-auto">88</small>
               </a>
-              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
+              <a
+                class="list-group-item list-group-item-action d-flex align-items-center"
+                href="#"
+              >
                 Toys
                 <small class="text-muted ms-auto">54</small>
               </a>
@@ -42,38 +50,80 @@
             <div class="subheader mb-2">Rating</div>
             <div class="mb-3">
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" name="form-stars" value="5 stars" checked>
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="form-stars"
+                  value="5 stars"
+                  checked
+                />
                 <span class="form-check-label">5 stars</span>
               </label>
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" name="form-stars" value="4 stars">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="form-stars"
+                  value="4 stars"
+                />
                 <span class="form-check-label">4 stars</span>
               </label>
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" name="form-stars" value="3 stars">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="form-stars"
+                  value="3 stars"
+                />
                 <span class="form-check-label">3 stars</span>
               </label>
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" name="form-stars" value="2 and less stars">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="form-stars"
+                  value="2 and less stars"
+                />
                 <span class="form-check-label">2 and less stars</span>
               </label>
             </div>
             <div class="subheader mb-2">Tags</div>
             <div class="mb-3">
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" name="form-tags[]" value="business" checked>
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="form-tags[]"
+                  value="business"
+                  checked
+                />
                 <span class="form-check-label">business</span>
               </label>
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" name="form-tags[]" value="evening">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="form-tags[]"
+                  value="evening"
+                />
                 <span class="form-check-label">evening</span>
               </label>
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" name="form-tags[]" value="leisure">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="form-tags[]"
+                  value="leisure"
+                />
                 <span class="form-check-label">leisure</span>
               </label>
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" name="form-tags[]" value="party">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="form-tags[]"
+                  value="party"
+                />
                 <span class="form-check-label">party</span>
               </label>
             </div>
@@ -81,19 +131,26 @@
             <div class="row g-2 align-items-center mb-3">
               <div class="col">
                 <div class="input-group">
-                  <span class="input-group-text">
-                    $
-                  </span>
-                  <input type="text" class="form-control" placeholder="from" value="3" autocomplete="off">
+                  <span class="input-group-text"> $ </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="from"
+                    value="3"
+                    autocomplete="off"
+                  />
                 </div>
               </div>
               <div class="col-auto">—</div>
               <div class="col">
                 <div class="input-group">
-                  <span class="input-group-text">
-                    $
-                  </span>
-                  <input type="text" class="form-control" placeholder="to" autocomplete="off">
+                  <span class="input-group-text"> $ </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="to"
+                    autocomplete="off"
+                  />
                 </div>
               </div>
             </div>
@@ -108,625 +165,205 @@
               </select>
             </div>
             <div class="mt-5">
-              <button class="btn btn-primary w-100">
-                Confirm changes
-              </button>
-              <a href="#" class="btn btn-link w-100">
-                Reset to defaults
-              </a>
+              <button class="btn btn-primary w-100">Confirm changes</button>
+              <a href="#" class="btn btn-link w-100"> Reset to defaults </a>
             </div>
           </form>
         </div>
         <div class="col-9">
           <div class="row row-cards">
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-12">
               <div class="card">
+                
                 <div class="row row-0">
-                  <div class="col-4">
-                    <img src="{% static './static/photos/2854fd67ddbd6217.jpg'%}" class="w-100 h-100 object-cover"
-                      alt="Card side image">
+                  <div class="col-3">
+                    <img
+                      src="{% static './static/photos/2854fd67ddbd6217.jpg'%}"
+                      class="w-100 h-100 object-cover"
+                      alt="Card side image"
+                    />
                   </div>
                   <div class="col">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center mb-3">
-                        <span class="avatar me-3 rounded">JL</span>
-                        <div>
-                          <div>Jeffie Lewzey</div>
-                          <div class="text-muted">5 days ago</div>
+                    <div
+                      class="card-body flex-column-revers flex-row align-items-end h-100"
+                    >
+                    <div class="d-flex">
+                      <h1 class="" style="margin-right: auto;">Grievance Title</h1>
+                      <div><span class="badge bg-yellow">Pending</span></div>
+                    </div>
+                      
+                      <h3>
+                        <span
+                          ><!-- Download SVG icon from http://tabler-icons.io/i/map-pin -->
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="11" r="3" />
+                            <path
+                              d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+                            /></svg>
+                        </span>
+                        Vartak Nagar, Thane
+                      </h3>
+                      <div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Aperiam deleniti fugit incidunt, iste, itaque
+                          minima neque pariatur perferendis sed suscipit velit
+                          vitae voluptatem.
+                        </p>
+                      </div>
+                      <div class="row row-card">
+                        <div class="col-md-6 col-xl-4">
+                          <div class="card card-sm">
+                            <div class="card-body">
+                              <div class="row align-items-center">
+                                <div class="col-auto">
+                                  <span class="bg-green text-white avatar"
+                                    ><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      class="icon"
+                                      width="24"
+                                      height="24"
+                                      viewBox="0 0 24 24"
+                                      stroke-width="2"
+                                      stroke="currentColor"
+                                      fill="none"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    >
+                                      <path
+                                        stroke="none"
+                                        d="M0 0h24v24H0z"
+                                        fill="none"
+                                      />
+                                      <line x1="4" y1="7" x2="20" y2="7" />
+                                      <line x1="10" y1="11" x2="10" y2="17" />
+                                      <line x1="14" y1="11" x2="14" y2="17" />
+                                      <path
+                                        d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                                      />
+                                      <path
+                                        d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                                      />
+                                    </svg>
+                                  </span>
+                                </div>
+                                <div class="col">
+                                  <div class="font-weight-medium">Garbage</div>
+                                  <div class="text-muted">21 Jan 2022</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-xl-8">
+                          <div class="d-flex justify-content-end p-3">
+                            <div
+                              class="flex-column align-item-cenyer"
+                              style="margin-right: 15%"
+                            >
+                              <span>Score</span>
+                              <h1 class="display-4">#12</h1>
+                            </div>
+                            <div class="flex-column">
+                              <span>Upvote</span>
+                              <h1 class="display-4">365</h1>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <h3 class="">Vartak Nagar, Thane</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt,
-                        iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-lg-6">
-              <div class="card">
-                <div class="row row-0">
-                  <div class="col-4">
-                    <img src="{% static './static/photos/3d2998219313cd37.jpg' %}" class="w-100 h-100 object-cover"
-                      alt="Card side image">
-                  </div>
-                  <div class="col">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center mb-3">
-                        <span class="avatar me-3 rounded"
-                          style="background-image: url({% static './static/avatars/002m.jpg' %})"></span>
-                        <div>
-                          <div>Mallory Hulme</div> 
-                          <div class="text-muted">yesterday</div>
+                      <div class="d-flex mt-3">
+                        <div
+                          class="d-flex align-items-center"
+                          style="margin-right: auto"
+                        >
+                          <span class="avatar me-3 rounded">JL</span>
+                          <div>
+                            <div>Jeffie Lewzey</div>
+                            <div class="text-muted">5 days ago</div>
+                          </div>
+                        </div>
+                        <div class="m-3">
+                          <a
+                            href="#"
+                            class="btn btn-outline-danger"
+                            style="padding-right: 10px"
+                          >
+                            Reject
+                            <!-- Download SVG icon from http://tabler-icons.io/i/x -->
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="margin-left: 10px; margin-right: 0"
+                              class="icon"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              stroke-width="2"
+                              stroke="currentColor"
+                              fill="none"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <path
+                                stroke="none"
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                              />
+                              <line x1="18" y1="6" x2="6" y2="18" />
+                              <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                          </a>
+                          <a
+                            href="#"
+                            class="btn btn-primary"
+                            style="padding-right: 10px"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal-team"
+                          >
+                            Move to Desk
+                            <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="margin-left: 10px; margin-right: 0"
+                              class="icon"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              stroke-width="2"
+                              stroke="currentColor"
+                              fill="none"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <path
+                                stroke="none"
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                              />
+                              <line x1="5" y1="12" x2="19" y2="12" />
+                              <line x1="13" y1="18" x2="19" y2="12" />
+                              <line x1="13" y1="6" x2="19" y2="12" />
+                            </svg>
+                          </a>
                         </div>
                       </div>
-                      <h3 class="">Vartak Nagar, Thane</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt,
-                        iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-lg-6">
-              <div class="card">
-                <div class="row row-0">
-                  <div class="col-4">
-                    <img src="{% static './static/photos/6d35d9a2bd6c63c2.jpg' %}" class="w-100 h-100 object-cover"
-                      alt="Card side image">
-                  </div>
-                  <div class="col">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center mb-3">
-                        <span class="avatar me-3 rounded"
-                          style="background-image: url({% static './static/avatars/003m.jpg' %})"></span>
-                        <div>
-                          <div>Dunn Slane</div>
-                          <div class="text-muted">1 week and 3 days ago</div>
-                        </div>
-                      </div>
-                      <h3 class="">Vartak Nagar, Thane</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt,
-                        iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-lg-6">
-              <div class="card">
-                <div class="row row-0">
-                  <div class="col-4">
-                    <img src="{% static './static/photos/8a26974ee6444acd.jpg' %}" class="w-100 h-100 object-cover"
-                      alt="Card side image">
-                  </div>
-                  <div class="col">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center mb-3">
-                        <span class="avatar me-3 rounded"
-                          style="background-image: url({% static './static/avatars/000f.jpg' %})"></span>
-                        <div>
-                          <div>Emmy Levet</div>
-                          <div class="text-muted">5 days ago</div>
-                        </div>
-                      </div>
-                      <h3 class="">Vartak Nagar, Thane</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt,
-                        iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="col-sm-12 col-lg-6">
-              <div class="card">
-                <div class="row row-0">
-                  <div class="col-4">
-                    <img src="{% static './static/photos/8c13ad59f739558c.jpg' %}" class="w-100 h-100 object-cover"
-                      alt="Card side image">
-                  </div>
-                  <div class="col">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center mb-3">
-                        <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/001f.jpg' %})"></span>
-                    <div>
-                      <div>Maryjo Lebarree</div>
-                      <div class="text-muted">3 days ago</div>
-                    </div>
-                      </div>
-                      <h3 class="">Vartak Nagar, Thane</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt,
-                        iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/8c13ad59f739558c.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/001f.jpg' %})"></span>
-                    <div>
-                      <div>Maryjo Lebarree</div>
-                      <div class="text-muted">3 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/8fdeb4785d2b82ef.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded">EP</span>
-                    <div>
-                      <div>Egan Poetz</div>
-                      <div class="text-muted">6 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/9f36332564ca271d.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/002f.jpg' %})"></span>
-                    <div>
-                      <div>Kellie Skingley</div>
-                      <div class="text-muted">1 week and 2 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/35b88fc04a518c1b.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/003f.jpg' %})"></span>
-                    <div>
-                      <div>Christabel Charlwood</div>
-                      <div class="text-muted">today</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/36e273986ed577b8.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded">HS</span>
-                    <div>
-                      <div>Haskel Shelper</div>
-                      <div class="text-muted">2 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/75b555b99d5b38c4.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/006m.jpg' %})"></span>
-                    <div>
-                      <div>Lorry Mion</div>
-                      <div class="text-muted">5 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/546fd146c83f428c.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/004f.jpg' %})"></span>
-                    <div>
-                      <div>Leesa Beaty</div>
-                      <div class="text-muted">6 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/802a16cdf5ce3551.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/007m.jpg' %})"></span>
-                    <div>
-                      <div>Perren Keemar</div>
-                      <div class="text-muted">4 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/0986f97be719fb9a.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded">SA</span>
-                    <div>
-                      <div>Sunny Airey</div>
-                      <div class="text-muted">5 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/1194d63fe36a8670.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/009m.jpg' %})"></span>
-                    <div>
-                      <div>Geoffry Flaunders</div>
-                      <div class="text-muted">1 week ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/1366fdc9b9b277e4.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/010m.jpg' %})"></span>
-                    <div>
-                      <div>Thatcher Keel</div>
-                      <div class="text-muted">1 week and 2 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/5358d787242861c4.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/005f.jpg' %})"></span>
-                    <div>
-                      <div>Dyann Escala</div>
-                      <div class="text-muted">4 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/5614ec7eb9034d04.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/006f.jpg' %})"></span>
-                    <div>
-                      <div>Avivah Mugleston</div>
-                      <div class="text-muted">6 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/56614e12b2a7bd68.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded">AA</span>
-                    <div>
-                      <div>Arlie Armstead</div>
-                      <div class="text-muted">1 week and 1 day ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/77586f6ffa9fbc5e.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/008f.jpg' %})"></span>
-                    <div>
-                      <div>Tessie Curzon</div>
-                      <div class="text-muted">3 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/552683cc4e5f0e11.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/009f.jpg' %})"></span>
-                    <div>
-                      <div>Flossi Uttley</div>
-                      <div class="text-muted">4 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/3664593f945f0d8d.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/010f.jpg' %})"></span>
-                    <div>
-                      <div>Cesya Spritt</div>
-                      <div class="text-muted">1 week ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/529078594c496ec5.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/011m.jpg' %})"></span>
-                    <div>
-                      <div>Johnnie Gilby</div>
-                      <div class="text-muted">1 week and 1 day ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/a74c41b6fb7fdf34.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/012m.jpg' %})"></span>
-                    <div>
-                      <div>Ban Rzehor</div>
-                      <div class="text-muted">1 week and 1 day ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/a159fb2bff29fda4.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/011f.jpg' %})"></span>
-                    <div>
-                      <div>Carroll Erat</div>
-                      <div class="text-muted">6 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/a12804818c417ea3.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/012f.jpg' %})"></span>
-                    <div>
-                      <div>Marsha Labat</div>
-                      <div class="text-muted">today</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/abb0721ac43820f9.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/013m.jpg' %})"></span>
-                    <div>
-                      <div>Elston Muffett</div>
-                      <div class="text-muted">1 week and 3 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/d366fc3df37fe65b.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/013f.jpg' %})"></span>
-                    <div>
-                      <div>Leigha Gorce</div>
-                      <div class="text-muted">1 week and 1 day ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/da6119936bd7f566.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded">TB</span>
-                    <div>
-                      <div>Tallie Bettis</div>
-                      <div class="text-muted">3 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/e8f47263360d96af.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/015f.jpg' %})"></span>
-                    <div>
-                      <div>Merrily Garforth</div>
-                      <div class="text-muted">3 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/ecfed9fbf8a58836.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded">EB</span>
-                    <div>
-                      <div>Errol Blackley</div>
-                      <div class="text-muted">2 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/f7f04e6a834b1959.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/016f.jpg' %})"></span>
-                    <div>
-                      <div>Ninon Don</div>
-                      <div class="text-muted">1 week and 1 day ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/f61b5f865012f200.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/015m.jpg' %})"></span>
-                    <div>
-                      <div>Delaney Cairney</div>
-                      <div class="text-muted">1 week and 3 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/f746d9f7fa60be79.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/017f.jpg' %})"></span>
-                    <div>
-                      <div>Gratia Gooley</div>
-                      <div class="text-muted">6 days ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card card-sm">
-                <a href="#" class="d-block"><img src="{% static './static/photos/ff54b43b56632883.jpg' %}"
-                    class="card-img-top"></a>
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <span class="avatar me-3 rounded"
-                      style="background-image: url({% static './static/avatars/018f.jpg' %})"></span>
-                    <div>
-                      <div>Odelinda McCosh</div>
-                      <div class="text-muted">1 week and 3 days ago</div>
-                    </div>
-                  </div>
-                </div>
+                <div class="card-status-end bg-yellow"></div>
               </div>
             </div>
           </div>
@@ -734,4 +371,5 @@
       </div>
     </div>
   </div>
-  {% endblock %}
+</div>
+{% endblock %}

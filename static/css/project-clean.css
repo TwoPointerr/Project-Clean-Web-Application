@@ -1,0 +1,23 @@
+.card-status-end {
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+}
+
+.desk{
+  width: 10rem;
+  height: 10rem;
+}
+
+.folder-icon{
+  width: 6rem;
+  height: 6rem;
+}
+
+#desk-icon{
+  width: 6rem;
+  height: 6rem;
+}

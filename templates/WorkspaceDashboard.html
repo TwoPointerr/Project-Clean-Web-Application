@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container-xl">
+  <div class="card">
+    <ul class="nav nav-tabs" data-bs-toggle="tabs">
+      <li class="nav-item">
+        <a href="#tabs-home-ex2" class="nav-link active" data-bs-toggle="tab"
+          ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+          <!-- SVG icon code with class="me-2" -->
+          Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a href="#tabs-profile-ex2" class="nav-link" data-bs-toggle="tab"
+          ><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+          <!-- SVG icon code with class="me-2" -->
+          Desk</a
+        >
+      </li>
+    </ul>
+    <div class="card-body">
+      <div class="tab-content">
+        <div class="tab-pane active show" id="tabs-home-ex2">
+          <div>
+            Cursus turpis vestibulum, dui in pharetra vulputate id sed non
+            turpis ultricies fringilla at sed facilisis lacus pellentesque purus
+            nibh
+          </div>
+        </div>
+        <div class="tab-pane" id="tabs-profile-ex2">
+          {% include "insideDesk.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content%}
+

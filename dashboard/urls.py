@@ -12,4 +12,5 @@ urlpatterns = [
     path('colors',views.colorDemo),
     path('search',views.searchDemo, name="search"),
     path('grievance',views.grievance, name="grievance")
+    path('workspace/',views.workSpace)
 ]
