@@ -28,11 +28,15 @@
           </div>
         </div>
         <div class="tab-pane" id="tabs-profile-ex2">
-          {% include "insideDesk.html" %}
+          <div id="desk-AJAX-load">
+            {% include "desksList.html" %}
+          </div>
+          
         </div>
       </div>
     </div>
   </div>
 </div>
+<script src="{% static '/js/selectDesk.js' %}"></script>
 {% endblock content%}
 

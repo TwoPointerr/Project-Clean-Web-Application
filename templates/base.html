@@ -250,7 +250,7 @@
             <div class="container-xl">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="./index.html">
+                  <a class="nav-link" href="{% url 'dashboard:muncipal_dashboard' %}">
                     <span class="nav-link-icon d-md-none d-lg-inline-block"
                       ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                       <!-- Download SVG icon from http://tabler-icons.io/i/chart-dots -->
@@ -282,7 +282,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="{% static '/index.html' %}">
+                  <a class="nav-link" href="{% url 'dashboard:workspace' %}">
                     <span class="nav-link-icon d-md-none d-lg-inline-block"
                       ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                       <!-- Download SVG icon from http://tabler-icons.io/i/chart-dots -->
@@ -454,6 +454,7 @@
           </div>
           <div class="modal-body">
             <div class="row mb-3 align-items-end">
+              {% for desk in desks %}
               <div class="col-auto">
                 <a href="#" class="avatar avatar-upload rounded">
                   <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -490,11 +491,12 @@
                       </g>
                     </g>
                   </svg>
-                  {% for desk in desks %}
+                  
                     <span class="avatar-upload-text">{{ desk.desk_name }}</span>
-                  {% endfor %}
+                  
                 </a>
               </div>
+              {% endfor %}
 
               <div class="col-auto">
                 <a href="#" class="avatar avatar-upload rounded" id="add-desk-button" >
@@ -728,6 +730,7 @@
     <script src="{% static '/dist/js/tabler.min.js' %}"></script>
     <script src="{% static '/dist/js/demo.min.js' %}"></script>
     <script src="{% static '/js/modalAJAX.js' %}"></script>
+    
     <script>
       // @formatter:off
       document.addEventListener("DOMContentLoaded", function () {
