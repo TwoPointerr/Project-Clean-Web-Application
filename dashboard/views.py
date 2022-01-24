@@ -1,20 +1,29 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from authapp.models import User
+from dashboard.models import Desk
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.core import serializers
 
 # Create your views here.
 def dashboard(request):
     return render(request,'dashboard.html')
 
 def colorDemo(request):
-    return render(request,'muncipalDashboard.html')
+    desk = Desk.objects.all()
+    return render(request,'muncipalDashboard.html',{"desk":desk})
 
 def workSpace(request):
     return render(request,"WorkspaceDashboard.html")
 
 def searchDemo(request):
     return render(request,'search-results.html')
+
+def getDeskInfo(request):
+    desk = Desk.objects.all()
+    data = serializers.serialize('json',desk)
+    return HttpResponse(data, content_type='application/json')
 
 def signin(request):
     if request.method == 'POST':

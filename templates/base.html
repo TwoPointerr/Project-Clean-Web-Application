@@ -36,6 +36,7 @@
     />
     <link href="{% static '/dist/css/demo.min.css' %}" rel="stylesheet" />
     <link rel="stylesheet" href="{% static '/css/project-clean.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="page">
@@ -489,12 +490,14 @@
                       </g>
                     </g>
                   </svg>
-                  <span class="avatar-upload-text">Desk 1</span>
+                  {% for desk in desks %}
+                    <span class="avatar-upload-text">{{ desk.desk_name }}</span>
+                  {% endfor %}
                 </a>
               </div>
 
               <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded">
+                <a href="#" class="avatar avatar-upload rounded" id="add-desk-button" >
                   <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -717,12 +720,14 @@
       </div>
     </div>
     <!-- Libs JS -->
+    
     <script src="{% static '/dist/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
     <script src="{% static '/dist/libs/jsvectormap/dist/js/jsvectormap.min.js' %}"></script>
     <script src="{% static '/dist/libs/jsvectormap/dist/maps/world.js' %}"></script>
     <!-- Tabler Core -->
     <script src="{% static '/dist/js/tabler.min.js' %}"></script>
     <script src="{% static '/dist/js/demo.min.js' %}"></script>
+    <script src="{% static '/js/modalAJAX.js' %}"></script>
     <script>
       // @formatter:off
       document.addEventListener("DOMContentLoaded", function () {

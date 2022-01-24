@@ -13,11 +13,11 @@ class Grievance(models.Model):
     gri_img = models.ImageField(upload_to="grievance_pics")
     gri_title = models.CharField(max_length=250)
     gri_desc = models.TextField(null=True)
-    gri_category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True)
+    gri_category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True, related_name='category')
     gri_upvote = models.PositiveIntegerField(default=0)
     gri_severity = models.IntegerField()
     gri_priority = models.IntegerField()
-    gri_uploaded_user = models.ForeignKey(CitizenProfile,on_delete=models.CASCADE)
+    gri_uploaded_user = models.ForeignKey(CitizenProfile,on_delete=models.CASCADE, related_name='uploaded_user')
     gri_location = models.OneToOneField(Location,on_delete=models.SET_NULL,null=True)
     gri_timeStamp = models.DateTimeField(auto_now_add=True)
 

@@ -1,3 +1,4 @@
+from django.http import response
 from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework.decorators import api_view, permission_classes
@@ -8,7 +9,7 @@ from rest_framework.response import Response
 from authapp import serializers
 from rest_framework.views import APIView
 from authapp.models import Post, User
-from authapp.serializers import UserDisplaySrializer, PostSerializer
+from authapp.serializers import LocationSerializer, UserDisplaySrializer, PostSerializer
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -38,6 +39,16 @@ class PostCreate(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class Location(APIView):
+    def post(self,request, format=None):
+        serializer = LocationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 # Create your views here.

@@ -32,7 +32,6 @@ class Location(models.Model):
     loc_lat = models.FloatField()
     loc_display_name = models.TextField()
     loc_suburb = models.CharField(max_length=250)
-    loc_town = models.CharField(max_length=250)
     loc_city = models.CharField(max_length=250)
     loc_municipality = models.TextField()
     loc_state_distric = models.CharField(max_length=250)

@@ -9,5 +9,6 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('colors',views.colorDemo),
     path('workspace/',views.workSpace),
-    path('search',views.searchDemo, name="search")
+    path('search',views.searchDemo, name="search"),
+    path('getDeskInfo/',views.getDeskInfo)
 ]
