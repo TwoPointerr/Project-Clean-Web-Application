@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css" rel="stylesheet">
+      <div class="page-wrapper">
+        <div class="container-xl">
+          <!-- Page title -->
+          <div class="page-header d-print-none">
+            <div class="row align-items-center">
+              <div class="col">
+                <h2 class="page-title">
+                  Cards
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-body">
+          <div class="container-xl">
+            <div class="row row-cards">
+              <div class="col-md-8">
+                <div class="row row-cards">
+                 
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-status-top bg-primary"></div>
+                      <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                          <span class="avatar me-3 rounded">JL</span>
+                          <div>
+                            <div>Jeffie Lewzey</div>
+                            <div class="text-muted">5 days ago</div>
+                          </div>
+                        </div>
+                        <h3 class="card-title">Vartak Nagar, Thane</h3>
+                        <div class="card-subtitle">subtitle</div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
+                          neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
+                          neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
+                      </div>
+                      <div class="card-footer">
+                        <div class="d-flex">
+                          <a href="#" class="btn btn-link">Reject</a>
+                          <a href="#" class="btn btn-primary ms-auto">Forward</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="card ">
+                      <div class="card-body">
+                        <div class="mb-3">
+                          <label class="form-label">Select Action</label>
+                          <div class="form-selectgroup">
+                            <label class="form-selectgroup-item">
+                              <input type="radio" name="icons" value="home" class="form-selectgroup-input" checked>
+                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                                Submitted</span>
+                            </label>
+                            <label class="form-selectgroup-item">
+                              <input type="radio" name="icons" value="user" class="form-selectgroup-input">
+                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="7" r="4" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+                                In Progress</span>
+                            </label>
+                            <label class="form-selectgroup-item">
+                              <input type="radio" name="icons" value="circle" class="form-selectgroup-input">
+                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/circle -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /></svg>
+                                Completed</span>
+                            </label>
+                            <label class="form-selectgroup-item">
+                              <input type="radio" name="icons" value="square" class="form-selectgroup-input">
+                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/square -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="2" /></svg>
+                                Rejected</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row row-cards">
+                  <div class="col-12">
+                    <div class="img-responsive" style="background-image: url({% static './static/photos/4f668538bdd3fd7f.jpg' %});height: 500px;
+                    background-repeat: no-repeat;
+                    background-size: contain;">
+                  </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        
+                        <div class="ratio ratio-4x3">
+                          <div>
+                            <div id="map-simple" class="w-100 h-100 mapboxgl-map"><div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" width="504" height="284" style="position: absolute; width: 504px; height: 284px;"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib mapboxgl-compact"><div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.mapbox.com/about/maps/" target="_blank" title="Mapbox" aria-label="Mapbox" role="listitem">© Mapbox</a> <a href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap" aria-label="OpenStreetMap" role="listitem">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ" target="_blank" title="Improve this map" aria-label="Improve this map" role="listitem" rel="noopener nofollow">Improve this map</a></div></div></div></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <!-- <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        
+                        <div class="ratio ratio-21x9">
+                          <div>
+                            <div id="map-simple" class="w-100 h-100 mapboxgl-map"><div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" width="504" height="284" style="position: absolute; width: 504px; height: 284px;"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib mapboxgl-compact"><div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.mapbox.com/about/maps/" target="_blank" title="Mapbox" aria-label="Mapbox" role="listitem">© Mapbox</a> <a href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap" aria-label="OpenStreetMap" role="listitem">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ" target="_blank" title="Improve this map" aria-label="Improve this map" role="listitem" rel="noopener nofollow">Improve this map</a></div></div></div></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js"></script>
+        <script>
+          // @formatter:off
+          document.addEventListener("DOMContentLoaded", function() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+            var map = new mapboxgl.Map({
+              container: 'map-simple',
+              style: 'mapbox://styles/mapbox/streets-v11',
+              zoom: 15,
+              center: [13.404900, 52.518827],
+            });
+          });
+          // @formatter:on
+        </script>
+        {% comment %} <script>
+          // @formatter:off
+          document.addEventListener("DOMContentLoaded", function() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+            var map = new mapboxgl.Map({
+              container: 'map-light',
+              style: 'mapbox://styles/mapbox/light-v10',
+              zoom: 11,
+              center: [-0.2416782, 51.5285582],
+            });
+          });
+          // @formatter:on
+        </script>
+        <script>
+          // @formatter:off
+          document.addEventListener("DOMContentLoaded", function() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+            var map = new mapboxgl.Map({
+              container: 'map-markers',
+              style: 'mapbox://styles/mapbox/light-v10',
+              zoom: 1,
+              center: [0, 0],
+            });
+            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([-58.666667, -34.58333333]).addTo(map);
+            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([16.366667, 48.2]).addTo(map);
+            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([116.383333, 39.91666667]).addTo(map);
+            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([149.133333, -35.26666667]).addTo(map);
+            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([58.583333, 23.61666667]).addTo(map);
+            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([-77, 38.883333]).addTo(map);
+          });
+          // @formatter:on
+        </script>
+        <script>
+          // @formatter:off
+          document.addEventListener("DOMContentLoaded", function() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+            var map = new mapboxgl.Map({
+              container: 'map-card',
+              style: 'mapbox://styles/mapbox/satellite-v9',
+              zoom: 1,
+              center: [0, 0],
+            });
+          });
+          // @formatter:on
+        </script> {% endcomment %}
+        {% endblock %}
+       
