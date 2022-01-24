@@ -28,8 +28,8 @@ class CitizenProfile(models.Model):
         return self.citi_user.first_name
 
 class Location(models.Model):
-    loc_long = models.FloatField()
     loc_lat = models.FloatField()
+    loc_long = models.FloatField()
     loc_display_name = models.TextField()
     loc_suburb = models.CharField(max_length=250)
     loc_town = models.CharField(max_length=250)
@@ -44,7 +44,7 @@ class Location(models.Model):
 
 class MCProfile(models.Model):
     mc_user = models.OneToOneField(User,on_delete=models.CASCADE)
-    mc_profile_img = models.ImageField(upload_to="profiles_pics",blank=True)
+    mc_profile_img = models.ImageField(default='profiles_pics/default.jpg',upload_to="profiles_pics",blank=True)
     mc_employee_id = models.CharField(max_length=250)
     mc_muncipal_co = models.TextField()
     mc_location = models.OneToOneField(Location,on_delete=models.SET_NULL,null=True)
