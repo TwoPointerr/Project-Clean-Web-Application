@@ -15,6 +15,6 @@ urlpatterns = [
     path('getDeskInfo/',views.getDeskInfo),
     path('loadDesk/',views.loadDesk,name="loadDesk"),
     path('search',views.searchDemo, name="search"),
-    path('grievance',views.grievance, name="grievance")
-    
+    path('grievance',views.grievance, name="grievance"),
+     path('filter-data/', views.filter_data, name="filter_data"),
 ]
