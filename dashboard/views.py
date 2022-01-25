@@ -30,9 +30,10 @@ def searchDemo(request):
     return render(request,'search-results.html')
 
 def getDeskInfo(request):
-    desk = Desk.objects.all()
-    data = serializers.serialize('json',desk)
-    return HttpResponse(data, content_type='application/json')
+    desk_id = int(request.GET.get('desk_id').split("_")[1])
+    desk = Desk.objects.get(id=desk_id)
+    template = render_to_string('modalFolderTemplate.html', {'desk_single': desk})
+    return JsonResponse({'data':template})
 
 def loadDesk(request):
     mc_profile = MCProfile.objects.get(mc_user=request.user)
