@@ -15,7 +15,6 @@
     <div class="container-xl">
       <div class="row g-4">
         <div class="col-3">
-          <form action="" method="get">
             {% comment %} <div class="list-group list-group-transparent mb-3">
               <a class="list-group-item list-group-item-action d-flex align-items-center active" href="#">
                 Games
@@ -37,19 +36,23 @@
             <div class="subheader mb-2">Sort By</div>
             <div class="mb-3">
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" value="h_l_sort_by" id="sort_by" data-filter="sort_by" name="radio"/>
+                <input type="radio" class="form-check-input" value="h_l_sort_by" id="sort_by" data-filter="sort_by"
+                  name="radio" />
                 <span class="form-check-label">Highest - Lowest Upvotes</span>
               </label>
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" value="l_h_sort_by" id="sort_by" data-filter="sort_by" name="radio"/>
+                <input type="radio" class="form-check-input" value="l_h_sort_by" id="sort_by" data-filter="sort_by"
+                  name="radio" />
                 <span class="form-check-label">Lowest - Highest Upvotes</span>
               </label>
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" value="l_sort_by" id="sort_by" data-filter="sort_by" name="radio"/>
+                <input type="radio" class="form-check-input" value="l_sort_by" id="sort_by" data-filter="sort_by"
+                  name="radio" />
                 <span class="form-check-label">Date Added - latest</span>
               </label>
               <label class="form-check mb-1">
-                <input type="radio" class="form-check-input" value="o_sort_by" id="sort_by" data-filter="sort_by" name="radio"/>
+                <input type="radio" class="form-check-input" value="o_sort_by" id="sort_by" data-filter="sort_by"
+                  name="radio" />
                 <span class="form-check-label">Date Added - older</span>
               </label>
             </div>
@@ -57,45 +60,67 @@
             <div class="mb-3">
               {% for cat in category %}
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="check_category" name="form-tags[]" value="{{ cat.cat_name }}" checked />
+                <input type="checkbox" class="form-check-input" data-filter="grievance_category" id="grievance_cat"
+                  value="{{ cat.cat_name }}" checked />
                 <span class="form-check-label">{{ cat.cat_name }}</span>
               </label>
+              {% endfor %}
+            </div>
+            <div class="subheader mb-2">Status</div>
+            <div class="mb-3">
+              {% for stat in status %}
+              
+              <label class="form-check mb-1">
+                <input type="checkbox" class="form-check-input" data-filter="grievance_status" id="grievance_stat"
+                  value="{{ stat }}" {% if stat == "Completed" or stat == "Rejected" %}{% else %}checked{% endif %} />
+                <span class="form-check-label">{{ stat }}</span>
+              </label>
+              
+              
               {% endfor %}
             </div>
             <div class="subheader mb-2">Severity</div>
             <div class="mb-3">
               {% for sev in severity %}
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="check_category" name="" value="{{ sev.sev_name }}" checked />
+                <input type="checkbox" class="form-check-input" id="check_category" name="" value="{{ sev.sev_name }}"
+                  checked />
                 <span class="form-check-label">{{ sev.sev_name }} low/medium/high</span>
               </label>
               {% endfor %}
             </div>
-            <div class="subheader mb-2">Location</div>
-            <div class="mb-3">
-              {% for loc in location %}
-              <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="check_category" name="" value="{{ loc.city }}" checked />
-                <span class="form-check-label">{{ loc.city }} low/medium/high</span>
-              </label>
-              {% endfor %}
-            </div>
-            <div class="subheader mb-2">Upvotes //comment</div>
-            {% comment %} <div class="row g-2 align-items-center mb-3">
+            <div class="subheader mb-2">Upvotes</div>
+            <div class="row g-2 align-items-center mb-3">
               <div class="col">
                 <div class="input-group">
-                  <span class="input-group-text"> $ </span>
-                  <input type="text" class="form-control" placeholder="from" value="3" autocomplete="off" />
+                  <span class="input-group-text">
+                    ▲
+                  </span>
+                  <input type="text" class="form-control" placeholder="from" value="{{ minVote }}" autocomplete="off" id="minVote" name="minVote" >
                 </div>
               </div>
               <div class="col-auto">—</div>
               <div class="col">
                 <div class="input-group">
-                  <span class="input-group-text"> $ </span>
-                  <input type="text" class="form-control" placeholder="to" autocomplete="off" />
+                  <span class="input-group-text">
+                    ▲
+                  </span>
+                  <input type="text" class="form-control" placeholder="to" value="{{ maxVote }}" autocomplete="off" id="maxVote" name="maxVote" >
                 </div>
               </div>
-            </div> {% endcomment %}
+              <button class="btn btn-primary d-block w-100" id="voteFilterBtn">Filter</button>
+            </div>
+            <div class="subheader mb-2">Location</div>
+            <div class="mb-3">
+              {% for loc in location %}
+              <label class="form-check mb-1">
+                <input type="checkbox" class="form-check-input" id="check_category" name="" value="{{ loc.city }}"
+                  checked />
+                <span class="form-check-label">{{ loc.city }} low/medium/high</span>
+              </label>
+              {% endfor %}
+            </div>
+            
             {% comment %} <div class="subheader mb-2">Shipping</div>
             <div>
               <select name="" class="form-select">
@@ -110,35 +135,30 @@
               <button class="btn btn-primary w-100">Confirm changes</button>
               <a href="#" class="btn btn-link w-100"> Reset to defaults </a>
             </div>
-          </form>
         </div>
         <div class="col-9">
-          <div class="row row-cards">
+
+          <div class="row row-cards" id="filteredGrievances">
+            <p class="ajaxLoader">Loading...</p>
             {% for gri in grievances %}
             <div class="col-sm-12 col-lg-12">
               <div class="card">
 
                 <div class="row row-0">
                   <div class="col-3">
-                    <img
-                      src="{{gri.gri_img.url}}"
-                      class="w-100 h-100 object-cover"
-                      alt="Card side image"
-                    />
+                    <img src="{{gri.gri_img.url}}" class="w-100 h-100 object-cover" alt="Card side image" />
                   </div>
                   <div class="col">
-                    <div
-                      class="card-body flex-column-revers flex-row align-items-end h-100"
-                    >
-                    <div class="d-flex">
-                      <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
-                      {% for status in gri.status_set.all%}
-                      {% if status.status_active%}
+                    <div class="card-body flex-column-revers flex-row align-items-end h-100">
+                      <div class="d-flex">
+                        <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
+                        {% for status in gri.status_set.all%}
+                        {% if status.status_active%}
                         <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
-                      {% endif %}
-                      {% endfor %}
-                    </div>
-                      
+                        {% endif %}
+                        {% endfor %}
+                      </div>
+
                       <h3>
                         <span>
                           <!-- Download SVG icon from http://tabler-icons.io/i/map-pin -->
@@ -149,7 +169,7 @@
                             <circle cx="12" cy="11" r="3" />
                             <path
                               d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                            </svg>
+                          </svg>
                         </span>
                         {{ gri.gri_location }}
                       </h3>
