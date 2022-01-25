@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from authapp.models import MCProfile, User
-from grievance_data.models import Grievance
+from grievance_data.models import Grievance, Category, Status
 from dashboard.models import Desk
 from django.contrib.auth import authenticate, login
+from django.db.models import Count, Min, Sum, Avg, Max
 from django.http import HttpResponse
 from django.core import serializers
 from django.template.loader import render_to_string
@@ -23,7 +24,12 @@ def workSpace(request):
 
 def muncipalDashboard(request):
     grievance = Grievance.objects.all()
-    return render(request,'muncipalDashboard.html',{'grievances':grievance})
+    category =Category.objects.all()
+    minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
+    maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
+    status = Status.objects.values_list('status_name',flat=True).distinct()
+    print(status)
+    return render(request,'muncipalDashboard.html',{'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status})
 
 
 def searchDemo(request):
@@ -106,3 +112,59 @@ def accountSetting(request):
         # messages.warning(request,'You are not signed in.')
         return redirect("dashboard:signin")
     return render(request,'account-setting.html', {'profile': profile, 'user': user})
+
+
+
+
+def filter_data(request):
+    grievance_all_list = Grievance.objects.all()
+    grievance_list = filter_data_functionality(request,grievance_all_list)
+    template = render_to_string('ajax/grievance-list.html', {'grievance_list': grievance_list})
+    return JsonResponse({'data':template})
+
+
+
+    
+def filter_data_functionality(request,grievance_list):
+    min_vote = request.GET.get('minVote')
+    max_vote = request.GET.get('maxVote')
+    grievance_list = grievance_list.filter(gri_upvote__gte=min_vote).order_by('gri_upvote')
+    grievance_list = grievance_list.filter(gri_upvote__lte=max_vote).order_by('gri_upvote')
+    
+    gri_categories= request.GET.getlist('grievance_category[]')
+    category = Category.objects.filter(cat_name__in=gri_categories)
+    
+    if len(gri_categories)>0:
+        grievance_list = grievance_list.filter(gri_category_id__in=category)
+    
+    gri_status= request.GET.getlist('grievance_status[]')
+    stat = Status.objects.filter(status_name__in=gri_status)
+    print(stat)
+    print("stat")
+    if len(gri_status)>0:
+        grievance_list = grievance_list.filter(status__in=stat)
+    
+    # grievance_sort_list = grievance_sort_list.all().order_by('title')
+    # if len(sub_categories)>0:
+    #     grievance_list = grievance_list.filter(sub_cat__in=sub_categories)
+    # if len(article_categories)>0:
+    #     grievance_list = grievance_list.filter(articel_type__in=article_categories)
+    
+    sort_by_categories= request.GET.getlist('sort_by[]')
+    if len(sort_by_categories)>0:
+        if(sort_by_categories[0] == 'l_h_sort_by'):
+            grievance_list = grievance_list.all().order_by('gri_upvote')
+        elif(sort_by_categories[0] == 'h_l_sort_by'):
+            grievance_list = grievance_list.all().order_by('-gri_upvote')
+        elif(sort_by_categories[0] == 'o_sort_by'):
+            grievance_list = grievance_list.all().order_by('gri_timeStamp')
+        elif(sort_by_categories[0] == 'l_sort_by'):
+            grievance_list = grievance_list.all().order_by('-gri_timeStamp')
+        # grievance_list = grievance_list.all().order_by('title')
+    # if len(color_filter)>0:
+    #     grievance_list = grievance_list.filter(color__in=color_filter)
+    # if len(grievance_brands)>0:
+    #     # category = Category.objects.filter(title__in=categories)
+    #     grievance_list = grievance_list.filter(brand__in=grievance_brands)
+    
+    return grievance_list
