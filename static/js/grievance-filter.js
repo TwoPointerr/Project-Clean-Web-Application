@@ -1,6 +1,8 @@
 $(document).ready(function() {
+    console.log("inside filter");
     $(".ajaxLoader").hide();
     $("#grievance_cat,  #sort_by, #voteFilterBtn, #grievance_stat").on('click', function() {
+        //console.log("inside filter");
         var _filterObj = {};
         var _minVote = $('#minVote').val();
         var _maxVote = $('#maxVote').val();
@@ -70,7 +72,7 @@ $(document).ready(function() {
                 $(".ajaxLoader").show();
             },
             success: function(res) {
-                console.log(res);
+                console.log("inside filter");
                 $("#filteredGrievances").html(res.data);
                 $(".ajaxLoader").hide();
             }
