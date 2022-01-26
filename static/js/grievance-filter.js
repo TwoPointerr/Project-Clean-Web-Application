@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    console.log("inside filter");
     $(".ajaxLoader").hide();
-    $("#grievance_cat,  #sort_by, #voteFilterBtn, #grievance_stat").on('click', function() {
+    $("#grievance_cat,  #sort_by, #voteFilterBtn, #grievance_stat, #gri_loc").on('click', function() {
         //console.log("inside filter");
+        console.log("inside filter");
         var _filterObj = {};
         var _minVote = $('#minVote').val();
         var _maxVote = $('#maxVote').val();
@@ -25,14 +25,14 @@ $(document).ready(function() {
             });
         });
 
-        // $("#brand_cat").each(function(index, ele) {
-        //     console.log("this is the brand list");
-        //     var _filterVal = $(this).val();
-        //     var _filterKey = $(this).data('filter');
-        //     _filterObj[_filterKey] = Array.from(document.querySelectorAll('input[data-filter=' + _filterKey + ']:checked')).map(function(el) {
-        //         return el.value;
-        //     });
-        // });
+        $("#gri_loc").each(function(index, ele) {
+            console.log("this is the brand list");
+            var _filterVal = $(this).val();
+            var _filterKey = $(this).data('filter');
+            _filterObj[_filterKey] = Array.from(document.querySelectorAll('input[data-filter=' + _filterKey + ']:checked')).map(function(el) {
+                return el.value;
+            });
+        });
 
         // $("#article_type").each(function(index, ele) {
         //     var _filterVal = $(this).val();

@@ -83,7 +83,7 @@
               
               {% endfor %}
             </div>
-            <div class="subheader mb-2">Severity</div>
+            {% comment %} <div class="subheader mb-2">Severity</div>
             <div class="mb-3">
               {% for sev in severity %}
               <label class="form-check mb-1">
@@ -92,7 +92,7 @@
                 <span class="form-check-label">{{ sev.sev_name }} low/medium/high</span>
               </label>
               {% endfor %}
-            </div>
+            </div> {% endcomment %}
             <div class="subheader mb-2">Upvotes</div>
             <div class="row g-2 align-items-center mb-3">
               <div class="col">
@@ -118,9 +118,9 @@
             <div class="mb-3">
               {% for loc in location %}
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="check_category" name="" value="{{ loc.city }}"
+                <input type="checkbox" class="form-check-input" data-filter="grievance_location" id="gri_loc" name="" value="{{ loc.loc_city }}"
                   checked />
-                <span class="form-check-label">{{ loc.city }} low/medium/high</span>
+                <span class="form-check-label">{{ loc.loc_city }}</span>
               </label>
               {% endfor %}
             </div>
@@ -293,3 +293,4 @@
     </div>
   </div>
 </div>
+<script src="/static/js/grievance-filter.js"></script>
