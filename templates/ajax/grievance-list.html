@@ -13,11 +13,11 @@
             {% if status.status_active%}
             {% if status.status_name == "In Progress" %}
             <div><span class="badge bg-primary">{{status.status_name}}</span></div>
-            {% elif status.status_name == "Completed" %}
+            {% elif status.status_name == "Complete" %}
             <div><span class="badge bg-success">{{status.status_name}}</span></div>
             {% elif status.status_name == "Rejected" %}
             <div><span class="badge bg-danger">{{status.status_name}}</span></div>
-            {% elif status.status_name == "Reviewing" %}
+            {% elif status.status_name == "Pending" %}
             <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
             {% endif%}
             {% endif %}
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">{{gri.gri_category}}</div>
-                      <div class="text-muted">21 Jan 2022</div>
+                      <div class="text-muted">{{ gri.gri_timeStamp|date:'d-b-Y' }}</div>
                     </div>
                   </div>
                 </div>
@@ -88,7 +88,7 @@
               <span class="avatar me-3 rounded">JL</span>
               <div>
                 <div>{{ gri.gri_uploaded_user.citi_user.first_name }}</div>
-                <div class="text-muted">{{gri.gri_timeStamp}}</div>
+                <div class="text-muted">{{gri.gri_timeStamp|date:'d-b-Y H:i'}}</div>
               </div>
             </div>
             <div class="m-3">
@@ -125,11 +125,11 @@
     {% if status.status_active%}
     {% if status.status_name == "In Progress" %}
     <div class="card-status-end bg-primary"></div>
-    {% elif status.status_name == "Completed" %}
+    {% elif status.status_name == "Complete" %}
     <div class="card-status-end bg-success"></div>
     {% elif status.status_name == "Rejected" %}
     <div class="card-status-end bg-danger"></div>
-    {% elif status.status_name == "Reviewing" %}
+    {% elif status.status_name == "Pending" %}
     <div class="card-status-end bg-yellow"></div>
     {% endif%}
     {% endif %}
