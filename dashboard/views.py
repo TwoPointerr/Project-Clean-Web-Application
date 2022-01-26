@@ -11,46 +11,12 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 # Create your views here.
-def dashboard(request):
-    return render(request,'dashboard.html')
-
-def colorDemo(request):
-    desk = Desk.objects.all()
-    grievance = Grievance.objects.all()
-    return render(request,'muncipalDashboard.html',{'grievances':grievance})
-
-def workSpace(request):
-    return render(request,"WorkspaceDashboard.html",grievancesDataModels())
-
-def grievancesDataModels():
-    grievance = Grievance.objects.all()
-    category =Category.objects.all()
-    minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
-    maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
-    status = Status.objects.values_list('status_name',flat=True).distinct()
-    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status}
 
 def muncipalDashboard(request):
-    return render(request,'muncipalDashboard.html',grievancesDataModels())
+    return render(request,'Muncipal Dashboard/muncipalDashboard.html',grievancesDataModels())
 
-
-def searchDemo(request):
-    return render(request,'search-results.html')
-
-def getDeskInfo(request):
-    desk_id = int(request.GET.get('desk_id').split("_")[1])
-    desk = Desk.objects.get(id=desk_id)
-    template = render_to_string('modalFolderTemplate.html', {'desk_single': desk})
-    return JsonResponse({'data':template})
-
-def loadDesk(request):
-    mc_profile = MCProfile.objects.get(mc_user=request.user)
-    desk_id = int(request.GET.get('desk_id').split("_")[1])
-    desk = Desk.objects.get(id=desk_id)
-    dataDict = grievancesDataModels()
-    dataDict['desk_single'] = desk
-    template = render_to_string('insideDesk.html', dataDict)
-    return JsonResponse({'data':template})
+def workSpace(request):
+    return render(request,"Work Space/WorkspaceDashboard.html",grievancesDataModels())
 
 def grievance(request):
     return render(request,'grievance-detail.html')
@@ -67,9 +33,7 @@ def signin(request):
             
         else:
             return redirect("dashboard:register")
-    return render(request,'sign-in.html')
-
-
+    return render(request,'Account/sign-in.html')
 
 def register(request):
     if request.method == 'POST':
@@ -85,7 +49,7 @@ def register(request):
         login(request, user)
         return redirect("dashboard:acsetting")
     
-    return render(request,'sign-up.html')
+    return render(request,'Account/sign-up.html')
 
 def accountSetting(request):
     user_id = request.user.id
@@ -111,14 +75,29 @@ def accountSetting(request):
 
             profile.save(update_fields=['mc_employee_id', 'mc_muncipal_co', 'mc_profile_img'])
             # messages.success(request,'Information Added.')
-            return redirect("dashboard:searchDemo")
+            return redirect("dashboard:muncipal_dashboard")
     else:
         # messages.warning(request,'You are not signed in.')
         return redirect("dashboard:signin")
-    return render(request,'account-setting.html', {'profile': profile, 'user': user})
+    return render(request,'Account/account-setting.html', {'profile': profile, 'user': user})
 
 
 
+#AJAX Function return JSON Response
+def getDeskInfo(request):
+    desk_id = int(request.GET.get('desk_id').split("_")[1])
+    desk = Desk.objects.get(id=desk_id)
+    template = render_to_string('Base HTML/modalFolderTemplate.html', {'desk_single': desk})
+    return JsonResponse({'data':template})
+
+def loadDesk(request):
+    mc_profile = MCProfile.objects.get(mc_user=request.user)
+    desk_id = int(request.GET.get('desk_id').split("_")[1])
+    desk = Desk.objects.get(id=desk_id)
+    dataDict = grievancesDataModels()
+    dataDict['desk_single'] = desk
+    template = render_to_string('Work Space/insideDesk.html', dataDict)
+    return JsonResponse({'data':template})
 
 def filter_data(request):
     grievance_all_list = Grievance.objects.all()
@@ -127,9 +106,18 @@ def filter_data(request):
     print("inside filter data")
     return JsonResponse({'data':template})
 
+#Supporting Functions
 
+#Return Dict with Gri Model
+def grievancesDataModels():
+    grievance = Grievance.objects.all()
+    category =Category.objects.all()
+    minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
+    maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
+    status = Status.objects.values_list('status_name',flat=True).distinct()
+    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status}
 
-    
+#Filter Gri Model and return Gri model OBJ
 def filter_data_functionality(request,grievance_list):
     min_vote = request.GET.get('minVote')
     max_vote = request.GET.get('maxVote')
