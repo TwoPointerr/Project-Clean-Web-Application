@@ -1,23 +1,27 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
 from authapp.models import MCProfile, User, Location
 from grievance_data.models import Grievance, Category, Status
 from dashboard.models import Desk
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.db.models import Count, Min, Sum, Avg, Max
+from django.contrib import messages
 from django.http import HttpResponse
 from django.core import serializers
 from django.template.loader import render_to_string
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 # Create your views here.
-
+@login_required
 def muncipalDashboard(request):
-    return render(request,'Muncipal Dashboard/muncipalDashboard.html',grievancesDataModels())
-
+    return render(request,'Muncipal Dashboard/muncipalDashboard.html',grievancesDataModels(request))
+    
+@login_required
 def workSpace(request):
-    return render(request,"Work Space/WorkspaceDashboard.html",grievancesDataModels())
+    return render(request,"Work Space/WorkspaceDashboard.html",grievancesDataModels(request))
 
+@login_required
 def grievance(request):
     return render(request,'grievance-detail.html')
 
@@ -29,10 +33,12 @@ def signin(request):
         user = auth.authenticate(email = mail, password = password)
         if user is not None:
             login(request, user)
+            messages.info(request,'Logged in')
             return redirect("dashboard:muncipal_dashboard")
             
         else:
-            return redirect("dashboard:register")
+            messages.warning(request,'Username and Password mismatch.')
+            return redirect("dashboard:signin")
     return render(request,'Account/sign-in.html')
 
 def register(request):
@@ -47,10 +53,11 @@ def register(request):
         user.save()
         MCProfile.objects.create(mc_user=user)
         login(request, user)
+        messages.info(request,'Enter Account Details.')
         return redirect("dashboard:acsetting")
-    
     return render(request,'Account/sign-up.html')
 
+@login_required
 def accountSetting(request):
     user_id = request.user.id
     user = User.objects.get(id=user_id)
@@ -74,13 +81,18 @@ def accountSetting(request):
                profile.mc_profile_img = previmg                     
 
             profile.save(update_fields=['mc_employee_id', 'mc_muncipal_co', 'mc_profile_img'])
-            # messages.success(request,'Information Added.')
+            messages.success(request,'Information Updated.')
             return redirect("dashboard:muncipal_dashboard")
     else:
-        # messages.warning(request,'You are not signed in.')
+        messages.warning(request,'You are not signed in.')
         return redirect("dashboard:signin")
     return render(request,'Account/account-setting.html', {'profile': profile, 'user': user})
 
+@login_required
+def signout(request):
+    logout(request)
+    messages.info(request,'Logged Out Successfully.')
+    return redirect("dashboard:signin")
 
 
 #AJAX Function return JSON Response
@@ -94,7 +106,7 @@ def loadDesk(request):
     mc_profile = MCProfile.objects.get(mc_user=request.user)
     desk_id = int(request.GET.get('desk_id').split("_")[1])
     desk = Desk.objects.get(id=desk_id)
-    dataDict = grievancesDataModels()
+    dataDict = grievancesDataModels(request)
     dataDict['desk_single'] = desk
     template = render_to_string('Work Space/insideDesk.html', dataDict)
     return JsonResponse({'data':template})
@@ -109,14 +121,17 @@ def filter_data(request):
 #Supporting Functions
 
 #Return Dict with Gri Model
-def grievancesDataModels():
+def grievancesDataModels(request):
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    profile = MCProfile.objects.get(mc_user=user)
     grievance = Grievance.objects.all()
     category =Category.objects.all()
     minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
     maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
     status = Status.objects.values_list('status_name',flat=True).distinct()
     location = Location.objects.all().distinct('loc_city')
-    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location}
+    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location, 'profile':profile}
 
 #Filter Gri Model and return Gri model OBJ
 def filter_data_functionality(request,grievance_list):
