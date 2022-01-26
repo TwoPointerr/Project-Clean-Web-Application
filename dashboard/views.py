@@ -20,16 +20,18 @@ def colorDemo(request):
     return render(request,'muncipalDashboard.html',{'grievances':grievance})
 
 def workSpace(request):
-    return render(request,"WorkspaceDashboard.html")
+    return render(request,"WorkspaceDashboard.html",grievancesDataModels())
 
-def muncipalDashboard(request):
+def grievancesDataModels():
     grievance = Grievance.objects.all()
     category =Category.objects.all()
     minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
     maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
     status = Status.objects.values_list('status_name',flat=True).distinct()
-    print(status)
-    return render(request,'muncipalDashboard.html',{'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status})
+    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status}
+
+def muncipalDashboard(request):
+    return render(request,'muncipalDashboard.html',grievancesDataModels())
 
 
 def searchDemo(request):
@@ -45,7 +47,9 @@ def loadDesk(request):
     mc_profile = MCProfile.objects.get(mc_user=request.user)
     desk_id = int(request.GET.get('desk_id').split("_")[1])
     desk = Desk.objects.get(id=desk_id)
-    template = render_to_string('insideDesk.html', {'desk_single': desk})
+    dataDict = grievancesDataModels()
+    dataDict['desk_single'] = desk
+    template = render_to_string('insideDesk.html', dataDict)
     return JsonResponse({'data':template})
 
 def grievance(request):
@@ -120,6 +124,7 @@ def filter_data(request):
     grievance_all_list = Grievance.objects.all()
     grievance_list = filter_data_functionality(request,grievance_all_list)
     template = render_to_string('ajax/grievance-list.html', {'grievance_list': grievance_list})
+    print("inside filter data")
     return JsonResponse({'data':template})
 
 
