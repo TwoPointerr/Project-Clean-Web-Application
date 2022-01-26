@@ -52,7 +52,7 @@
               </label>
               <label class="form-check mb-1">
                 <input type="radio" class="form-check-input" value="o_sort_by" id="sort_by" data-filter="sort_by"
-                  name="radio" />
+                  name="radio" checked/>
                 <span class="form-check-label">Date Added - older</span>
               </label>
             </div>
@@ -72,7 +72,11 @@
               
               <label class="form-check mb-1">
                 <input type="checkbox" class="form-check-input" data-filter="grievance_status" id="grievance_stat"
-                  value="{{ stat }}" {% if stat == "Completed" or stat == "Rejected" %}{% else %}checked{% endif %} />
+                  value="{{ stat }}" 
+                  {% comment %} {% if stat == "Completed" or stat == "Rejected" %}{% else %} {% endcomment %}
+                  checked
+                  {% comment %} {% endif %} {% endcomment %}
+                   />
                 <span class="form-check-label">{{ stat }}</span>
               </label>
               
@@ -131,30 +135,38 @@
                 <option>Other…</option>
               </select>
             </div> {% endcomment %}
-            <div class="mt-5">
-              <button class="btn btn-primary w-100">Confirm changes</button>
+            <div class="mt-1">
+              {% comment %} <button class="btn btn-primary w-100">Confirm changes</button> {% endcomment %}
               <a href="#" class="btn btn-link w-100"> Reset to defaults </a>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-9 overflow-auto" style="max-height: 50rem">
 
           <div class="row row-cards" id="filteredGrievances">
             <p class="ajaxLoader">Loading...</p>
             {% for gri in grievances %}
-            <div class="col-sm-12 col-lg-12">
+            <div class="col-12">
+              
               <div class="card">
-
                 <div class="row row-0">
                   <div class="col-3">
                     <img src="{{gri.gri_img.url}}" class="w-100 h-100 object-cover" alt="Card side image" />
                   </div>
                   <div class="col">
-                    <div class="card-body flex-column-revers flex-row align-items-end h-100">
+                    <div class="card-body flex-column-reverse flex-row align-items-end h-100">
                       <div class="d-flex">
                         <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
                         {% for status in gri.status_set.all%}
                         {% if status.status_active%}
+                        {% if status.status_name == "In Progress" %}
+                        <div><span class="badge bg-primary">{{status.status_name}}</span></div>
+                        {% elif status.status_name == "Completed" %}
+                        <div><span class="badge bg-success">{{status.status_name}}</span></div>
+                        {% elif status.status_name == "Rejected" %}
+                        <div><span class="badge bg-danger">{{status.status_name}}</span></div>
+                        {% elif status.status_name == "Reviewing" %}
                         <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
+                        {% endif%}
                         {% endif %}
                         {% endfor %}
                       </div>
@@ -258,7 +270,20 @@
                     </div>
                   </div>
                 </div>
-                <div class="card-status-end bg-yellow"></div>
+                {% for status in gri.status_set.all%}
+                        {% if status.status_active%}
+                        {% if status.status_name == "In Progress" %}
+                        <div class="card-status-end bg-primary"></div>
+                        {% elif status.status_name == "Completed" %}
+                        <div class="card-status-end bg-success"></div>
+                        {% elif status.status_name == "Rejected" %}
+                        <div class="card-status-end bg-danger"></div>
+                        {% elif status.status_name == "Reviewing" %}
+                        <div class="card-status-end bg-yellow"></div>
+                        {% endif%}
+                        {% endif %}
+                        {% endfor %}
+                
               </div>
             </div>
             {% endfor %}
