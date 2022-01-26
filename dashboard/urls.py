@@ -19,5 +19,11 @@ urlpatterns = [
     path('getDeskInfo/',views.getDeskInfo),
     path('loadDesk/',views.loadDesk,name="loadDesk"),
 
+    path('display-desk-cont/',views.displayDeskList,name="display-desk-cont"),
+    path('display-desk-folders/',views.displayDeskFolders,name="display-desk-folders"),
+
+    path('create-desk/',views.createDesk,name="create-desk"),
+    path('create-folder/',views.createFolder,name="create-desk"),
+    
     path('filter-data/', views.filter_data, name="filter_data"),
 ]

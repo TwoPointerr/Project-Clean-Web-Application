@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from authapp.models import MCProfile, User, Location
 from grievance_data.models import Grievance, Category, Status
-from dashboard.models import Desk
+from dashboard.models import Desk, Folders
 from django.contrib.auth import authenticate, login
 from django.db.models import Count, Min, Sum, Avg, Max
 from django.http import HttpResponse
@@ -84,6 +84,35 @@ def accountSetting(request):
 
 
 #AJAX Function return JSON Response
+
+def createDesk(request):
+    mc_profile = MCProfile.objects.get(mc_user=request.user)
+    desk_name = str(request.GET.get('desk_name'))
+    desk = Desk.objects.create(desk_mc_user=mc_profile,desk_name=desk_name)
+    print(desk)
+    return JsonResponse({'data':"succesful"})
+
+def createFolder(request):
+    desk_id = int(request.GET.get('desk_id').split("_")[1])
+    desk = Desk.objects.get(id=desk_id)
+
+    folder_name = str(request.GET.get('folder_name'))
+    folder = Folders.objects.create(folder_desks=desk,folder_name=folder_name)
+
+    return JsonResponse({'data':'successful'})
+
+def displayDeskList(request):
+    mc_profile = MCProfile.objects.get(mc_user=request.user)
+    desks = Desk.objects.filter(desk_mc_user=mc_profile)
+    template = render_to_string('Work Space/desksList.html', {'desk_list': desks})
+    return JsonResponse({'data':template})
+
+def displayDeskFolders(request):
+    desk_id = int(request.GET.get('desk_id').split("_")[1])
+    desk = Desk.objects.get(id=desk_id)
+    template = render_to_string('Work Space/DeskFolderList.html', {'desk_single': desk})
+    return JsonResponse({'data':template})
+
 def getDeskInfo(request):
     desk_id = int(request.GET.get('desk_id').split("_")[1])
     desk = Desk.objects.get(id=desk_id)

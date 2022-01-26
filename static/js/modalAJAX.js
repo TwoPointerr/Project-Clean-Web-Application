@@ -20,3 +20,26 @@ $("a.modal_desk_icon").click(function () {
 
   
 });
+
+$("#create-desk-button").click(function(){
+  var desk_name  = $("#desk-name-id").val();
+
+  data = {}
+  data.desk_name = desk_name
+  
+  $.ajax({
+    url: "/dashboard/create-desk/",
+    data: data,
+    dataType: "json",
+    success: function (res) {
+      $.getScript("../../static/js/DisplayDesks.js",function(){});
+      console.log(res);
+      //$("div.modalSelectFolderAJAX").html(res.data);
+    }
+  });
+
+});
+
+
+
+

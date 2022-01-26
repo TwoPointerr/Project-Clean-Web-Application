@@ -6,7 +6,7 @@ from grievance_data.models import Grievance
 class Desk(models.Model):
     desk_name = models.CharField(max_length=250)
     desk_mc_user = models.ForeignKey(MCProfile,on_delete=models.CASCADE)
-    desk_gri_files = models.ManyToManyField(Grievance)
+    desk_gri_files = models.ManyToManyField(Grievance,blank=True)
 
     def __str__(self) -> str:
         return self.desk_name
@@ -15,7 +15,7 @@ class Desk(models.Model):
 class Folders(models.Model):
     folder_desks = models.ForeignKey(Desk,on_delete=models.CASCADE,blank=True,default="")
     folder_name = models.CharField(max_length=250)
-    folder_gri_file = models.ManyToManyField(Grievance)
+    folder_gri_file = models.ManyToManyField(Grievance,blank=True)
 
     def __str__(self) -> str:
         return self.folder_name

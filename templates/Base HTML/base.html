@@ -224,7 +224,7 @@
                 <span
                   class="avatar avatar-sm"
                   style="
-                    background-image: url({% static './static/avatars/000m.jpg' %});
+                    background-image: url({% static './static/avatars/000m.jpg'%});
                   "
                 ></span>
                 <div class="d-none d-xl-block ps-2">
@@ -449,7 +449,8 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Desks</h5>   <!-- Modal header -->
+            <h5 class="modal-title">Select Desks</h5>
+            <!-- Modal header -->
             <button
               type="button"
               class="btn-close"
@@ -461,8 +462,13 @@
             <div class="row mb-3 align-items-end">
               {% for desk in desks %}
               <div class="col-auto">
-                <a href="#" id="modalDeskID_{{desk.id}}" class="avatar avatar-upload rounded modal_desk_icon" data-bs-toggle="modal"
-                data-bs-target="#modal-select-folder">
+                <a
+                  href="#"
+                  id="modalDeskID_{{desk.id}}"
+                  class="avatar avatar-upload rounded modal_desk_icon"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-select-folder"
+                >
                   <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -579,7 +585,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Desk</h5>
+            <h5 class="modal-title">Create Desk</h5>
             <button
               type="button"
               class="btn-close"
@@ -630,10 +636,8 @@
               </div>
               <div class="col">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control">
+                <input id="desk-name-id" type="text" class="form-control" />
               </div>
-
-              
             </div>
           </div>
           <div class="modal-footer">
@@ -644,10 +648,14 @@
             >
               Cancel
             </a>
-            <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+            <a
+              href="#"
+              id="create-desk-button"
+              class="btn btn-primary ms-auto"
+              data-bs-dismiss="modal"
+            >
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               Create
-              
             </a>
           </div>
         </div>
@@ -666,7 +674,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Desk</h5>
+            <h5 class="modal-title">Select Folder</h5>
             <button
               type="button"
               class="btn-close"
@@ -677,12 +685,14 @@
           <div class="modal-body">
             <div class="row mb-3 align-items-end">
               <!-- AJAX Part select folder -->
-              <div class="modalSelectFolderAJAX col-auto">
-                
-              </div>
+              <div class="modalSelectFolderAJAX col-auto"></div>
               <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded" data-bs-toggle="modal"
-                data-bs-target="#modal-add-folder">
+                <a
+                  href="#"
+                  class="avatar avatar-upload rounded"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-add-folder"
+                >
                   <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -771,10 +781,8 @@
               </div>
               <div class="col">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control">
+                <input type="text" id="folder-name-id" class="form-control" />
               </div>
-
-              
             </div>
           </div>
           <div class="modal-footer">
@@ -785,10 +793,14 @@
             >
               Cancel
             </a>
-            <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+            <a
+              href="#"
+              id="create-folder-button"
+              class="btn btn-primary ms-auto"
+              data-bs-dismiss="modal"
+            >
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               Create
-              
             </a>
           </div>
         </div>

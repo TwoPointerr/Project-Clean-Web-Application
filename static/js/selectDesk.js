@@ -1,21 +1,16 @@
-console.log("insode desk js")
+$("a.select-desk").click(function () {
+    console.log("clicked on desk")
+  var id = $(this).attr("id");
+  desk_id_obj = {};
+  desk_id_obj.desk_id = id;
 
-//WorkspaceDashboard 
-$("a.desk").click(function(){
-    var id = $(this).attr('id');
-    desk_id_obj = {}
-    desk_id_obj.desk_id = id
-    
-    $.ajax({
-        url: '/dashboard/loadDesk/',
-        data: desk_id_obj,
-        dataType: 'json',
-        beforeSend: function() {
-            
-        },
-        success: function(res) {
-            $("#desk-AJAX-load").html(res.data);
-        }
-    });
-
+  $.ajax({
+    url: "/dashboard/loadDesk/",
+    data: desk_id_obj,
+    dataType: "json",
+    beforeSend: function () {},
+    success: function (res) {
+      $("#desk-AJAX-load").html(res.data);
+    },
+  });
 });

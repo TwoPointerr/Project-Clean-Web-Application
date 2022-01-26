@@ -1,3 +1,4 @@
+{% load static %}
 <div class="page-wrapper">
   <div class="container-xl">
     <!-- Page title -->
@@ -13,9 +14,13 @@
   <div class="page-body">
     <div class="container-xl">
       <div class="row mb-3 align-items-end">
-        {% for desk in desks %}
-        <div class="col-auto">
-          <a href="#" class="avatar avatar-upload desk rounded" id="deskID_{{desk.id}}">
+        {% for desk in desk_list %}
+        <div class="col-auto mb-3">
+          <a
+            href="#"
+            class="avatar avatar-upload desk rounded select-desk"
+            id="deskID_{{desk.id}}"
+          >
             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -134,10 +139,31 @@
         </div>
         {% endfor %}
         <div class="col-auto">
-          <a href="#" class="avatar avatar-upload desk rounded">
+          <a
+            data-bs-toggle="modal"
+            data-bs-target="#modal-add-desk"
+            href="#"
+            class="avatar avatar-upload desk rounded"
+          >
             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-	        <svg xmlns="http://www.w3.org/2000/svg" id="desk-icon"class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="desk-icon"
+              class="icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
             <span class="avatar-upload-text">Add</span>
           </a>
         </div>
@@ -145,4 +171,4 @@
     </div>
   </div>
 </div>
-
+<script src="{% static '/js/selectDesk.js' %}"></script>
