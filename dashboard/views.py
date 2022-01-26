@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
-from authapp.models import MCProfile, User
+from authapp.models import MCProfile, User, Location
 from grievance_data.models import Grievance, Category, Status
 from dashboard.models import Desk
 from django.contrib.auth import authenticate, login
@@ -29,7 +29,7 @@ def signin(request):
         user = auth.authenticate(email = mail, password = password)
         if user is not None:
             login(request, user)
-            return redirect("dashboard:acdetail")
+            return redirect("dashboard:muncipal_dashboard")
             
         else:
             return redirect("dashboard:register")
@@ -115,7 +115,8 @@ def grievancesDataModels():
     minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
     maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
     status = Status.objects.values_list('status_name',flat=True).distinct()
-    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status}
+    location = Location.objects.all().distinct('loc_city')
+    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location}
 
 #Filter Gri Model and return Gri model OBJ
 def filter_data_functionality(request,grievance_list):
@@ -136,11 +137,10 @@ def filter_data_functionality(request,grievance_list):
     if len(gri_status)>0:
         grievance_list = grievance_list.filter(status__in=stat)
     
-    # grievance_sort_list = grievance_sort_list.all().order_by('title')
-    # if len(sub_categories)>0:
-    #     grievance_list = grievance_list.filter(sub_cat__in=sub_categories)
-    # if len(article_categories)>0:
-    #     grievance_list = grievance_list.filter(articel_type__in=article_categories)
+    griloc= request.GET.getlist('grievance_location[]')
+    location = Location.objects.filter(loc_city__in=griloc)
+    if len(gri_status)>0:
+        grievance_list = grievance_list.filter(gri_location_id__in=location)
     
     sort_by_categories= request.GET.getlist('sort_by[]')
     if len(sort_by_categories)>0:
@@ -152,11 +152,5 @@ def filter_data_functionality(request,grievance_list):
             grievance_list = grievance_list.all().order_by('gri_timeStamp')
         elif(sort_by_categories[0] == 'l_sort_by'):
             grievance_list = grievance_list.all().order_by('-gri_timeStamp')
-        # grievance_list = grievance_list.all().order_by('title')
-    # if len(color_filter)>0:
-    #     grievance_list = grievance_list.filter(color__in=color_filter)
-    # if len(grievance_brands)>0:
-    #     # category = Category.objects.filter(title__in=categories)
-    #     grievance_list = grievance_list.filter(brand__in=grievance_brands)
     
     return grievance_list
