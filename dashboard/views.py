@@ -143,9 +143,8 @@ def filter_data_functionality(request,grievance_list):
         grievance_list = grievance_list.filter(gri_category_id__in=category)
     
     gri_status= request.GET.getlist('grievance_status[]')
-    stat = Status.objects.filter(status_name__in=gri_status)
-    print(stat)
-    print("stat")
+    stat = Status.objects.filter(status_active=True).filter(status_name__in=gri_status).distinct('status_grievance')
+    
     if len(gri_status)>0:
         grievance_list = grievance_list.filter(status__in=stat)
     
