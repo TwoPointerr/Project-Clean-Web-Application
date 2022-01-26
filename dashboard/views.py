@@ -114,30 +114,37 @@ def createFolder(request):
     return JsonResponse({'data':'successful'})
 
 def displayDeskList(request):
+    workspace_template = 'Work Space/WorkSpaceDeskList.html'
+    muncipalDashboard_template = 'Base HTML/ModalDeskTemplate.html'
+
     mc_profile = MCProfile.objects.get(mc_user=request.user)
     desks = Desk.objects.filter(desk_mc_user=mc_profile)
-    template = render_to_string('Work Space/desksList.html', {'desk_list': desks})
+
+    if(request.GET.get('template_name') == "workspace"):
+        template = render_to_string(workspace_template, {'desk_list': desks})
+    else:
+        template = render_to_string(muncipalDashboard_template, {'desk_list': desks})
+
     return JsonResponse({'data':template})
 
-def displayDeskFolders(request):
+def display_WorkSpace_DeskFolders(request):
     desk_id = int(request.GET.get('desk_id').split("_")[1])
     desk = Desk.objects.get(id=desk_id)
-    template = render_to_string('Work Space/DeskFolderList.html', {'desk_single': desk})
+    template = render_to_string('Work Space/WorkSpaceDeskFolderList.html', {'desk_single': desk})
     return JsonResponse({'data':template})
 
-def getDeskInfo(request):
+def display_Modal_Folder_list(request):
     desk_id = int(request.GET.get('desk_id').split("_")[1])
     desk = Desk.objects.get(id=desk_id)
     template = render_to_string('Base HTML/modalFolderTemplate.html', {'desk_single': desk})
     return JsonResponse({'data':template})
 
-def loadDesk(request):
-    mc_profile = MCProfile.objects.get(mc_user=request.user)
+def workspace_inside_desk(request):
     desk_id = int(request.GET.get('desk_id').split("_")[1])
     desk = Desk.objects.get(id=desk_id)
     dataDict = grievancesDataModels(request)
     dataDict['desk_single'] = desk
-    template = render_to_string('Work Space/insideDesk.html', dataDict)
+    template = render_to_string('Work Space/WorkSpaceInsideDesk.html', dataDict)
     return JsonResponse({'data':template})
 
 def filter_data(request):

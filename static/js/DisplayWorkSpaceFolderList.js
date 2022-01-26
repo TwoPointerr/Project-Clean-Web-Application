@@ -9,7 +9,7 @@ $(document).ready(function () {
     data.desk_id = desk_id;
 
     $.ajax({
-      url: "/dashboard/display-desk-folders/",
+      url: "/dashboard/display-workspace-desk-folders/",
       data : data,
       dataType: "json",
       beforeSend: function () {},
@@ -19,7 +19,5 @@ $(document).ready(function () {
       },
     });
   }
-
-  
 });
 

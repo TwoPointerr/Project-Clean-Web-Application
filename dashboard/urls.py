@@ -16,11 +16,13 @@ urlpatterns = [
     path('grievance',views.grievance, name="grievance"),
 
     #JSON Response AJAX
-    path('getDeskInfo/',views.getDeskInfo),
-    path('loadDesk/',views.loadDesk,name="loadDesk"),
+    path('display-modal-folder-list/',views.display_Modal_Folder_list),
+    
+    #used in two way for workspace nad for modal
+    path('display-desks-list/',views.displayDeskList,name="display-desks-list"),
+    path('workspace-inside-desk/',views.workspace_inside_desk,name="loadDesk"),
 
-    path('display-desk-cont/',views.displayDeskList,name="display-desk-cont"),
-    path('display-desk-folders/',views.displayDeskFolders,name="display-desk-folders"),
+    path('display-workspace-desk-folders/',views.display_WorkSpace_DeskFolders,name="display-desk-folders"),
 
     path('create-desk/',views.createDesk,name="create-desk"),
     path('create-folder/',views.createFolder,name="create-desk"),

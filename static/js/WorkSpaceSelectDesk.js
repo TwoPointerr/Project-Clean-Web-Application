@@ -5,7 +5,7 @@ $("a.select-desk").click(function () {
   desk_id_obj.desk_id = id;
 
   $.ajax({
-    url: "/dashboard/loadDesk/",
+    url: "/dashboard/workspace-inside-desk/",
     data: desk_id_obj,
     dataType: "json",
     beforeSend: function () {},
