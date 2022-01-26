@@ -39,7 +39,7 @@ class Location(models.Model):
     loc_postcode = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.loc_display_name
+        return self.loc_city
 
 class MCProfile(models.Model):
     mc_user = models.OneToOneField(User,on_delete=models.CASCADE)
