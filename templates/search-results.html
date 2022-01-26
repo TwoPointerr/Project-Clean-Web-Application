@@ -1,28 +1,12 @@
 {% load static %}
 <div class="page-wrapper">
-  
+
   <div class="page-body">
     <div class="container-xl">
       <div class="row g-4">
         <div class="col-3">
-            {% comment %} <div class="list-group list-group-transparent mb-3">
-              <a class="list-group-item list-group-item-action d-flex align-items-center active" href="#">
-                Games
-                <small class="text-muted ms-auto">24</small>
-              </a>
-              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                Clothing
-                <small class="text-muted ms-auto">149</small>
-              </a>
-              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                Jewelery
-                <small class="text-muted ms-auto">88</small>
-              </a>
-              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                Toys
-                <small class="text-muted ms-auto">54</small>
-              </a>
-            </div> {% endcomment %}
+          <form >
+            
             <div class="subheader mb-2">Sort By</div>
             <div class="mb-3">
               <label class="form-check mb-1">
@@ -42,7 +26,7 @@
               </label>
               <label class="form-check mb-1">
                 <input type="radio" class="form-check-input" value="o_sort_by" id="sort_by" data-filter="sort_by"
-                  name="radio" checked/>
+                  name="radio" checked />
                 <span class="form-check-label">Date Added - older</span>
               </label>
             </div>
@@ -59,18 +43,18 @@
             <div class="subheader mb-2">Status</div>
             <div class="mb-3">
               {% for stat in status %}
-              
+
               <label class="form-check mb-1">
+                {% if stat == "Pending" or stat == "In Progress" %}
                 <input type="checkbox" class="form-check-input" data-filter="grievance_status" id="grievance_stat"
-                  value="{{ stat }}" 
-                  {% comment %} {% if stat == "Completed" or stat == "Rejected" %}{% else %} {% endcomment %}
-                  checked
-                  {% comment %} {% endif %} {% endcomment %}
-                   />
+                  value="{{ stat }}" checked />{% else %}
+                <input type="checkbox" class="form-check-input" data-filter="grievance_status" id="grievance_stat"
+                  value="{{ stat }}" />
+                {% endif %}
                 <span class="form-check-label">{{ stat }}</span>
               </label>
-              
-              
+
+
               {% endfor %}
             </div>
             {% comment %} <div class="subheader mb-2">Severity</div>
@@ -90,7 +74,8 @@
                   <span class="input-group-text">
                     ▲
                   </span>
-                  <input type="text" class="form-control" placeholder="from" value="{{ minVote }}" autocomplete="off" id="minVote" name="minVote" >
+                  <input type="text" class="form-control" placeholder="from" value="{{ minVote }}" autocomplete="off"
+                    id="minVote" name="minVote">
                 </div>
               </div>
               <div class="col-auto">—</div>
@@ -99,7 +84,8 @@
                   <span class="input-group-text">
                     ▲
                   </span>
-                  <input type="text" class="form-control" placeholder="to" value="{{ maxVote }}" autocomplete="off" id="maxVote" name="maxVote" >
+                  <input type="text" class="form-control" placeholder="to" value="{{ maxVote }}" autocomplete="off"
+                    id="maxVote" name="maxVote">
                 </div>
               </div>
               <button class="btn btn-primary d-block w-100" id="voteFilterBtn">Filter</button>
@@ -108,13 +94,15 @@
             <div class="mb-3">
               {% for loc in location %}
               <label class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" data-filter="grievance_location" id="gri_loc" name="" value="{{ loc.loc_city }}"
-                  checked />
+                <input type="checkbox" class="form-check-input" data-filter="grievance_location" id="gri_loc" name=""
+                  value="{{ loc.loc_city }}" {% if loc.loc_city == profile.mc_location.loc_city %} checked
+                  {% endif %} />
+
                 <span class="form-check-label">{{ loc.loc_city }}</span>
               </label>
               {% endfor %}
             </div>
-            
+
             {% comment %} <div class="subheader mb-2">Shipping</div>
             <div>
               <select name="" class="form-select">
@@ -127,8 +115,9 @@
             </div> {% endcomment %}
             <div class="mt-1">
               {% comment %} <button class="btn btn-primary w-100">Confirm changes</button> {% endcomment %}
-              <a href="#" class="btn btn-link w-100"> Reset to defaults </a>
+              <button href="#" type="reset" class="btn btn-link w-100"> Reset to defaults </button>
             </div>
+          </form>
         </div>
         <div class="col-9 overflow-auto" style="max-height: 50rem">
 
@@ -136,7 +125,10 @@
             <p class="ajaxLoader">Loading...</p>
             {% for gri in grievances %}
             <div class="col-12">
-              
+              {% for status in gri.status_set.all%}
+              {% if status.status_active%}
+              {% if status.status_name == "In Progress" or status.status_name == "Pending" %}
+              {% if gri.gri_location == profile.mc_location %}
               <div class="card">
                 <div class="row row-0">
                   <div class="col-3">
@@ -146,19 +138,18 @@
                     <div class="card-body flex-column-reverse flex-row align-items-end h-100">
                       <div class="d-flex">
                         <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
-                        {% for status in gri.status_set.all%}
-                        {% if status.status_active%}
+
+
                         {% if status.status_name == "In Progress" %}
                         <div><span class="badge bg-primary">{{status.status_name}}</span></div>
-                        {% elif status.status_name == "Completed" %}
+                        {% elif status.status_name == "Complete" %}
                         <div><span class="badge bg-success">{{status.status_name}}</span></div>
                         {% elif status.status_name == "Rejected" %}
                         <div><span class="badge bg-danger">{{status.status_name}}</span></div>
-                        {% elif status.status_name == "Reviewing" %}
+                        {% elif status.status_name == "Pending" %}
                         <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
                         {% endif%}
-                        {% endif %}
-                        {% endfor %}
+
                       </div>
 
                       <h3>
@@ -203,7 +194,7 @@
                                 </div>
                                 <div class="col">
                                   <div class="font-weight-medium">{{gri.gri_category}}</div>
-                                  <div class="text-muted">21 Jan 2022</div>
+                                  <div class="text-muted">{{gri.gri_timeStamp|date:'d-m-Y H:i'}}</div>
                                 </div>
                               </div>
                             </div>
@@ -227,7 +218,7 @@
                           <span class="avatar me-3 rounded">JL</span>
                           <div>
                             <div>{{ gri.gri_uploaded_user.citi_user.first_name }}</div>
-                            <div class="text-muted">{{gri.gri_timeStamp}}</div>
+                            <div class="text-muted">{{gri.gri_timeStamp|date:'d-m-Y H:i'}}</div>
                           </div>
                         </div>
                         <div class="m-3">
@@ -261,20 +252,24 @@
                   </div>
                 </div>
                 {% for status in gri.status_set.all%}
-                        {% if status.status_active%}
-                        {% if status.status_name == "In Progress" %}
-                        <div class="card-status-end bg-primary"></div>
-                        {% elif status.status_name == "Completed" %}
-                        <div class="card-status-end bg-success"></div>
-                        {% elif status.status_name == "Rejected" %}
-                        <div class="card-status-end bg-danger"></div>
-                        {% elif status.status_name == "Reviewing" %}
-                        <div class="card-status-end bg-yellow"></div>
-                        {% endif%}
-                        {% endif %}
-                        {% endfor %}
-                
+                {% if status.status_active%}
+                {% if status.status_name == "In Progress" %}
+                <div class="card-status-end bg-primary"></div>
+                {% elif status.status_name == "Complete" %}
+                <div class="card-status-end bg-success"></div>
+                {% elif status.status_name == "Rejected" %}
+                <div class="card-status-end bg-danger"></div>
+                {% elif status.status_name == "Pending" %}
+                <div class="card-status-end bg-yellow"></div>
+                {% endif%}
+                {% endif %}
+                {% endfor %}
+
               </div>
+              {% endif %}
+              {% endif %}
+              {% endif %}
+              {% endfor %}
             </div>
             {% endfor %}
           </div>

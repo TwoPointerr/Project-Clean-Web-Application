@@ -13,11 +13,11 @@
             {% if status.status_active%}
             {% if status.status_name == "In Progress" %}
             <div><span class="badge bg-primary">{{status.status_name}}</span></div>
-            {% elif status.status_name == "Completed" %}
+            {% elif status.status_name == "Complete" %}
             <div><span class="badge bg-success">{{status.status_name}}</span></div>
             {% elif status.status_name == "Rejected" %}
             <div><span class="badge bg-danger">{{status.status_name}}</span></div>
-            {% elif status.status_name == "Reviewing" %}
+            {% elif status.status_name == "Pending" %}
             <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
             {% endif%}
             {% endif %}
@@ -125,11 +125,11 @@
     {% if status.status_active%}
     {% if status.status_name == "In Progress" %}
     <div class="card-status-end bg-primary"></div>
-    {% elif status.status_name == "Completed" %}
+    {% elif status.status_name == "Complete" %}
     <div class="card-status-end bg-success"></div>
     {% elif status.status_name == "Rejected" %}
     <div class="card-status-end bg-danger"></div>
-    {% elif status.status_name == "Reviewing" %}
+    {% elif status.status_name == "Pending" %}
     <div class="card-status-end bg-yellow"></div>
     {% endif%}
     {% endif %}

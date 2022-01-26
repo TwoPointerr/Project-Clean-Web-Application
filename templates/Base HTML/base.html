@@ -59,18 +59,20 @@
               <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
             </svg>
           </a>
-          
+
           <div class="nav-item d-none d-md-flex me-3">
             <div class="btn-list">
               {% if user.is_authenticated %}
               {% else %}
               <a href="{% url 'dashboard:signin' %}" class="btn" target="_blank" rel="noreferrer">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24"
+                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                  stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
                   <path d="M20 12h-13l3 -3m0 6l-3 -3"></path>
-               </svg>
+                </svg>
                 Login
               </a>
               {% endif %}
@@ -97,57 +99,59 @@
           {% endif %}
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
-        <div class="navbar navbar-light">
-          <div class="container-xl">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:muncipal_dashboard' %}">
-                  <span class="nav-link-icon d-md-none d-lg-inline-block">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                    <!-- Download SVG icon from http://tabler-icons.io/i/chart-dots -->
-                    <!-- Download SVG icon from http://tabler-icons.io/i/building-community -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" />
-                      <line x1="13" y1="7" x2="13" y2="7.01" />
-                      <line x1="17" y1="7" x2="17" y2="7.01" />
-                      <line x1="17" y1="11" x2="17" y2="11.01" />
-                      <line x1="17" y1="15" x2="17" y2="15.01" />
-                    </svg>
-                  </span>
-                  <span class="nav-link-title"> Muncipal </span>
-                </a>
-              </li>
+          <div class="navbar navbar-light">
+            <div class="container-xl">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'dashboard:muncipal_dashboard' %}">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                      <!-- Download SVG icon from http://tabler-icons.io/i/chart-dots -->
+                      <!-- Download SVG icon from http://tabler-icons.io/i/building-community -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" />
+                        <line x1="13" y1="7" x2="13" y2="7.01" />
+                        <line x1="17" y1="7" x2="17" y2="7.01" />
+                        <line x1="17" y1="11" x2="17" y2="11.01" />
+                        <line x1="17" y1="15" x2="17" y2="15.01" />
+                      </svg>
+                    </span>
+                    <span class="nav-link-title"> Muncipal </span>
+                  </a>
+                </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:workspace' %}">
-                  <span class="nav-link-icon d-md-none d-lg-inline-block">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                    <!-- Download SVG icon from http://tabler-icons.io/i/chart-dots -->
-                    <!-- Download SVG icon from http://tabler-icons.io/i/clipboard-list -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                      <rect x="9" y="3" width="6" height="4" rx="2" />
-                      <line x1="9" y1="12" x2="9.01" y2="12" />
-                      <line x1="13" y1="12" x2="15" y2="12" />
-                      <line x1="9" y1="16" x2="9.01" y2="16" />
-                      <line x1="13" y1="16" x2="15" y2="16" />
-                    </svg>
-                  </span>
-                  <span class="nav-link-title"> My Workspace </span>
-                </a>
-              </li>
-            </ul>
-            
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'dashboard:workspace' %}">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                      <!-- Download SVG icon from http://tabler-icons.io/i/chart-dots -->
+                      <!-- Download SVG icon from http://tabler-icons.io/i/clipboard-list -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                        <rect x="9" y="3" width="6" height="4" rx="2" />
+                        <line x1="9" y1="12" x2="9.01" y2="12" />
+                        <line x1="13" y1="12" x2="15" y2="12" />
+                        <line x1="9" y1="16" x2="9.01" y2="16" />
+                        <line x1="13" y1="16" x2="15" y2="16" />
+                      </svg>
+                    </span>
+                    <span class="nav-link-title"> My Workspace </span>
+                  </a>
+                </li>
+              </ul>
+
+            </div>
           </div>
         </div>
       </div>
-      </div>
     </header>
-    
+
     <div class="page-wrapper mt-3">
       {% block content %} {% endblock %}
       {% include 'Base HTML/messages.html' %}
@@ -156,12 +160,12 @@
           <div class="row text-center align-items-center flex-row-reverse">
             <div class="col-lg-auto ms-lg-auto">
               <ul class="list-inline list-inline-dots mb-0">
-                
+
                 <li class="list-inline-item">
                   <a href="https://github.com/harshadrane67/project_clean" target="_blank" class="link-secondary"
                     rel="noopener">Source code</a>
                 </li>
-                
+
               </ul>
             </div>
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
@@ -171,7 +175,7 @@
                   <a href="{% static '' %}" class="link-secondary">Project Clean</a>.
                   All rights reserved.
                 </li>
-                
+
               </ul>
             </div>
           </div>
@@ -180,70 +184,35 @@
     </div>
   </div>
 
-    <!-- Modal Select Desk -->
-    <div
-      class="modal modal-blur fade"
-      id="modal-team"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Select Desks</h5>
-            <!-- Modal header -->
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              {% for desk in desks %}
-              <div class="col-auto">
-                <a
-                  href="#"
-                  id="modalDeskID_{{desk.id}}"
-                  class="avatar avatar-upload rounded modal_desk_icon"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal-select-folder"
-                >
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    x="0px"
-                    y="0px"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 172 172"
-                    style="fill: #000000"
-                  >
-                    <g
-                      fill="none"
-                      fill-rule="nonzero"
-                      stroke="none"
-                      stroke-width="1"
-                      stroke-linecap="butt"
-                      stroke-linejoin="miter"
-                      stroke-miterlimit="10"
-                      stroke-dasharray=""
-                      stroke-dashoffset="0"
-                      font-family="none"
-                      font-weight="none"
-                      font-size="none"
-                      text-anchor="none"
-                      style="mix-blend-mode: normal"
-                    >
-                      <path d="M0,172v-172h172v172z" fill="none"></path>
-                      <g fill="#3498db">
-                        <path
-                          d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z"
-                        ></path>
-                      </g>
+  <!-- Modal Select Desk -->
+  <div class="modal modal-blur fade" id="modal-team" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Select Desks</h5>
+          <!-- Modal header -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            {% for desk in desks %}
+            <div class="col-auto">
+              <a href="#" id="modalDeskID_{{desk.id}}" class="avatar avatar-upload rounded modal_desk_icon"
+                data-bs-toggle="modal" data-bs-target="#modal-select-folder">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172"
+                  style="fill: #000000">
+                  <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                    font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                    style="mix-blend-mode: normal">
+                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                    <g fill="#3498db">
+                      <path
+                        d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z">
+                      </path>
                     </g>
+                  </g>
                   </g>
                 </svg>
 
@@ -288,238 +257,149 @@
     </div>
   </div>
 
-    <!-- Add desk name -->
-    <div
-      class="modal modal-blur fade"
-      id="modal-add-desk"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Create Desk</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    x="0px"
-                    y="0px"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 172 172"
-                    style="fill: #000000"
-                  >
-                    <g
-                      fill="none"
-                      fill-rule="nonzero"
-                      stroke="none"
-                      stroke-width="1"
-                      stroke-linecap="butt"
-                      stroke-linejoin="miter"
-                      stroke-miterlimit="10"
-                      stroke-dasharray=""
-                      stroke-dashoffset="0"
-                      font-family="none"
-                      font-weight="none"
-                      font-size="none"
-                      text-anchor="none"
-                      style="mix-blend-mode: normal"
-                    >
-                      <path d="M0,172v-172h172v172z" fill="none"></path>
-                      <g fill="#3498db">
-                        <path
-                          d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z"
-                        ></path>
-                      </g>
+  <!-- Add desk name -->
+  <div class="modal modal-blur fade" id="modal-add-desk" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Desk</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            <div class="col-auto">
+              <a href="#" class="avatar avatar-upload rounded">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172"
+                  style="fill: #000000">
+                  <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                    font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                    style="mix-blend-mode: normal">
+                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                    <g fill="#3498db">
+                      <path
+                        d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z">
+                      </path>
                     </g>
-                  </svg>
-                  <span class="avatar-upload-text">Desk</span>
-                </a>
-              </div>
-              <div class="col">
-                <label class="form-label">Name</label>
-                <input id="desk-name-id" type="text" class="form-control" />
-              </div>
+                  </g>
+                </svg>
+                <span class="avatar-upload-text">Desk</span>
+              </a>
             </div>
+            
             <div class="col">
               <label class="form-label">Name</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control  file_name" name="fileName" placeholder="Enter Name" autofocus autocomplete="off" onfocus="deskName()" oninput="deskName()">
+              <div id="desk_name_error" class="invalid-feedback"></div>
             </div>
+            
+          </div>
 
 
-          </div>
-          <div class="modal-footer">
-            <a
-              href="#"
-              class="btn btn-link link-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </a>
-            <a
-              href="#"
-              id="create-desk-button"
-              class="btn btn-primary ms-auto"
-              data-bs-dismiss="modal"
-            >
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              Create
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- select folder name -->
-
-    <div
-      class="modal modal-blur fade"
-      id="modal-select-folder"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Select Folder</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              <!-- AJAX Part select folder -->
-              <div class="modalSelectFolderAJAX col-auto"></div>
-              <div class="col-auto">
-                <a
-                  href="#"
-                  class="avatar avatar-upload rounded"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal-add-folder"
-                >
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                  </svg>
-                  <span class="avatar-upload-text">Add</span>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="modal-footer">
           <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
             Cancel
           </a>
-          <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+          <a href="#" id="create-desk-button" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-            Move
-            <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon" width="24"
-              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <line x1="13" y1="18" x2="19" y2="12" />
-              <line x1="13" y1="6" x2="19" y2="12" />
-            </svg>
+            Create
           </a>
         </div>
       </div>
     </div>
   </div>
+  </div>
 
-    <div
-      class="modal modal-blur fade"
-      id="modal-add-folder"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Desk</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <img
-                    src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-folder-ui-essential-kmg-design-flat-kmg-design.png"
-                  />
-                  <span class="avatar-upload-text">Folder</span>
-                </a>
-              </div>
-              <div class="col">
-                <label class="form-label">Name</label>
-                <input type="text" id="folder-name-id" class="form-control" />
-              </div>
+  <!-- select folder name -->
+
+  <div class="modal modal-blur fade" id="modal-select-folder" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Select Folder</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            <!-- AJAX Part select folder -->
+            <div class="modalSelectFolderAJAX col-auto"></div>
+            <div class="col-auto">
+              <a href="#" class="avatar avatar-upload rounded" data-bs-toggle="modal"
+                data-bs-target="#modal-add-folder">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                  stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span class="avatar-upload-text">Add</span>
+              </a>
             </div>
-            <div class="col">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control">
-            </div>
-
-
-          </div>
-          <div class="modal-footer">
-            <a
-              href="#"
-              class="btn btn-link link-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </a>
-            <a
-              href="#"
-              id="create-folder-button"
-              class="btn btn-primary ms-auto"
-              data-bs-dismiss="modal"
-            >
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              Create
-            </a>
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+          Cancel
+        </a>
+        <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+          <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+          Move
+          <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon" width="24"
+            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <line x1="13" y1="18" x2="19" y2="12" />
+            <line x1="13" y1="6" x2="19" y2="12" />
+          </svg>
+        </a>
+      </div>
     </div>
+  </div>
+  </div>
+
+  <div class="modal modal-blur fade" id="modal-add-folder" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Desk</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            <div class="col-auto">
+              <a href="#" class="avatar avatar-upload rounded">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <img
+                  src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-folder-ui-essential-kmg-design-flat-kmg-design.png" />
+                <span class="avatar-upload-text">Folder</span>
+              </a>
+            </div>
+            <div class="col">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control  file_name" name="fileName" placeholder="Enter Name" autofocus autocomplete="off" onfocus="fileName()" oninput="fileName()">
+              <div id="file_name_error" class="invalid-feedback"></div>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+            Cancel
+          </a>
+          <a href="#" id="create-folder-button" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+            Create
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
   <!-- Libs JS -->
 
@@ -531,6 +411,7 @@
   <script src="{% static '/dist/js/demo.min.js' %}"></script>
   <script src="{% static '/js/modalAJAX.js' %}"></script>
   <script src="{% static '/js/grievance-filter.js' %}"></script>
+  <script src="{% static '/js/validName.js' %}"></script>
   <script>
     // @formatter:off
     document.addEventListener("DOMContentLoaded", function () {
