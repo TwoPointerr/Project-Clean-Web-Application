@@ -184,31 +184,20 @@
     </div>
   </div>
 
-    <!-- Modal Select Desk -->
-    <div
-      class="modal modal-blur fade"
-      id="modal-team"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Select Desks</h5>
-            <!-- Modal header -->
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+  <!-- Modal Select Desk -->
+  <div class="modal modal-blur fade" id="modal-team" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Select Desks</h5>
+          <!-- Modal header -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end" id="modal-desk-list">
+
           </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end" id="modal-desk-list">
-              
-            </div>
-          </div>
+        </div>
         <div class="modal-footer">
           <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
             Cancel
@@ -230,329 +219,293 @@
     </div>
   </div>
 
-    <!-- Add desk to modal -->
-    <div
-      class="modal modal-blur fade"
-      id="modal-add-desk"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Create Desk</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    x="0px"
-                    y="0px"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 172 172"
-                    style="fill: #000000"
-                  >
-                    <g
-                      fill="none"
-                      fill-rule="nonzero"
-                      stroke="none"
-                      stroke-width="1"
-                      stroke-linecap="butt"
-                      stroke-linejoin="miter"
-                      stroke-miterlimit="10"
-                      stroke-dasharray=""
-                      stroke-dashoffset="0"
-                      font-family="none"
-                      font-weight="none"
-                      font-size="none"
-                      text-anchor="none"
-                      style="mix-blend-mode: normal"
-                    >
-                      <path d="M0,172v-172h172v172z" fill="none"></path>
-                      <g fill="#3498db">
-                        <path
-                          d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z"
-                        ></path>
-                      </g>
+  <!-- Add desk to modal -->
+  <div class="modal modal-blur fade" id="modal-add-desk" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Desk</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            <div class="col-auto">
+              <a href="#" class="avatar avatar-upload rounded">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172"
+                  style="fill: #000000">
+                  <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                    font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                    style="mix-blend-mode: normal">
+                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                    <g fill="#3498db">
+                      <path
+                        d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z">
+                      </path>
                     </g>
-                  </svg>
-                  <span class="avatar-upload-text">Desk</span>
-                </a>
-              </div>
-              <div class="col">
-                <label class="form-label">Name</label>
-                <input id="modal-desk-name-id" type="text" class="form-control" />
-              </div>
+                  </g>
+                </svg>
+                <span class="avatar-upload-text">Desk</span>
+              </a>
+            </div>
+            <div class="col">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control  file_name" name="fileName" placeholder="Enter Name" autofocus autocomplete="off" onfocus="deskName()" oninput="deskName()">
+              <div id="desk_name_error" class="invalid-feedback"></div>
             </div>
           </div>
-          <div class="modal-footer">
-            <a
-              href="#"
-              class="btn btn-link link-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </a>
-            <a
-              href="#"
-              id="create-modal-desk-button"
-              class="btn btn-primary ms-auto"
-              data-bs-toggle="modal"
-              data-bs-target="#modal-team"
-            >
-              <!-- data-bs-dismiss="modal" Download SVG icon from http://tabler-icons.io/i/plus -->
-              Create
-            </a>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+            Cancel
+          </a>
+          <a href="#" id="create-modal-desk-button" class="btn btn-primary ms-auto" data-bs-toggle="modal"
+            data-bs-target="#modal-team">
+            <!-- data-bs-dismiss="modal" Download SVG icon from http://tabler-icons.io/i/plus -->
+            Create
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
 
-    <!-- Add desk to workspace -->
-    <div
-      class="modal modal-blur fade"
-      id="workspace-add-desk"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Workspace Create Desk</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    x="0px"
-                    y="0px"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 172 172"
-                    style="fill: #000000"
-                  >
-                    <g
-                      fill="none"
-                      fill-rule="nonzero"
-                      stroke="none"
-                      stroke-width="1"
-                      stroke-linecap="butt"
-                      stroke-linejoin="miter"
-                      stroke-miterlimit="10"
-                      stroke-dasharray=""
-                      stroke-dashoffset="0"
-                      font-family="none"
-                      font-weight="none"
-                      font-size="none"
-                      text-anchor="none"
-                      style="mix-blend-mode: normal"
-                    >
-                      <path d="M0,172v-172h172v172z" fill="none"></path>
-                      <g fill="#3498db">
-                        <path
-                          d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z"
-                        ></path>
-                      </g>
+  <!-- Add desk to workspace -->
+  <div class="modal modal-blur fade" id="workspace-add-desk" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Workspace Create Desk</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            <div class="col-auto">
+              <a href="#" class="avatar avatar-upload rounded">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172"
+                  style="fill: #000000">
+                  <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                    font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                    style="mix-blend-mode: normal">
+                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                    <g fill="#3498db">
+                      <path
+                        d="M3.44,27.52v3.44v20.64h6.88v92.88h20.64v-92.88h68.8v79.12v3.44v10.32h6.88v-10.32h48.16v10.32h6.88v-10.32v-3.44v-79.12h6.88v-24.08zM10.32,34.4h151.36v10.32h-2.86219c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-53.91797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-74.55797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-12.63797c-0.37149,-0.0614 -0.75054,-0.0614 -1.12203,0h-2.89578zM17.2,51.6h6.88v86h-6.88zM106.64,51.6h48.16v20.64h-48.16zM130.72,58.48c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,79.12h48.16v20.64h-48.16zM130.72,86c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44zM106.64,106.64h48.16v20.64h-48.16zM130.72,113.52c-1.89986,0 -3.44,1.54014 -3.44,3.44c0,1.89986 1.54014,3.44 3.44,3.44c1.89986,0 3.44,-1.54014 3.44,-3.44c0,-1.89986 -1.54014,-3.44 -3.44,-3.44z">
+                      </path>
                     </g>
-                  </svg>
-                  <span class="avatar-upload-text">Desk</span>
-                </a>
-              </div>
-              <div class="col">
-                <label class="form-label">Name</label>
-                <input id="workspace-desk-name-id" type="text" class="form-control" />
-              </div>
+                  </g>
+                </svg>
+                <span class="avatar-upload-text">Desk</span>
+              </a>
+            </div>
+            <div class="col">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control  file_name" name="fileName" placeholder="Enter Name" autofocus autocomplete="off" onfocus="WSdeskName()" oninput="WSdeskName()">
+              <div id="WSdesk_name_error" class="invalid-feedback"></div>
             </div>
           </div>
-          <div class="modal-footer">
-            <a
-              href="#"
-              class="btn btn-link link-secondary"
+        </div>
+        
+        <div class="modal-footer">
+          
+          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+            Cancel
+          </a>
+          <a href="#" id="create-workspace-desk-button" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+            <!-- data-bs-dismiss="modal" Download SVG icon from http://tabler-icons.io/i/plus -->
+            Create
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- select folder name -->
+
+  <!-- select folder name -->
+  <div class="modal modal-blur fade" id="modal-select-folder" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Select Folder</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end modalSelectFolderAJAX">
+            <!-- AJAX Part select folder -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Grievances</h3>
+          </div>
+          <div class="list-group list-group-flush overflow-auto" style="max-height: 35rem">
+            {% for gri in grievances  %}
+            {% for status in gri.status_set.all%}
+                {% if status.status_active%}
+                {% if status.status_name == "In Progress" %}
+                <div class="list-group-item bg-blue-lt">
+                {% elif status.status_name == "Complete" %}
+                <div class="list-group-item bg-green-lt">
+                {% elif status.status_name == "Rejected" %}
+                <div class="list-group-item bg-yellow-lt">
+                {% elif status.status_name == "Pending" %}
+                <div class="list-group-item bg-red-lt">
+                {% endif%}
+                {% endif %}
+                {% endfor %}
               
-            >
-              Cancel
-            </a>
-            <a
-              href="#"
-              id="create-workspace-desk-button"
-              class="btn btn-primary ms-auto"
-              data-bs-dismiss="modal"
-            >
-              <!-- data-bs-dismiss="modal" Download SVG icon from http://tabler-icons.io/i/plus -->
-              Create
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- select folder name -->
-
-  <!-- select folder name -->
-    <div class="modal modal-blur fade" id="modal-select-folder" tabindex="-1" role="dialog" aria-hidden="true" >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Select Folder</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end modalSelectFolderAJAX">
-              <!-- AJAX Part select folder -->
+              <div class="row">
+                <div class="col-auto">
+                  <a href="#">
+                    <span class="avatar" > 
+                    {% if gri.gri_category.cat_name == "Garbage" %}
+                    <span class="bg-green-lt avatar">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                      <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="4" y1="7" x2="20" y2="7" />
+                        <line x1="10" y1="11" x2="10" y2="17" />
+                        <line x1="14" y1="11" x2="14" y2="17" />
+                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                      </svg>
+                    </span>
+                    {% elif gri.gri_category.cat_name == "POTHOLE" %}
+                    <span class="bg-blue-lt avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <line x1="12" y1="21" x2="12" y2="21.01"></line>
+                      <line x1="3" y1="9" x2="3" y2="9.01"></line>
+                      <line x1="21" y1="9" x2="21" y2="9.01"></line>
+                      <path d="M8 20.1a9 9 0 0 1 -5 -7.1"></path>
+                      <path d="M16 20.1a9 9 0 0 0 5 -7.1"></path>
+                      <path d="M6.2 5a9 9 0 0 1 11.4 0"></path>
+                   </svg>
+                  </span>
+                    {% endif %}
+                    
+                    </span>
+                  </a>
+                </div>
+                <div class="col text-truncate">
+                  <a href="#" class="text-body d-block">
+                    {{ gri.gri_title }}</a>
+                  <div class="text-muted text-truncate mt-n1">
+                    {{ gri.gri_location }}</div>
+                </div>
+              </div>
             </div>
+            {% endfor %}
           </div>
-          <div class="modal-footer">
-            <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-              Cancel
-            </a>
-            <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              Move
-              <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon" width="24"
-                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <line x1="13" y1="18" x2="19" y2="12" />
-                <line x1="13" y1="6" x2="19" y2="12" />
-              </svg>
-            </a>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+            Cancel
+          </a>
+          <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+            Move
+            <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon" width="24"
+              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <line x1="13" y1="18" x2="19" y2="12" />
+              <line x1="13" y1="6" x2="19" y2="12" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
   <!-- select folder for workspace -->
-    <div class="modal modal-blur fade" id="workspace-add-folder" tabindex="-1" role="dialog" aria-hidden="true" >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title"> Workspace Create Folder</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <img
-                    src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-folder-ui-essential-kmg-design-flat-kmg-design.png"
-                  />
-                  <span class="avatar-upload-text">Folder</span>
-                </a>
-              </div>
-              <div class="col">
-                <label class="form-label">Name</label>
-                <input type="text" id="workspace-folder-name-id" class="form-control" />
-              </div>
+  <div class="modal modal-blur fade" id="workspace-add-folder" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> Workspace Create Folder</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            <div class="col-auto">
+              <a href="#" class="avatar avatar-upload rounded">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <img
+                  src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-folder-ui-essential-kmg-design-flat-kmg-design.png" />
+                <span class="avatar-upload-text">Folder</span>
+              </a>
+            </div>
+            <div class="col">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control  file_name" name="fileName" placeholder="Enter Name" autofocus autocomplete="off" onfocus="WSfileName()" oninput="WSfileName()">
+              <div id="WSfile_name_error" class="invalid-feedback"></div>
             </div>
           </div>
-          <div class="modal-footer">
-            <a
-              href="#"
-              class="btn btn-link link-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </a>
-            <a
-              href="#"
-              id="create-workspace-folder-button"
-              class="btn btn-primary ms-auto"
-              data-bs-dismiss="modal"
-            >
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              Create
-            </a>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+            Cancel
+          </a>
+          <a href="#" id="create-workspace-folder-button" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+            Create
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
-     <!-- select folder for modal muncipal dashboard -->
-    <div
-      class="modal modal-blur fade"
-      id="modal-add-folder"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Create Folder</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3 align-items-end">
-              <div class="col-auto">
-                <a href="#" class="avatar avatar-upload rounded">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                  <img
-                    src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-folder-ui-essential-kmg-design-flat-kmg-design.png"
-                  />
-                  <span class="avatar-upload-text">Folder</span>
-                </a>
-              </div>
-              <div class="col">
-                <label class="form-label">Name</label>
-                <input type="text" id="modal-folder-name-id" class="form-control file_name" name="fileName" placeholder="Enter Name" autofocus autocomplete="off" onfocus="fileName()" oninput="fileName()" />
-                <div id="file_name_error" class="invalid-feedback"></div>
-              </div>
+  <!-- select folder for modal muncipal dashboard -->
+  <div class="modal modal-blur fade" id="modal-add-folder" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Folder</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3 align-items-end">
+            <div class="col-auto">
+              <a href="#" class="avatar avatar-upload rounded">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <img
+                  src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-folder-ui-essential-kmg-design-flat-kmg-design.png" />
+                <span class="avatar-upload-text">Folder</span>
+              </a>
+            </div>
+            <div class="col">
+              <label class="form-label">Name</label>
+              <input type="text" id="modal-folder-name-id" class="form-control file_name" name="fileName"
+                placeholder="Enter Name" autofocus autocomplete="off" onfocus="fileName()" oninput="fileName()" />
+              <div id="file_name_error" class="invalid-feedback"></div>
             </div>
           </div>
-          <div class="modal-footer">
-            <a
-              href="#"
-              class="btn btn-link link-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </a>
-            <a
-              href="#"
-              id="create-modal-folder-button"
-              class="btn btn-primary ms-auto"
-              data-bs-toggle="modal"
-              data-bs-target="#modal-select-folder"
-              data-bs-dismiss="modal"
-            >
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              Create
-            </a>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+            Cancel
+          </a>
+          <a href="#" id="create-modal-folder-button" class="btn btn-primary ms-auto" data-bs-toggle="modal"
+            data-bs-target="#modal-select-folder" data-bs-dismiss="modal">
+            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+            Create
+          </a>
         </div>
       </div>
     </div>
+  </div>
   </div>
   </div>
   <!-- Libs JS -->
