@@ -13,6 +13,7 @@ from django.contrib.messages import constants as messages
 from pathlib import Path
 import dj_database_url
 import os
+from django.urls import reverse_lazy
 
 
 
@@ -161,6 +162,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_URL = reverse_lazy('dashboard:signin')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
