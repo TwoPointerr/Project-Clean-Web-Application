@@ -13,7 +13,7 @@ urlpatterns = [
     path('',views.muncipalDashboard,name="muncipal_dashboard"),
     path('workspace/',views.workSpace, name="workspace"),
 
-    path('grievance',views.grievance, name="grievance"),
+    path('grievance/<int:gri_id>/',views.grievance, name="grievance"),
 
     #JSON Response AJAX
     path('display-modal-folder-list/',views.display_Modal_Folder_list),

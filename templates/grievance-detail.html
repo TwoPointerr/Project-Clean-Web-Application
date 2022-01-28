@@ -28,16 +28,14 @@
                         <div class="d-flex align-items-center mb-3">
                           <span class="avatar me-3 rounded">JL</span>
                           <div>
-                            <div>Jeffie Lewzey</div>
+                            <div>{{ grievance_single.gri_uploaded_user.citi_user.first_name }} {{ grievance_single.gri_uploaded_user.citi_user.last_name }}</div>
                             <div class="text-muted">5 days ago</div>
                           </div>
                         </div>
-                        <h3 class="card-title">Vartak Nagar, Thane</h3>
-                        <div class="card-subtitle">subtitle</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                          neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                          neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
+                        <h3 class="card-title">{{grievance_single.gri_title}}</h3>
+                        <div class="card-subtitle">{{grievance_single.gri_location.loc_display_name}}</div>
+                        <p>{{grievance_single.gri_desc}}</p>
+                        
                       </div>
                       <div class="card-footer">
                         <div class="d-flex">
@@ -89,7 +87,7 @@
               <div class="col-md-4">
                 <div class="row row-cards">
                   <div class="col-12">
-                    <div class="img-responsive" style="background-image: url({% static './static/photos/4f668538bdd3fd7f.jpg' %});height: 500px;
+                    <div class="img-responsive" style="background-image: url({{grievance_single.gri_img.url}});height: 500px;
                     background-repeat: no-repeat;
                     background-size: contain;">
                   </div>
@@ -134,7 +132,7 @@
               container: 'map-simple',
               style: 'mapbox://styles/mapbox/streets-v11',
               zoom: 15,
-              center: [13.404900, 52.518827],
+              center: [73.1177492,18.9896656],
             });
           });
           // @formatter:on

@@ -22,8 +22,9 @@ def workSpace(request):
     return render(request,"Work Space/WorkspaceDashboard.html")
 
 @login_required
-def grievance(request):
-    return render(request,'grievance-detail.html')
+def grievance(request,gri_id):
+    gri_obj = Grievance.objects.get(id=gri_id)
+    return render(request,'grievance-detail.html',{"grievance_single":gri_obj})
 
 def signin(request):
     if request.method == 'POST':
