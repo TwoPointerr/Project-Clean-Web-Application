@@ -20,9 +20,16 @@ urlpatterns = [
     
     #used in two way for workspace nad for modal
     path('display-desks-list/',views.displayDeskList,name="display-desks-list"),
-    path('workspace-inside-desk/',views.workspace_inside_desk,name="loadDesk"),
+    path('workspace-inside-desk/',views.workspace_inside_desk,name="workspace-inside-desk"),
+    path('workspace-inside-folder/',views.workspace_inside_folder,name="workspace-inside-folder"),
 
     path('display-workspace-desk-folders/',views.display_WorkSpace_DeskFolders,name="display-desk-folders"),
+
+    #move gri to folder in MoveGri.js file
+    path('move-gri-to-folder/',views.move_gri_to_folder,name="move-gri-to-folder"),
+    path('move-gri-to-desk/',views.move_gri_to_desk,name="move-gri-to-desk"),
+
+    path('reject-gri/',views.reject_gri,name="move-gri-to-desk"),
 
     path('create-desk/',views.createDesk,name="create-desk"),
     path('create-folder/',views.createFolder,name="create-desk"),

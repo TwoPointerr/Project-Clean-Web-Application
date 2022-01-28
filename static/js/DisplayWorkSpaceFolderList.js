@@ -3,7 +3,7 @@ $(document).ready(function () {
   displayFolderDesks();
   function displayFolderDesks() {
     var desk_id = $(".desk-title").attr("id");
-    console.log(desk_id);
+    console.log("Inside Display WS Folder list JS:"+desk_id);
 
     data = {};
     data.desk_id = desk_id;

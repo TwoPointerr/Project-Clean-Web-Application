@@ -24,15 +24,23 @@ class Grievance(models.Model):
     def __str__(self):
         return self.gri_title
 
+STATUS_NAME = (
+    ("Register","Register"),
+    ("Pending","Pending"),
+    ("In Progress","In Progress"),
+    ("Solved","Solved"),
+    ("Rejected","Rejected")
+)
+
 class Status(models.Model):
-    status_name = models.CharField(max_length=250)
+    status_name = models.CharField(max_length=250,choices=STATUS_NAME)
     status_grievance = models.ForeignKey(Grievance,on_delete=models.CASCADE)
     status_active = models.BooleanField(default=False)
     status_timeStamp = models.DateTimeField(auto_now=True)
-    status_issuedByMC = models.ForeignKey(MCProfile,on_delete=models.SET_NULL,null=True)
+    status_issuedByMC = models.ForeignKey(MCProfile,on_delete=models.SET_NULL,null=True,blank=True)
 
     def __str__(self):
-        return self.status_name
+        return f"{self.status_grievance} - {self.status_name}"
 
 
 

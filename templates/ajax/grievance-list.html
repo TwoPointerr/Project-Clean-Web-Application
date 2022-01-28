@@ -1,3 +1,4 @@
+{% load static %}
 {% for gri in grievance_list %}
 <div class="col-12">
   <div class="card">
@@ -10,17 +11,17 @@
           <div class="d-flex">
             <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
             {% for status in gri.status_set.all%}
-            {% if status.status_active%}
-            {% if status.status_name == "In Progress" %}
-            <div><span class="badge bg-primary">{{status.status_name}}</span></div>
-            {% elif status.status_name == "Complete" %}
-            <div><span class="badge bg-success">{{status.status_name}}</span></div>
-            {% elif status.status_name == "Rejected" %}
-            <div><span class="badge bg-danger">{{status.status_name}}</span></div>
-            {% elif status.status_name == "Pending" %}
-            <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
-            {% endif%}
-            {% endif %}
+              {% if status.status_active%}
+                {% if status.status_name == "In Progress" %}
+                <div><span class="badge bg-primary">{{status.status_name}}</span></div>
+                {% elif status.status_name == "Complete" %}
+                <div><span class="badge bg-success">{{status.status_name}}</span></div>
+                {% elif status.status_name == "Rejected" %}
+                <div><span class="badge bg-danger">{{status.status_name}}</span></div>
+                {% elif status.status_name == "Pending" %}
+                <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
+                {% endif%}
+              {% endif %}
             {% endfor %}
           </div>
 
@@ -92,7 +93,7 @@
               </div>
             </div>
             <div class="m-3">
-              <a href="#" class="btn btn-outline-danger" style="padding-right: 10px">
+              <a href="#" id="grievancesREJECTID_{{gri.id}}" class="btn btn-outline-danger grievance_lists_class_IDS" style="padding-right: 10px" data-bs-toggle="modal" data-bs-target="#modal-reject-grievances">
                 Reject
                 <!-- Download SVG icon from http://tabler-icons.io/i/x -->
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon"
@@ -103,19 +104,30 @@
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </a>
-              <a href="#" class="btn btn-primary" style="padding-right: 10px" data-bs-toggle="modal"
-                data-bs-target="#modal-team">
-                Move to Desk
-                <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
-                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon"
-                  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <line x1="13" y1="18" x2="19" y2="12" />
-                  <line x1="13" y1="6" x2="19" y2="12" />
-                </svg>
-              </a>
+              {% for status in gri.status_set.all%}
+                {% if status.status_active%}
+                  {% if status.status_name == "Pending" %}
+                    <a href="#" id="grievancesID_{{gri.id}}" class="btn btn-primary grievance_lists_class_IDS" style="padding-right: 10px" data-bs-toggle="modal"
+                      data-bs-target="#modal-team">
+                      Move to Desk 
+                      <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
+                      <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <line x1="13" y1="18" x2="19" y2="12" />
+                        <line x1="13" y1="6" x2="19" y2="12" />
+                      </svg>
+                    </a>
+                  {% else %}
+                    <a  id="grievancesID_{{gri.id}}" class="btn btn-primary"  >
+                      See Details
+                    </a>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
             </div>
           </div>
         </div>
@@ -138,3 +150,11 @@
   </div>
 </div>
 {% endfor %}
+<script>
+  var selectedGrievanceID;
+  $("a.grievance_lists_class_IDS").click(function(){
+    selectedGrievanceID = $(this).attr("id");
+    console.log(selectedGrievanceID)
+});
+</script>
+

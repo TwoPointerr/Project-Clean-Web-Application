@@ -1,0 +1,21 @@
+<div class="page-wrapper">
+  <div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2
+            class="page-title folder-title"
+            id="FolderNameId_{{folder_single.id}}"
+          >
+          {{folder_single.folder_desks.desk_name}} / {{folder_single.folder_name}}
+          </h2>
+          {% comment %}
+          <div class="text-muted mt-1">About 2,410 result (0.19 seconds)</div>
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-body">{% include "search-results.html"%}</div>
+</div>

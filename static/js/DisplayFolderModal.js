@@ -10,7 +10,7 @@ $("a.modal_desk_icon").click(function () {
     data: desk_id_obj,
     dataType: "json",
     success: function (res) {
-      console.log(res);
+      console.log("inside Display Folder modal JS");
       $("div.modalSelectFolderAJAX").html(res.data);
     },
   });

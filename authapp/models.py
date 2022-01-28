@@ -16,7 +16,7 @@ class User(AbstractUser):
 
     def get_username(self):
         return self.email
-
+    
     def __str__(self) -> str:
         return self.first_name
 
@@ -39,7 +39,7 @@ class Location(models.Model):
     loc_postcode = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.loc_city
+        return self.loc_suburb
 
 class MCProfile(models.Model):
     mc_user = models.OneToOneField(User,on_delete=models.CASCADE)

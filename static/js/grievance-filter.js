@@ -1,9 +1,16 @@
 $(document).ready(function() {
+    var _filterObj = {};
     $(".ajaxLoader").hide();
+    var desk_id = $("h2.desk-title").attr("id");
+    var folder_id = $("h2.folder-title").attr("id");
+    filterFunctionsAJAX()
     $("#grievance_cat,  #sort_by, #voteFilterBtn, #grievance_stat, #gri_loc").on('click', function() {
         //console.log("inside filter");
         console.log("inside filter");
-        var _filterObj = {};
+        filterFunctionsAJAX()
+    });
+
+    function filterFunctionsAJAX(){
         var _minVote = $('#minVote').val();
         var _maxVote = $('#maxVote').val();
         _filterObj.minVote = _minVote;
@@ -61,7 +68,8 @@ $(document).ready(function() {
         //         return el.value;
         //     });
         // });
-
+        _filterObj.desk_id = desk_id;
+        _filterObj.folder_id = folder_id;
         console.log(_filterObj)
             //Ajax Functionality
         $.ajax({
@@ -77,6 +85,5 @@ $(document).ready(function() {
                 $(".ajaxLoader").hide();
             }
         });
-
-    });
+    }
 });

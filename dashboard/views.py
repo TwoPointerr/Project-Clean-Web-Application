@@ -7,7 +7,7 @@ from dashboard.models import Desk, Folders
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Count, Min, Sum, Avg, Max
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.core import serializers
 from django.template.loader import render_to_string
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -15,11 +15,11 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 # Create your views here.
 @login_required
 def muncipalDashboard(request):
-    return render(request,'Muncipal Dashboard/muncipalDashboard.html',grievancesDataModels(request))
+    return render(request,'Muncipal Dashboard/muncipalDashboard.html',grievancesDataModels(request,folder_obj=None,desk_obj=None))
     
 @login_required
 def workSpace(request):
-    return render(request,"Work Space/WorkspaceDashboard.html",grievancesDataModels(request))
+    return render(request,"Work Space/WorkspaceDashboard.html")
 
 @login_required
 def grievance(request):
@@ -142,13 +142,77 @@ def display_Modal_Folder_list(request):
 def workspace_inside_desk(request):
     desk_id = int(request.GET.get('desk_id').split("_")[1])
     desk = Desk.objects.get(id=desk_id)
-    dataDict = grievancesDataModels(request)
+    dataDict = grievancesDataModels(request,desk_obj=desk,folder_obj=None)
     dataDict['desk_single'] = desk
     template = render_to_string('Work Space/WorkSpaceInsideDesk.html', dataDict)
     return JsonResponse({'data':template})
 
+def workspace_inside_folder(request):
+    folder_id = int(request.GET.get('folder_id').split("_")[2])
+    folder_obj = Folders.objects.get(id=folder_id)
+    dataDict = grievancesDataModels(request,desk_obj=None,folder_obj=folder_obj)
+    dataDict['folder_single'] = folder_obj
+    template = render_to_string('Work Space/WorkSpaceInsideFolder.html', dataDict)
+    return JsonResponse({'data':template})
+
+def move_gri_to_folder(request):
+    folder_id = int(request.GET.get('folder_id').split("_")[1])
+    gri_id = int(request.GET.get('gri_id').split("_")[1])
+
+    folder_obj = Folders.objects.get(id=folder_id)
+    gri_file_obj = Grievance.objects.get(id=gri_id)
+
+    folder_obj.folder_gri_file.add(gri_file_obj)
+
+    change_status_gri(gri_file_obj,"In Progress",request.user)
+    
+    return JsonResponse({'data':'successful'})
+
+def move_gri_to_desk(request):
+    desk_id = int(request.GET.get('desk_id').split("_")[1])
+    gri_id = int(request.GET.get('gri_id').split("_")[1])
+
+    desk_obj = Desk.objects.get(id=desk_id)
+    gri_file_obj = Grievance.objects.get(id=gri_id)
+
+    desk_obj.desk_gri_files.add(gri_file_obj)
+    
+    change_status_gri(gri_file_obj,"In Progress",request.user)
+    return JsonResponse({'data':'successful'})
+
+def reject_gri(request):
+    gri_id = int(request.GET.get('gri_id').split("_")[1])
+    gri_file_obj = Grievance.objects.get(id=gri_id)
+    change_status_gri(gri_file_obj,"Rejected",request.user)
+    return JsonResponse({'data':'successful'})
+
+
+def change_status_gri(gri_file_obj,status_name,mc_user):
+    mc_profile = MCProfile.objects.get(mc_user=mc_user)
+    past_status = gri_file_obj.status_set.all()
+    for status_obj in past_status:
+        status_obj.status_active = False
+        status_obj.save()
+
+    status_obj = Status.objects.create(status_name=status_name,status_grievance=gri_file_obj,status_active=True,status_issuedByMC=mc_profile)
+    return status_obj
+    
+
 def filter_data(request):
     grievance_all_list = Grievance.objects.all()
+    desk_id = request.GET.get('desk_id')
+    folder_id = request.GET.get('folder_id')
+
+    if desk_id is not None:
+        desk_id = desk_id.split("_")[1]
+        desk_obj = Desk.objects.get(id=desk_id)
+        grievance_all_list = desk_obj.desk_gri_files.all()
+
+    if folder_id is not None:
+        folder_id = folder_id.split("_")[1]
+        folder_obj = Folders.objects.get(id=folder_id)
+        grievance_all_list = folder_obj.folder_gri_file.all()
+        
     grievance_list = filter_data_functionality(request,grievance_all_list)
     template = render_to_string('ajax/grievance-list.html', {'grievance_list': grievance_list})
     print("inside filter data")
@@ -157,17 +221,6 @@ def filter_data(request):
 #Supporting Functions
 
 #Return Dict with Gri Model
-def grievancesDataModels(request):
-    user_id = request.user.id
-    user = User.objects.get(id=user_id)
-    profile = MCProfile.objects.get(mc_user=user)
-    grievance = Grievance.objects.all()
-    category =Category.objects.all()
-    minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
-    maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
-    status = Status.objects.values_list('status_name',flat=True).distinct()
-    location = Location.objects.all().distinct('loc_city')
-    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location, 'profile':profile}
 
 #Filter Gri Model and return Gri model OBJ
 def filter_data_functionality(request,grievance_list):
@@ -205,3 +258,23 @@ def filter_data_functionality(request,grievance_list):
             grievance_list = grievance_list.all().order_by('-gri_timeStamp')
     
     return grievance_list
+
+def grievancesDataModels(request,desk_obj,folder_obj):
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    profile = MCProfile.objects.get(mc_user=user)
+    grievance = Grievance.objects.all()
+    if desk_obj is not None:
+        grievance = desk_obj.desk_gri_files.all()
+        print(f"inside if griDataModels: {grievance}")
+
+    if folder_obj is not None:
+        grievance = folder_obj.folder_gri_file.all()
+
+    print(f"outside griDataModels: {grievance}")
+    category =Category.objects.all()
+    minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
+    maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
+    status = Status.objects.values_list('status_name',flat=True).distinct()
+    location = Location.objects.all().distinct('loc_city')
+    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location, 'profile':profile}
