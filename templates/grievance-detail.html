@@ -2,103 +2,365 @@
 {% load static %}
 {% block content %}
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css" rel="stylesheet">
-      <div class="page-wrapper">
-        <div class="container-xl">
-          <!-- Page title -->
-          <div class="page-header d-print-none">
-            <div class="row align-items-center">
-              <div class="col">
-                <h2 class="page-title">
-                  Cards
-                </h2>
+<div class="page-wrapper">
+  <div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="page-title">
+            Cards
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="container-xl">
+      <div class="row row-cards">
+        <div class="col-lg-8">
+
+          <div class="row row-cards">
+
+            <div class="col-12">
+              <div class="card">
+
+
+                <div class="card-body mt-3 flex-column-reverse flex-row align-items-end h-100">
+                  <div class="d-flex">
+                    <div class="me-3">
+                      <span class="avatar">
+                        {% if grievance_single.gri_category.cat_name == "Garbage" %}
+                        <span class="bg-green-lt avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <line x1="4" y1="7" x2="20" y2="7" />
+                            <line x1="10" y1="11" x2="10" y2="17" />
+                            <line x1="14" y1="11" x2="14" y2="17" />
+                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                          </svg>
+                        </span>
+                        {% elif grievance_single.gri_category.cat_name == "POTHOLE" %}
+                        <span class="bg-blue-lt avatar">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom-2" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <line x1="12" y1="21" x2="12" y2="21.01"></line>
+                            <line x1="3" y1="9" x2="3" y2="9.01"></line>
+                            <line x1="21" y1="9" x2="21" y2="9.01"></line>
+                            <path d="M8 20.1a9 9 0 0 1 -5 -7.1"></path>
+                            <path d="M16 20.1a9 9 0 0 0 5 -7.1"></path>
+                            <path d="M6.2 5a9 9 0 0 1 11.4 0"></path>
+                          </svg>
+                        </span>
+                        {% endif %}
+                      </span>
+                    </div>
+                    <h1 class="" style="margin-right: auto;">{{ grievance_single.gri_title}}</h1>
+
+                    {% for status in grievance_single.status_set.all%}
+                    {% if status.status_active%}
+                    <div class="col-3 mx-auto">
+                      <div class="card  bg-blue-lt">
+                        <div class="row row-0 ">
+                          <div class="col-3 my-auto">
+                            <img src="{{ status.status_issuedByMC.mc_profile_img.url }}" class="rounded-start" alt="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
+                          </div>
+                          <div class="col">
+                            <div class="card-body">
+                              {{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}
+                              <div class="text-muted">
+                                {{ status.status_timeStamp|date:'d M Y'}}
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% if status.status_name == "In Progress" %}
+                    <div class="card-status-end bg-primary"></div>
+                    <div><span class="badge bg-primary">{{status.status_name}}</span></div>
+                    {% elif status.status_name == "Complete" %}
+                    <div class="card-status-end bg-success"></div>
+                    <div><span class="badge bg-success">{{status.status_name}}</span></div>
+                    {% elif status.status_name == "Rejected" %}
+                    <div class="card-status-end bg-danger"></div>
+                    <div><span class="badge bg-danger">{{status.status_name}}</span></div>
+                    {% elif status.status_name == "Pending" %}
+                    <div class="card-status-end bg-yellow"></div>
+                    <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
+                    {% endif%}
+                    {% endif%}
+                    {% endfor %}
+
+
+                  </div>
+
+
+
+
+
+
+                  <p class="mt-3">{{grievance_single.gri_desc}}</p>
+                  <h3 class="my-3">Location: {{grievance_single.gri_location.loc_display_name}}</h3>
+                  <div class="d-flex align-items-center mb-3">
+
+                    <span class="avatar me-3 rounded" style="background-image: url({{ grievance_single.gri_uploaded_user.citi_profile_img.url }})"></span>
+                    <div>
+                      <div>{{ grievance_single.gri_uploaded_user.citi_user.first_name }}
+                        {{ grievance_single.gri_uploaded_user.citi_user.last_name }}</div>
+                      <div class="text-muted">{{ grievance_single.gri_timeStamp|date:'d M Y'}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex">
+                    <a href="#" class="btn btn-outline-danger">Reject</a>
+                    <a href="#" class="btn btn-primary ms-auto">Forward</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="card ">
+                <div class="card-body">
+                  <div class="mb-3">
+                    <label class="form-label">Select Action</label>
+                    {% for status in grievance_single.status_set.all%}
+                    {% if status.status_active%}
+                    <div class="form-selectgroup">
+                      <label class="form-selectgroup-item bg-yellow-lt">
+                        <input type="radio" name="icons" value="home" class="form-selectgroup-input"
+                          {% if status.status_name == "Pending" %} checked {% else %} disabled {% endif %}>
+                        <span class="form-selectgroup-label bg-yellow-lt">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="orange" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                          Pending</span>
+                      </label>
+                      <label class="form-selectgroup-item bg-blue-lt">
+                        <input type="radio" name="icons" value="user" class="form-selectgroup-input"
+                          {% if status.status_name == "In Progress" %} checked {% else %} disabled {% endif %}>
+                        <span class="form-selectgroup-label bg-blue-lt">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+                          In Progress</span>
+                      </label>
+                      <label class="form-selectgroup-item bg-green-lt">
+                        <input type="radio" name="icons" value="circle" class="form-selectgroup-input"
+                          {% if status.status_name == "Complete" %} checked {% else %} disabled {% endif %}>
+                        <span class="form-selectgroup-label bg-green-lt">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/circle -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="green" fill="green" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="12" r="9" /></svg>
+                          Complete</span>
+                      </label>
+                      <label class="form-selectgroup-item bg-red-lt">
+                        <input type="radio" name="icons" value="square" class="form-selectgroup-input"
+                          {% if status.status_name == "Rejected" %} checked {% else %} disabled {% endif %}>
+                        <span class="form-selectgroup-label bg-red-lt">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/square -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="red" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <rect x="4" y="4" width="16" height="16" rx="2" /></svg>
+                          Rejected</span>
+                      </label>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="row row-cards">
+            <div class="col-12">
+              <div class="img-responsive" style="background-image: url({{grievance_single.gri_img.url}});height: 500px;
+                    background-repeat: no-repeat;
+                    background-size: contain;">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row row-cards">
+        <div class="col-lg-5">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Timeline</h3>
+              </div>
+              <div class="card-body">
+                <ul class="list list-timeline">
+                  {% for status in grievance_single.status_set.all%}
+                    {% if status.status_active%}
+                  <li>
+                    <div class="list-timeline-icon bg-dark-lt">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/settings -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-writing" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z"></path>
+                        <path d="M16 7h4"></path>
+                        <path d="M18 19h-13a2 2 0 1 1 0 -4h4a2 2 0 1 0 0 -4h-3"></path>
+                     </svg>
+                    </div>
+                    <div class="list-timeline-content">
+                      <div class="list-timeline-time">{{ grievance_single.gri_timeStamp|date:'d M Y P' }}</div>
+                      <p class="list-timeline-title">Register</p>
+                      
+                    </div>
+                  </li>
+                  <li>
+                    <div class="list-timeline-icon bg-yellow-lt">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/photo -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="red" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                    </div>
+                    <div class="list-timeline-content">
+                      <p class="list-timeline-title">Pending</p>
+                      <div class="mt-3">
+                        <div class="row g-2">
+                          <div class="col-6">
+                            <div class="media media-2x1 rounded">
+                              <a class="media-content" style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"></a>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="media media-2x1 rounded">
+                              <a class="media-content" style="background-image: url(../static/photos/6f6e2ef709fef97a.jpg)"></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="list-timeline-icon bg-blue-lt">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+                    </div>
+                    <div class="list-timeline-content">
+                      <div class="list-timeline-time">{{ status.status_timeStamp|date:'d M Y P'}}</div>
+                      <p class="list-timeline-title">In Progress</p>
+                      <div class="avatar-list mt-3">
+                        <span class="avatar" style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"  data-bs-toggle="tooltip" data-bs-placement="right" 
+                        title="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
+                        <span class="badge bg-success"></span></span>
+                        <b>
+                        {{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}</b>
+                      </div>
+                    </div>
+                  </li>
+                  
+                  <li>
+                    <div class="list-timeline-icon bg-green-lt">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checks" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M7 12l5 5l10 -10"></path>
+                        <path d="M2 12l5 5m5 -5l5 -5"></path>
+                     </svg>
+                    </div>
+                    <div class="list-timeline-content">
+                      <div class="list-timeline-time">{{ status.status_timeStamp|date:'d M Y P'}}</div>
+                      <p class="list-timeline-title">Complete</p>
+                      
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="list-timeline-icon bg-red-lt">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ban" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="red" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <line x1="5.7" y1="5.7" x2="18.3" y2="18.3"></line>
+                     </svg>
+                    </div>
+                    <div class="list-timeline-content">
+                      <div class="list-timeline-time">{{ status.status_timeStamp|date:'d M Y P'}}</div>
+                      <p class="list-timeline-title">Rejected</p>
+                    </div>
+                  </li>
+                  
+                  {% endif %}
+                  {% endfor %}
+
+                </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="page-body">
-          <div class="container-xl">
-            <div class="row row-cards">
-              <div class="col-md-8">
-                <div class="row row-cards">
-                 
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-status-top bg-primary"></div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                          <span class="avatar me-3 rounded">JL</span>
-                          <div>
-                            <div>{{ grievance_single.gri_uploaded_user.citi_user.first_name }} {{ grievance_single.gri_uploaded_user.citi_user.last_name }}</div>
-                            <div class="text-muted">5 days ago</div>
-                          </div>
+        <div class="col-lg-7">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+
+                <div class="ratio ratio-4x3">
+                  <div>
+                    <div id="map-simple" class="w-100 h-100 mapboxgl-map">
+                      <div class="mapboxgl-canary" style="visibility: hidden;"></div>
+                      <div
+                        class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate">
+                        <canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" width="504" height="284"
+                          style="position: absolute; width: 504px; height: 284px;"></canvas></div>
+                      <div class="mapboxgl-control-container">
+                        <div class="mapboxgl-ctrl-top-left"></div>
+                        <div class="mapboxgl-ctrl-top-right"></div>
+                        <div class="mapboxgl-ctrl-bottom-left">
+                          <div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo"
+                              target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/"
+                              aria-label="Mapbox logo"></a></div>
                         </div>
-                        <h3 class="card-title">{{grievance_single.gri_title}}</h3>
-                        <div class="card-subtitle">{{grievance_single.gri_location.loc_display_name}}</div>
-                        <p>{{grievance_single.gri_desc}}</p>
-                        
-                      </div>
-                      <div class="card-footer">
-                        <div class="d-flex">
-                          <a href="#" class="btn btn-link">Reject</a>
-                          <a href="#" class="btn btn-primary ms-auto">Forward</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="card ">
-                      <div class="card-body">
-                        <div class="mb-3">
-                          <label class="form-label">Select Action</label>
-                          <div class="form-selectgroup">
-                            <label class="form-selectgroup-item">
-                              <input type="radio" name="icons" value="home" class="form-selectgroup-input" checked>
-                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
-                                Submitted</span>
-                            </label>
-                            <label class="form-selectgroup-item">
-                              <input type="radio" name="icons" value="user" class="form-selectgroup-input">
-                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="7" r="4" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
-                                In Progress</span>
-                            </label>
-                            <label class="form-selectgroup-item">
-                              <input type="radio" name="icons" value="circle" class="form-selectgroup-input">
-                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/circle -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /></svg>
-                                Complete</span>
-                            </label>
-                            <label class="form-selectgroup-item">
-                              <input type="radio" name="icons" value="square" class="form-selectgroup-input">
-                              <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler-icons.io/i/square -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="2" /></svg>
-                                Rejected</span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="row row-cards">
-                  <div class="col-12">
-                    <div class="img-responsive" style="background-image: url({{grievance_single.gri_img.url}});height: 500px;
-                    background-repeat: no-repeat;
-                    background-size: contain;">
-                  </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        
-                        <div class="ratio ratio-4x3">
-                          <div>
-                            <div id="map-simple" class="w-100 h-100 mapboxgl-map"><div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" width="504" height="284" style="position: absolute; width: 504px; height: 284px;"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib mapboxgl-compact"><div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.mapbox.com/about/maps/" target="_blank" title="Mapbox" aria-label="Mapbox" role="listitem">© Mapbox</a> <a href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap" aria-label="OpenStreetMap" role="listitem">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ" target="_blank" title="Improve this map" aria-label="Improve this map" role="listitem" rel="noopener nofollow">Improve this map</a></div></div></div></div></div>
+                        <div class="mapboxgl-ctrl-bottom-right">
+                          <div class="mapboxgl-ctrl mapboxgl-ctrl-attrib mapboxgl-compact">
+                            <div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.mapbox.com/about/maps/"
+                                target="_blank" title="Mapbox" aria-label="Mapbox" role="listitem">© Mapbox</a> <a
+                                href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap"
+                                aria-label="OpenStreetMap" role="listitem">© OpenStreetMap</a> <a
+                                class="mapbox-improve-map"
+                                href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ"
+                                target="_blank" title="Improve this map" aria-label="Improve this map" role="listitem"
+                                rel="noopener nofollow">Improve this map</a></div>
                           </div>
                         </div>
                       </div>
@@ -106,8 +368,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12">
-                <!-- <div class="col-12">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         
@@ -119,68 +384,68 @@
                       </div>
                     </div>
                   </div> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js"></script>
-        <script>
-          // @formatter:off
-          document.addEventListener("DOMContentLoaded", function() {
-            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
-            var map = new mapboxgl.Map({
-              container: 'map-simple',
-              style: 'mapbox://styles/mapbox/streets-v11',
-              zoom: 15,
-              center: [73.1177492,18.9896656],
-            });
-          });
+    </div>
+  </div>
+</div>
+</div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js"></script>
+<script>
+  // @formatter:off
+  document.addEventListener("DOMContentLoaded", function () {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+    var map = new mapboxgl.Map({
+      container: 'map-simple',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      zoom: 15,
+      center: [73.1177492, 18.9896656],
+    });
+  });
           // @formatter:on
-        </script>
-        {% comment %} <script>
-          // @formatter:off
-          document.addEventListener("DOMContentLoaded", function() {
-            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
-            var map = new mapboxgl.Map({
-              container: 'map-light',
-              style: 'mapbox://styles/mapbox/light-v10',
-              zoom: 11,
-              center: [-0.2416782, 51.5285582],
-            });
-          });
+</script>
+{% comment %}
+<script>
+  // @formatter:off
+  document.addEventListener("DOMContentLoaded", function () {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+    var map = new mapboxgl.Map({
+      container: 'map-light',
+      style: 'mapbox://styles/mapbox/light-v10',
+      zoom: 11,
+      center: [-0.2416782, 51.5285582],
+    });
+  });
           // @formatter:on
-        </script>
-        <script>
-          // @formatter:off
-          document.addEventListener("DOMContentLoaded", function() {
-            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
-            var map = new mapboxgl.Map({
-              container: 'map-markers',
-              style: 'mapbox://styles/mapbox/light-v10',
-              zoom: 1,
-              center: [0, 0],
-            });
-            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([-58.666667, -34.58333333]).addTo(map);
-            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([16.366667, 48.2]).addTo(map);
-            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([116.383333, 39.91666667]).addTo(map);
-            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([149.133333, -35.26666667]).addTo(map);
-            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([58.583333, 23.61666667]).addTo(map);
-            new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([-77, 38.883333]).addTo(map);
-          });
+</script>
+<script>
+  // @formatter:off
+  document.addEventListener("DOMContentLoaded", function () {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+    var map = new mapboxgl.Map({
+      container: 'map-markers',
+      style: 'mapbox://styles/mapbox/light-v10',
+      zoom: 1,
+      center: [0, 0],
+    });
+    new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([-58.666667, -34.58333333]).addTo(map);
+    new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([16.366667, 48.2]).addTo(map);
+    new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([116.383333, 39.91666667]).addTo(map);
+    new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([149.133333, -35.26666667]).addTo(map);
+    new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([58.583333, 23.61666667]).addTo(map);
+    new mapboxgl.Marker({ color: "#206bc4" }).setLngLat([-77, 38.883333]).addTo(map);
+  });
           // @formatter:on
-        </script>
-        <script>
-          // @formatter:off
-          document.addEventListener("DOMContentLoaded", function() {
-            mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
-            var map = new mapboxgl.Map({
-              container: 'map-card',
-              style: 'mapbox://styles/mapbox/satellite-v9',
-              zoom: 1,
-              center: [0, 0],
-            });
-          });
+</script>
+<script>
+  // @formatter:off
+  document.addEventListener("DOMContentLoaded", function () {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
+    var map = new mapboxgl.Map({
+      container: 'map-card',
+      style: 'mapbox://styles/mapbox/satellite-v9',
+      zoom: 1,
+      center: [0, 0],
+    });
+  });
           // @formatter:on
-        </script> {% endcomment %}
-        {% endblock %}
-       
+</script> {% endcomment %}
+{% endblock %}
