@@ -9,9 +9,32 @@
       <div class="col">
         <div class="card-body flex-column-reverse flex-row align-items-end h-100">
           <div class="d-flex">
-            <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
             {% for status in gri.status_set.all%}
               {% if status.status_active%}
+              <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
+              
+              {% if status.status_name == "Pending" %}
+              {% else %}
+            <div class="col-3 mx-auto">
+              <div class="card  bg-blue-lt">
+                <div class="row row-0 ">
+                  <div class="col-3 my-auto">
+                    <img src="{{ status.status_issuedByMC.mc_profile_img.url }}" class="rounded-start" alt="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
+                  </div>
+                  <div class="col">
+                    <div class="card-body">
+                      {{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}
+                      <div class="text-muted">
+                        {{ status.status_timeStamp|date:'d M Y'}}
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            
                 {% if status.status_name == "In Progress" %}
                 <div><span class="badge bg-primary">{{status.status_name}}</span></div>
                 {% elif status.status_name == "Complete" %}
@@ -52,9 +75,9 @@
                       <span class="bg-green-lt avatar">
                         <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
                         <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                          stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                           <line x1="4" y1="7" x2="20" y2="7" />
                           <line x1="10" y1="11" x2="10" y2="17" />
@@ -116,7 +139,7 @@
           </div>
           <div class="d-flex mt-3">
             <div class="d-flex align-items-center" style="margin-right: auto">
-              <span class="avatar me-3 rounded">OS</span>
+              <span class="avatar me-3 rounded" style="background-image: url({{ gri.gri_uploaded_user.citi_profile_img.url }})"></span>
               <div>
                 <div>{{ gri.gri_uploaded_user.citi_user.first_name }} {{ gri.gri_uploaded_user.citi_user.last_name }}</div>
                 <div class="text-muted">{{gri.gri_timeStamp|date:'d-b-Y H:i'}}</div>
