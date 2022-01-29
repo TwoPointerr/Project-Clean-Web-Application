@@ -5,8 +5,8 @@
     <div class="container-xl">
       <div class="row g-4">
         <div class="col-3">
-          <form >
-            
+          <form>
+
             <div class="subheader mb-2">Sort By</div>
             <div class="mb-3">
               <label class="form-check mb-1">
@@ -48,7 +48,7 @@
                 {% if stat == "Pending" %}
                 <input type="checkbox" class="form-check-input" data-filter="grievance_status" id="grievance_stat"
                   value="{{ stat }}" checked />
-                  {% else %}
+                {% else %}
                 <input type="checkbox" class="form-check-input" data-filter="grievance_status" id="grievance_stat"
                   value="{{ stat }}" />
                 {% endif %}
@@ -96,8 +96,7 @@
               {% for loc in location %}
               <label class="form-check mb-1">
                 <input type="checkbox" class="form-check-input" data-filter="grievance_location" id="gri_loc" name=""
-                  value="{{ loc.loc_city }}"  checked
-                   />
+                  value="{{ loc.loc_city }}" checked />
 
                 <span class="form-check-label">{{ loc.loc_city }}</span>
               </label>
@@ -138,9 +137,28 @@
                   <div class="col">
                     <div class="card-body flex-column-reverse flex-row align-items-end h-100">
                       <div class="d-flex">
-                        <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
+                        <h1 class="" style="margin-right: auto;">{{ gri.gri_title}} abc</h1>
 
+                        <div class="col-3 mx-auto">
+                          <div class="card  bg-blue-lt">
+                            <div class="row row-0 ">
+                              <div class="col-3 my-auto">
+                                <img src="{{ status.status_issuedByMC.mc_profile_img.url }}" class="rounded-start"
+                                  alt="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
+                              </div>
+                              <div class="col">
+                                <div class="card-body">
+                                  {{ status.status_issuedByMC.mc_user.first_name }}
+                                  {{ status.status_issuedByMC.mc_user.last_name }}
+                                  <div class="text-muted">
+                                    {{ status.status_timeStamp|date:'d M Y'}}
 
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         {% if status.status_name == "In Progress" %}
                         <div><span class="badge bg-primary">{{status.status_name}}</span></div>
                         {% elif status.status_name == "Complete" %}
@@ -178,7 +196,9 @@
                             <div class="card-body">
                               <div class="row align-items-center">
                                 <div class="col-auto">
-                                  <span class="bg-green text-white avatar">
+
+                                  {% if gri.gri_category.cat_name == "Garbage" %}
+                                  <span class="bg-green-lt avatar">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
                                     <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -191,6 +211,23 @@
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
                                       <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                     </svg>
+                                  </span>
+                                  {% elif gri.gri_category.cat_name == "POTHOLE" %}
+                                  <span class="bg-blue-lt avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom-2"
+                                      width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                      fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                      <circle cx="12" cy="12" r="3"></circle>
+                                      <line x1="12" y1="21" x2="12" y2="21.01"></line>
+                                      <line x1="3" y1="9" x2="3" y2="9.01"></line>
+                                      <line x1="21" y1="9" x2="21" y2="9.01"></line>
+                                      <path d="M8 20.1a9 9 0 0 1 -5 -7.1"></path>
+                                      <path d="M16 20.1a9 9 0 0 0 5 -7.1"></path>
+                                      <path d="M6.2 5a9 9 0 0 1 11.4 0"></path>
+                                    </svg>
+                                  </span>
+                                  {% endif %}
                                   </span>
                                 </div>
                                 <div class="col">
@@ -216,14 +253,17 @@
                       </div>
                       <div class="d-flex mt-3">
                         <div class="d-flex align-items-center" style="margin-right: auto">
-                          <span class="avatar me-3 rounded">JL</span>
+                          <span class="avatar me-3 rounded"
+                            style="background-image: url({{ gri.gri_uploaded_user.citi_profile_img.url }})"></span>
                           <div>
                             <div>{{ gri.gri_uploaded_user.citi_user.first_name }}</div>
                             <div class="text-muted">{{gri.gri_timeStamp|date:'d-b-Y H:i'}}</div>
                           </div>
                         </div>
                         <div class="m-3">
-                          <a href="#" id="grievancesREJECTID_{{gri.id}}" class="btn btn-outline-danger grievance_lists_class_IDS" style="padding-right: 10px" data-bs-toggle="modal" data-bs-target="#modal-reject-grievances">
+                          <a href="#" id="grievancesREJECTID_{{gri.id}}"
+                            class="btn btn-outline-danger grievance_lists_class_IDS" style="padding-right: 10px"
+                            data-bs-toggle="modal" data-bs-target="#modal-reject-grievances">
                             Reject
                             <!-- Download SVG icon from http://tabler-icons.io/i/x -->
                             <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0"
@@ -235,27 +275,27 @@
                             </svg>
                           </a>
                           {% if status.status_name == "Pending"%}
-                            <a href="#" id="grievancesID_{{gri.id}}" class="btn btn-primary move-to-desk-button grievance_lists_class_IDS"  style="padding-right: 10px" data-bs-toggle="modal"
-                              data-bs-target="#modal-team">
-                              Move to Desk
-                              <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
-                              <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0"
-                                class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                                <line x1="13" y1="18" x2="19" y2="12" />
-                                <line x1="13" y1="6" x2="19" y2="12" />
-                              </svg>
-                            </a>
+                          <a href="#" id="grievancesID_{{gri.id}}"
+                            class="btn btn-primary move-to-desk-button grievance_lists_class_IDS"
+                            style="padding-right: 10px" data-bs-toggle="modal" data-bs-target="#modal-team">
+                            Move to Desk
+                            <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
+                            <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0"
+                              class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <line x1="5" y1="12" x2="19" y2="12" />
+                              <line x1="13" y1="18" x2="19" y2="12" />
+                              <line x1="13" y1="6" x2="19" y2="12" />
+                            </svg>
+                          </a>
                           {% else %}
-                            <a  id="grievancesID_{{gri.id}}" class="btn btn-primary"  
-                                >
-                                See Details
-                                <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
-                                
-                              </a>
-                            {% endif %}
+                          <a id="grievancesID_{{gri.id}}" class="btn btn-primary">
+                            See Details
+                            <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
+
+                          </a>
+                          {% endif %}
                         </div>
                       </div>
                     </div>
@@ -291,9 +331,8 @@
 <script src="{% static '/js/grievance-filter.js' %}"></script>
 <script>
   var selectedGrievanceID;
-  $("a.grievance_lists_class_IDS").click(function(){
+  $("a.grievance_lists_class_IDS").click(function () {
     selectedGrievanceID = $(this).attr("id");
     console.log(selectedGrievanceID)
-});
+  });
 </script>
-

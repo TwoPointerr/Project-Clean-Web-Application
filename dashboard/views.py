@@ -24,7 +24,9 @@ def workSpace(request):
 @login_required
 def grievance(request,gri_id):
     gri_obj = Grievance.objects.get(id=gri_id)
-    return render(request,'grievance-detail.html',{"grievance_single":gri_obj})
+    griData = grievancesDataModels(request,folder_obj=None,desk_obj=None)
+    griData['grievance_single']= gri_obj
+    return render(request,'grievance-detail.html',griData)
 
 def signin(request):
     if request.method == 'POST':
