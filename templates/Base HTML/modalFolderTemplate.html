@@ -66,17 +66,19 @@
     style="max-height: 35rem"
   >
     {% for gri in desk_single.desk_gri_files.all %} 
-    {% for status in gri.status_set.all%} 
-    {% if status.status_active%} 
-    {% if status.status_name == "In Progress" %}
-    <div class="list-group-item bg-blue-lt">
-      {% elif status.status_name == "Complete" %}
-      <div class="list-group-item bg-green-lt">
-        {% elif status.status_name == "Rejected" %}
-        <div class="list-group-item bg-yellow-lt">
+      {% for status in gri.status_set.all%} 
+        {% if status.status_active%} 
+          {% if status.status_name == "In Progress" %}
+            <div class="list-group-item bg-blue-lt">
+          {% elif status.status_name == "Complete" %}
+            <div class="list-group-item bg-green-lt">
+          {% elif status.status_name == "Rejected" %}
+            <div class="list-group-item bg-red-lt">
           {% elif status.status_name == "Pending" %}
-          <div class="list-group-item bg-red-lt">
-            {% endif%} {% endif %} {% endfor %}
+            <div class="list-group-item bg-yellow-lt">
+          {% endif%} 
+        {% endif %} 
+      {% endfor %}
 
             <div class="row">
               <div class="col-auto">
@@ -139,12 +141,26 @@
                     {% endif %}
                   </span>
                 </a>
+                
               </div>
               <div class="col text-truncate">
-                <a href="#" class="text-body d-block"> {{ gri.gri_title }}</a>
-                <div class="text-muted text-truncate mt-n1">
-                  {{ gri.gri_location }}
-                </div>
+                <div class="d-flex">
+                  <a href="#" class="text-body d-block" style="margin-right: auto;">{{ gri.gri_title }}</a>
+                    {% for status in gri.status_set.all%}
+                      {% if status.status_active%}
+                        {% if status.status_name == "In Progress" %}
+                        <div><span class="badge bg-primary">{{status.status_name}}</span></div>
+                        {% elif status.status_name == "Complete" %}
+                        <div><span class="badge bg-success">{{status.status_name}}</span></div>
+                        {% elif status.status_name == "Rejected" %}
+                        <div><span class="badge bg-danger">{{status.status_name}}</span></div>
+                        {% elif status.status_name == "Pending" %}
+                        <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
+                        {% endif%}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                <div class="text-muted text-truncate mt-n1">{{ gri.gri_location }}</div>
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@
             <div class="mb-3">
               <label class="form-check mb-1">
                 <input type="radio" class="form-check-input" value="h_l_sort_by" id="sort_by" data-filter="sort_by"
-                  name="radio" />
+                  name="radio" checked />
                 <span class="form-check-label">Highest - Lowest Upvotes</span>
               </label>
               <label class="form-check mb-1">
@@ -26,7 +26,7 @@
               </label>
               <label class="form-check mb-1">
                 <input type="radio" class="form-check-input" value="o_sort_by" id="sort_by" data-filter="sort_by"
-                  name="radio" checked />
+                  name="radio"  />
                 <span class="form-check-label">Date Added - older</span>
               </label>
             </div>
@@ -45,7 +45,7 @@
               {% for stat in status %}
 
               <label class="form-check mb-1">
-                {% if stat == "Pending" %}
+                {% if stat == "Pending" or stat == "In Progress" %}
                 <input type="checkbox" class="form-check-input" data-filter="grievance_status" id="grievance_stat"
                   value="{{ stat }}" checked />
                   {% else %}

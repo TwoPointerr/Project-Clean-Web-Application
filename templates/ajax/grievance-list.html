@@ -48,7 +48,8 @@
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <span class="bg-green text-white avatar">
+                      {% if gri.gri_category.cat_name == "Garbage" %}
+                      <span class="bg-green-lt avatar">
                         <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
                         <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
@@ -62,6 +63,35 @@
                           <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                         </svg>
                       </span>
+                      {% elif gri.gri_category.cat_name == "POTHOLE" %}
+                      <span class="bg-blue-lt avatar">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-atom-2"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path
+                            stroke="none"
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          ></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                          <line x1="12" y1="21" x2="12" y2="21.01"></line>
+                          <line x1="3" y1="9" x2="3" y2="9.01"></line>
+                          <line x1="21" y1="9" x2="21" y2="9.01"></line>
+                          <path d="M8 20.1a9 9 0 0 1 -5 -7.1"></path>
+                          <path d="M16 20.1a9 9 0 0 0 5 -7.1"></path>
+                          <path d="M6.2 5a9 9 0 0 1 11.4 0"></path>
+                        </svg>
+                      </span>
+                      {% endif %}
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">{{gri.gri_category}}</div>
@@ -86,7 +116,7 @@
           </div>
           <div class="d-flex mt-3">
             <div class="d-flex align-items-center" style="margin-right: auto">
-              <span class="avatar me-3 rounded">JL</span>
+              <span class="avatar me-3 rounded">OS</span>
               <div>
                 <div>{{ gri.gri_uploaded_user.citi_user.first_name }} {{ gri.gri_uploaded_user.citi_user.last_name }}</div>
                 <div class="text-muted">{{gri.gri_timeStamp|date:'d-b-Y H:i'}}</div>
@@ -121,7 +151,7 @@
                       </svg>
                     </a>
                   {% else %}
-                    <a  id="grievancesID_{{gri.id}}" class="btn btn-primary"  >
+                    <a href={% url 'dashboard:grievance-detail' gri.id %} id="grievancesID_{{gri.id}}" class="btn btn-primary"  >
                       See Details
                     </a>
                   {% endif %}

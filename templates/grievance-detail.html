@@ -127,13 +127,21 @@
         <script>
           // @formatter:off
           document.addEventListener("DOMContentLoaded", function() {
+            gri_location = [{{ grievance_single.gri_location.loc_long }}, {{ grievance_single.gri_location.loc_lat }}]
             mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWNhbG0iLCJhIjoiSzRiOVJvQSJ9.BUVkTT6IYs83xSUs4H7bjQ';
             var map = new mapboxgl.Map({
               container: 'map-simple',
               style: 'mapbox://styles/mapbox/streets-v11',
               zoom: 15,
-              center: [73.1177492,18.9896656],
+              center: gri_location,
             });
+
+            const marker = new mapboxgl.Marker({
+              color: "#FF0000",
+            })
+            .setLngLat(gri_location)
+            .addTo(map);
+
           });
           // @formatter:on
         </script>
