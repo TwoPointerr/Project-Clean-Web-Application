@@ -71,11 +71,13 @@
                       <div class="card  bg-blue-lt">
                         <div class="row row-0 ">
                           <div class="col-3 my-auto">
-                            <img src="{{ status.status_issuedByMC.mc_profile_img.url }}" class="rounded-start" alt="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
+                            <img src="{{ status.status_issuedByMC.mc_profile_img.url }}" class="rounded-start"
+                              alt="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
                           </div>
                           <div class="col">
                             <div class="card-body">
-                              {{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}
+                              {{ status.status_issuedByMC.mc_user.first_name }}
+                              {{ status.status_issuedByMC.mc_user.last_name }}
                               <div class="text-muted">
                                 {{ status.status_timeStamp|date:'d M Y'}}
 
@@ -113,7 +115,8 @@
                   <h3 class="my-3">Location: {{grievance_single.gri_location.loc_display_name}}</h3>
                   <div class="d-flex align-items-center mb-3">
 
-                    <span class="avatar me-3 rounded" style="background-image: url({{ grievance_single.gri_uploaded_user.citi_profile_img.url }})"></span>
+                    <span class="avatar me-3 rounded"
+                      style="background-image: url({{ grievance_single.gri_uploaded_user.citi_profile_img.url }})"></span>
                     <div>
                       <div>{{ grievance_single.gri_uploaded_user.citi_user.first_name }}
                         {{ grievance_single.gri_uploaded_user.citi_user.last_name }}</div>
@@ -124,7 +127,7 @@
                 <div class="card-footer">
                   <div class="d-flex">
                     <a href="#" class="btn btn-outline-danger">Reject</a>
-                    <a href="#" class="btn btn-primary ms-auto">Forward</a>
+                    <a href="#" class="btn btn-primary ms-auto">Approve</a>
                   </div>
                 </div>
               </div>
@@ -137,9 +140,10 @@
                     {% for status in grievance_single.status_set.all%}
                     {% if status.status_active%}
                     <div class="form-selectgroup">
+                      {% if status.status_name == "Pending" %} 
                       <label class="form-selectgroup-item bg-yellow-lt">
                         <input type="radio" name="icons" value="home" class="form-selectgroup-input"
-                          {% if status.status_name == "Pending" %} checked {% else %} disabled {% endif %}>
+                          checked  disabled >
                         <span class="form-selectgroup-label bg-yellow-lt">
                           <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
@@ -150,10 +154,11 @@
                             <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                             <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                           Pending</span>
-                      </label>
+                      </label>{% endif %}
+                      {% if status.status_name == "In Progress" or status.status_name == "Pending" %}
                       <label class="form-selectgroup-item bg-blue-lt">
                         <input type="radio" name="icons" value="user" class="form-selectgroup-input"
-                          {% if status.status_name == "In Progress" %} checked {% else %} disabled {% endif %}>
+                        {% if status.status_name == "In Progress" %} checked  disabled {% endif %}>
                         <span class="form-selectgroup-label bg-blue-lt">
                           <!-- Download SVG icon from http://tabler-icons.io/i/user -->
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
@@ -163,10 +168,11 @@
                             <circle cx="12" cy="7" r="4" />
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
                           In Progress</span>
-                      </label>
+                      </label>{% endif %}
+                      {% if status.status_name == "Complete" or status.status_name == "In Progress" %}
                       <label class="form-selectgroup-item bg-green-lt">
                         <input type="radio" name="icons" value="circle" class="form-selectgroup-input"
-                          {% if status.status_name == "Complete" %} checked {% else %} disabled {% endif %}>
+                        {% if status.status_name == "Complete" %} checked disabled {% endif %}>
                         <span class="form-selectgroup-label bg-green-lt">
                           <!-- Download SVG icon from http://tabler-icons.io/i/circle -->
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
@@ -176,6 +182,7 @@
                             <circle cx="12" cy="12" r="9" /></svg>
                           Complete</span>
                       </label>
+                      {% else %}
                       <label class="form-selectgroup-item bg-red-lt">
                         <input type="radio" name="icons" value="square" class="form-selectgroup-input"
                           {% if status.status_name == "Rejected" %} checked {% else %} disabled {% endif %}>
@@ -188,6 +195,7 @@
                             <rect x="4" y="4" width="16" height="16" rx="2" /></svg>
                           Rejected</span>
                       </label>
+                      {% endif %}
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -222,106 +230,180 @@
               <div class="card-body">
                 <ul class="list list-timeline">
                   {% for status in grievance_single.status_set.all%}
-                    {% if status.status_active%}
+                  {% if status.status_active%}
                   <li>
                     <div class="list-timeline-icon bg-dark-lt">
                       <!-- Download SVG icon from http://tabler-icons.io/i/settings -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-writing" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-writing" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z"></path>
                         <path d="M16 7h4"></path>
                         <path d="M18 19h-13a2 2 0 1 1 0 -4h4a2 2 0 1 0 0 -4h-3"></path>
-                     </svg>
+                      </svg>
                     </div>
                     <div class="list-timeline-content">
                       <div class="list-timeline-time">{{ grievance_single.gri_timeStamp|date:'d M Y P' }}</div>
-                      <p class="list-timeline-title">Register</p>
-                      
+                      <p class="">Register</p>
+
                     </div>
                   </li>
+                  {% if status.status_name != "Rejected" %}
                   <li>
+                    {% if status.status_name == "Pending" %}
+                    <div class="list-timeline-icon bg-yellow">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/photo -->
+                      
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="white" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M6.5 7h11"></path>
+                          <path d="M6.5 17h11"></path>
+                          <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
+                          <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
+                       </svg>
+                    </div>
+                    {% else %}
                     <div class="list-timeline-icon bg-yellow-lt">
                       <!-- Download SVG icon from http://tabler-icons.io/i/photo -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="red" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <polyline points="5 12 3 12 12 3 21 12 19 12" />
-                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="orange" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M6.5 7h11"></path>
+                        <path d="M6.5 17h11"></path>
+                        <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
+                        <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
+                     </svg>
                     </div>
+                    {% endif %}
                     <div class="list-timeline-content">
-                      <p class="list-timeline-title">Pending</p>
+                      <p {% if status.status_name == "Pending" %} class="list-timeline-title" {% endif %}>Pending</p>
                       <div class="mt-3">
                         <div class="row g-2">
                           <div class="col-6">
                             <div class="media media-2x1 rounded">
-                              <a class="media-content" style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"></a>
+                              <a class="media-content"
+                                style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"></a>
                             </div>
                           </div>
-                          <div class="col-6">
-                            <div class="media media-2x1 rounded">
-                              <a class="media-content" style="background-image: url(../static/photos/6f6e2ef709fef97a.jpg)"></a>
-                            </div>
-                          </div>
+                         
                         </div>
                       </div>
                     </div>
                   </li>
                   <li>
+                    
+                    {% if status.status_name == "In Progress" %}                        
+                    <div class="list-timeline-icon bg-blue">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
+                      viewBox="0 0 24 24" stroke-width="2" 
+                        stroke="white" fill="white"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <circle cx="12" cy="7" r="4" />
+                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+                    </div>
+                    {% else %}
                     <div class="list-timeline-icon bg-blue-lt">
                       <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="currentColor"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <circle cx="12" cy="7" r="4" />
-                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+                      viewBox="0 0 24 24" stroke-width="2" 
+                        stroke="currentColor" fill="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <circle cx="12" cy="7" r="4" />
+                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
                     </div>
+                    {% endif %}
                     <div class="list-timeline-content">
+                      {% if status.status_name == "In Progress" %}
                       <div class="list-timeline-time">{{ status.status_timeStamp|date:'d M Y P'}}</div>
-                      <p class="list-timeline-title">In Progress</p>
+                      {% endif %}
+                      <p {% if status.status_name == "In Progress" %} class="list-timeline-title" {% endif %}>In Progress</p>
+                      {% if status.status_name == "In Progress" or status.status_name == "Complete" %}
                       <div class="avatar-list mt-3">
-                        <span class="avatar" style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"  data-bs-toggle="tooltip" data-bs-placement="right" 
-                        title="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
-                        <span class="badge bg-success"></span></span>
-                        <b>
-                        {{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}</b>
+                        <span class="avatar"
+                          style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"
+                          data-bs-toggle="tooltip" data-bs-placement="right"
+                          title="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
+                          <span class="badge bg-success"></span></span>
+                          
+                          <h3 style="font-weight:100">
+                          {{ status.status_issuedByMC.mc_user.first_name }}
+                          {{ status.status_issuedByMC.mc_user.last_name }}</h3>
                       </div>
-                    </div>
-                  </li>
-                  
-                  <li>
-                    <div class="list-timeline-icon bg-green-lt">
-                      <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checks" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M7 12l5 5l10 -10"></path>
-                        <path d="M2 12l5 5m5 -5l5 -5"></path>
-                     </svg>
-                    </div>
-                    <div class="list-timeline-content">
-                      <div class="list-timeline-time">{{ status.status_timeStamp|date:'d M Y P'}}</div>
-                      <p class="list-timeline-title">Complete</p>
-                      
+                      {% endif %}
                     </div>
                   </li>
 
+                  
+                  
+                  <li class="outline-primary">
+                    {% if status.status_name == "Complete" %} 
+                    <div class="list-timeline-icon bg-green">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checks" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="white" fill="white"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M7 12l5 5l10 -10"></path>
+                        <path d="M2 12l5 5m5 -5l5 -5"></path>
+                      </svg>
+                    </div>
+                    {% else %}
+                    <div class="list-timeline-icon bg-green-lt">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checks" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M7 12l5 5l10 -10"></path>
+                        <path d="M2 12l5 5m5 -5l5 -5"></path>
+                      </svg>
+                    </div>
+                    {% endif %}
+                    <div class="list-timeline-content">
+                      {% if status.status_name == "Complete" %}
+                      <div class="list-timeline-time">{{ status.status_timeStamp|date:'d M Y P'}}</div>
+                      {% endif %}
+                      <p {% if status.status_name == "Complete" %} class="list-timeline-title"{% endif %}>Complete</p>
+
+                    </div>
+                  </li>
+                  {% else  %}
+
                   <li>
-                    <div class="list-timeline-icon bg-red-lt">
+                    {% if status.status_name == "Rejected" %} 
+                    <div class="list-timeline-icon bg-red">
                       <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ban" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="red" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ban" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="white" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <circle cx="12" cy="12" r="9"></circle>
                         <line x1="5.7" y1="5.7" x2="18.3" y2="18.3"></line>
-                     </svg>
+                      </svg>
                     </div>
+                    {% else %}
+                    <div class="list-timeline-icon bg-red-lt">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ban" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="red" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <line x1="5.7" y1="5.7" x2="18.3" y2="18.3"></line>
+                      </svg>
+                    </div>
+                    {% endif %}
                     <div class="list-timeline-content">
                       <div class="list-timeline-time">{{ status.status_timeStamp|date:'d M Y P'}}</div>
                       <p class="list-timeline-title">Rejected</p>
                     </div>
+                    
                   </li>
-                  
+                  {% endif %}
+
                   {% endif %}
                   {% endfor %}
 
