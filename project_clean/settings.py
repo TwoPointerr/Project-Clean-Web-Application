@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'grievance_data',
     'djoser',
     'geopy',
+    'api',
 ]
 
 MIDDLEWARE = [

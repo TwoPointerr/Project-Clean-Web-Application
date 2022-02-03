@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls')),
     path('dashboard/', include('dashboard.urls')),
-    path('gri/', include('grievance_data.urls'))
+    path('gri/', include('grievance_data.urls')),
+    path('api/', include('api.urls')),
     
 ]
 
