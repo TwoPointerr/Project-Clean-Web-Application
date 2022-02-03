@@ -4,7 +4,9 @@ from rest_framework import serializers
 from grievance_data.models import Grievance, Category, Status
 from authapp.models import User, CitizenProfile, MCProfile, Location
 from rest_framework.authtoken.models import Token
-from authapp.serializers import LocationSerializer, UserDisplaySrializer, getLocationDetails
+from authapp.serializers import UserDisplaySrializer
+from api.serializers import LocationSerializer, getLocationDetails
+
 
 #gri_img = models.ImageField(upload_to="grievance_pics")
 #gri_title = models.CharField(max_length=250)

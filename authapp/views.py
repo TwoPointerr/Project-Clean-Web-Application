@@ -9,8 +9,8 @@ from rest_framework.response import Response
 from authapp import serializers
 from rest_framework.views import APIView
 from authapp.models import Post, User
-from authapp.serializers import LocationSerializer, UserDisplaySrializer, PostSerializer
-
+from authapp.serializers import UserDisplaySrializer, PostSerializer
+from api.serializers import LocationSerializer
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_data(request, *args, **kwargs):
