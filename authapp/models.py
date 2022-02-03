@@ -1,7 +1,6 @@
 from distutils.command.upload import upload
 from pyexpat import model
 from statistics import mode
-from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
