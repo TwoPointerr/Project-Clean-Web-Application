@@ -1,7 +1,7 @@
 from dataclasses import field
 from statistics import mode
 from rest_framework import serializers
-from grievance_data.models import Grievance
+from grievance_data.models import Grievance, Category
 from authapp.models import Location
 from authapp.serializers import UserDisplaySrializer, CitizenDisplaySerializer
 from geopy.geocoders import Nominatim
@@ -19,15 +19,20 @@ class LocationSerializer(serializers.ModelSerializer):
         model = Location
         fields = ('loc_long', 'loc_lat')
 
+class CategoryDisplaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('cat_name',)
+
 class LocationDisplaySerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = "__all__"
 
-
 class GrievanceDisplaySerializer(serializers.ModelSerializer):
     gri_location = LocationDisplaySerializer()
     gri_uploaded_user = CitizenDisplaySerializer()
+    gri_category = CategoryDisplaySerializer()
     class Meta:
         model = Grievance
         fields = ("id","gri_img","gri_desc","gri_category","gri_upvote","gri_priority","gri_uploaded_user","gri_location","gri_timeStamp")
