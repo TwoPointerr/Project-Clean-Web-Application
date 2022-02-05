@@ -3,14 +3,16 @@ $(document).ready(function() {
     $(".ajaxLoader").hide();
     var desk_id = $("h2.desk-title").attr("id");
     var folder_id = $("h2.folder-title").attr("id");
-    filterFunctionsAJAX()
-    $("#grievance_cat,  #sort_by, #voteFilterBtn, #grievance_stat, #gri_loc").on('click', function() {
-        //console.log("inside filter");
-        console.log("inside filter");
-        filterFunctionsAJAX()
-    });
 
+    filterFunctionsAJAX();
+    
+    $("#grievance_cat,  #sort_by, #voteFilterBtn, #grievance_stat, #gri_loc, #reset_btn").on('click', function() {
+        //console.log("inside filter");
+        filterFunctionsAJAX();
+    });
+    
     function filterFunctionsAJAX(){
+        console.log("inside filter");
         var _minVote = $('#minVote').val();
         var _maxVote = $('#maxVote').val();
         _filterObj.minVote = _minVote;
@@ -33,7 +35,6 @@ $(document).ready(function() {
         });
 
         $("#gri_loc").each(function(index, ele) {
-            console.log("this is the brand list");
             var _filterVal = $(this).val();
             var _filterKey = $(this).data('filter');
             _filterObj[_filterKey] = Array.from(document.querySelectorAll('input[data-filter=' + _filterKey + ']:checked')).map(function(el) {
@@ -50,11 +51,10 @@ $(document).ready(function() {
         // });
 
         $("#sort_by").each(function(index, ele) {
-            console.log("this is the sort by list");
             var _filterVal = $(this).val();
             var _filterKey = $(this).data('filter');
-            console.log(_filterVal);
-            console.log(_filterKey);
+            // console.log(_filterVal);
+            // console.log(_filterKey);
             _filterObj[_filterKey] = Array.from(document.querySelectorAll('input[data-filter=' + _filterKey + ']:checked')).map(function(el) {
                 return el.value;
             });
@@ -70,7 +70,7 @@ $(document).ready(function() {
         // });
         _filterObj.desk_id = desk_id;
         _filterObj.folder_id = folder_id;
-        console.log(_filterObj)
+        // console.log(_filterObj)
             //Ajax Functionality
         $.ajax({
             url: '/dashboard/filter-data',
@@ -80,7 +80,7 @@ $(document).ready(function() {
                 $(".ajaxLoader").show();
             },
             success: function(res) {
-                console.log("inside filter");
+                // console.log("inside filter");
                 $("#filteredGrievances").html(res.data);
                 $(".ajaxLoader").hide();
             }
