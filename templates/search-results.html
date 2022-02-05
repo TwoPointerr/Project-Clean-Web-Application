@@ -139,24 +139,14 @@
                       <div class="d-flex">
                         <h1 class="" style="margin-right: auto;">{{ gri.gri_title}} abc</h1>
 
-                        <div class="col-3 mx-auto">
-                          <div class="card  bg-blue-lt">
-                            <div class="row row-0 ">
-                              <div class="col-3 my-auto">
-                                <img src="{{ status.status_issuedByMC.mc_profile_img.url }}" class="rounded-start"
-                                  alt="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
-                              </div>
-                              <div class="col">
-                                <div class="card-body">
-                                  {{ status.status_issuedByMC.mc_user.first_name }}
-                                  {{ status.status_issuedByMC.mc_user.last_name }}
-                                  <div class="text-muted">
-                                    {{ status.status_timeStamp|date:'d M Y'}}
+                        <div class="d-flex align-items-center mb-3 bg-blue-lt mx-auto py-1 px-1 rounded-2">
 
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                          <span class="avatar me-3 rounded"
+                            style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"></span>
+                          <div>
+                            <div> {{ status.status_issuedByMC.mc_user.first_name }}
+                              {{ status.status_issuedByMC.mc_user.last_name }}</div>
+                            <div class="text-muted">{{ status.status_timeStamp|date:'d M Y'}}</div>
                           </div>
                         </div>
                         {% if status.status_name == "In Progress" %}
