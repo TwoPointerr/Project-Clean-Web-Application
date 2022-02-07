@@ -35,7 +35,7 @@ class GrievanceDisplaySerializer(serializers.ModelSerializer):
     gri_category = CategoryDisplaySerializer()
     class Meta:
         model = Grievance
-        fields = ("id","gri_img","gri_desc","gri_category","gri_upvote","gri_priority","gri_uploaded_user","gri_location","gri_timeStamp")
+        fields = ("id","gri_title","gri_img","gri_desc","gri_category","gri_upvote","gri_priority","gri_uploaded_user","gri_location","gri_timeStamp")
 
 
 # Supporting  function
