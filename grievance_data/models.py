@@ -28,7 +28,7 @@ STATUS_NAME = (
     ("Register","Register"),
     ("Pending","Pending"),
     ("In Progress","In Progress"),
-    ("Solved","Solved"),
+    ("Complete","Complete"),
     ("Rejected","Rejected")
 )
 

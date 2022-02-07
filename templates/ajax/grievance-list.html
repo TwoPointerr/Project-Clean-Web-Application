@@ -10,41 +10,33 @@
         <div class="card-body flex-column-reverse flex-row align-items-end h-100">
           <div class="d-flex">
             {% for status in gri.status_set.all%}
-              {% if status.status_active%}
-              <h1 class="" style="margin-right: auto;">{{ gri.gri_title}}</h1>
-              
-              {% if status.status_name == "Pending" %}
-              {% else %}
-            <div class="col-3 mx-auto">
-              <div class="card  bg-blue-lt">
-                <div class="row row-0 ">
-                  <div class="col-3 my-auto">
-                    <img src="{{ status.status_issuedByMC.mc_profile_img.url }}" class="rounded-start" alt="{{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}">
-                  </div>
-                  <div class="col">
-                    <div class="card-body">
-                      {{ status.status_issuedByMC.mc_user.first_name }} {{ status.status_issuedByMC.mc_user.last_name }}
-                      <div class="text-muted">
-                        {{ status.status_timeStamp|date:'d M Y'}}
+            {% if status.status_active%}
+            <h1 class="" style="margin-right: auto;"><a href="{% url 'dashboard:grievance' gri.id %}">{{ gri.gri_title}}</a></h1>
 
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            {% if status.status_name == "Pending" %}
+            {% else %}
+            <div class="d-flex align-items-center mb-3 bg-blue-lt mx-auto py-1 px-1 rounded-2">
+
+              <span class="avatar me-3 rounded"
+                style="background-image: url({{ status.status_issuedByMC.mc_profile_img.url }})"></span>
+              <div>
+                <div> {{ status.status_issuedByMC.mc_user.first_name }}
+                  {{ status.status_issuedByMC.mc_user.last_name }}</div>
+                <div class="text-muted">{{ status.status_timeStamp|date:'d M Y'}}</div>
               </div>
             </div>
             {% endif %}
-            
-                {% if status.status_name == "In Progress" %}
-                <div><span class="badge bg-primary">{{status.status_name}}</span></div>
-                {% elif status.status_name == "Complete" %}
-                <div><span class="badge bg-success">{{status.status_name}}</span></div>
-                {% elif status.status_name == "Rejected" %}
-                <div><span class="badge bg-danger">{{status.status_name}}</span></div>
-                {% elif status.status_name == "Pending" %}
-                <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
-                {% endif%}
-              {% endif %}
+
+            {% if status.status_name == "In Progress" %}
+            <div><span class="badge bg-primary">{{status.status_name}}</span></div>
+            {% elif status.status_name == "Complete" %}
+            <div><span class="badge bg-success">{{status.status_name}}</span></div>
+            {% elif status.status_name == "Rejected" %}
+            <div><span class="badge bg-danger">{{status.status_name}}</span></div>
+            {% elif status.status_name == "Pending" %}
+            <div><span class="badge bg-yellow">{{status.status_name}}</span></div>
+            {% endif%}
+            {% endif %}
             {% endfor %}
           </div>
 
@@ -76,9 +68,9 @@
                       <span class="bg-green-lt avatar">
                         <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
                         <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                          stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                          stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                           <line x1="4" y1="7" x2="20" y2="7" />
                           <line x1="10" y1="11" x2="10" y2="17" />
@@ -89,9 +81,9 @@
                       </span>
                       {% elif gri.gri_category.cat_name == "POTHOLE" %}
                       <span class="bg-blue-lt avatar">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom-2"
-                          width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                          fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom-2" width="24"
+                          height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <circle cx="12" cy="12" r="3"></circle>
                           <line x1="12" y1="21" x2="12" y2="21.01"></line>
@@ -128,14 +120,17 @@
           </div>
           <div class="d-flex mt-3">
             <div class="d-flex align-items-center" style="margin-right: auto">
-              <span class="avatar me-3 rounded" style="background-image: url({{ gri.gri_uploaded_user.citi_profile_img.url }})"></span>
+              <span class="avatar me-3 rounded"
+                style="background-image: url({{ gri.gri_uploaded_user.citi_profile_img.url }})"></span>
               <div>
-                <div>{{ gri.gri_uploaded_user.citi_user.first_name }} {{ gri.gri_uploaded_user.citi_user.last_name }}</div>
+                <div>{{ gri.gri_uploaded_user.citi_user.first_name }} {{ gri.gri_uploaded_user.citi_user.last_name }}
+                </div>
                 <div class="text-muted">{{gri.gri_timeStamp|date:'d-b-Y H:i'}}</div>
               </div>
             </div>
             <div class="m-3">
-              <a href="#" id="grievancesREJECTID_{{gri.id}}" class="btn btn-outline-danger grievance_lists_class_IDS" style="padding-right: 10px" data-bs-toggle="modal" data-bs-target="#modal-reject-grievances">
+              <a href="#" id="grievancesREJECTID_{{gri.id}}" class="btn btn-outline-danger grievance_lists_class_IDS"
+                style="padding-right: 10px" data-bs-toggle="modal" data-bs-target="#modal-reject-grievances">
                 Reject
                 <!-- Download SVG icon from http://tabler-icons.io/i/x -->
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon"
@@ -147,27 +142,27 @@
                 </svg>
               </a>
               {% for status in gri.status_set.all%}
-                {% if status.status_active%}
-                  {% if status.status_name == "Pending" %}
-                    <a href="#" id="grievancesID_{{gri.id}}" class="btn btn-primary grievance_lists_class_IDS" style="padding-right: 10px" data-bs-toggle="modal"
-                      data-bs-target="#modal-team">
-                      Move to Desk 
-                      <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
-                      <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon"
-                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <line x1="13" y1="18" x2="19" y2="12" />
-                        <line x1="13" y1="6" x2="19" y2="12" />
-                      </svg>
-                    </a>
-                  {% else %}
-                    <a  id="grievancesID_{{gri.id}}" class="btn btn-primary"  >
-                      See Details
-                    </a>
-                  {% endif %}
-                {% endif %}
+              {% if status.status_active%}
+              {% if status.status_name == "Pending" %}
+              <a href="#" id="grievancesID_{{gri.id}}" class="btn btn-primary grievance_lists_class_IDS"
+                style="padding-right: 10px" data-bs-toggle="modal" data-bs-target="#modal-team">
+                Move to Desk
+                <!-- Download SVG icon from http://tabler-icons.io/i/arrow-right -->
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-right: 0" class="icon"
+                  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <line x1="13" y1="18" x2="19" y2="12" />
+                  <line x1="13" y1="6" x2="19" y2="12" />
+                </svg>
+              </a>
+              {% else %}
+              <a id="grievancesID_{{gri.id}}" class="btn btn-primary" href="{% url 'dashboard:grievance' gri.id %}">
+                See Details
+              </a>
+              {% endif %}
+              {% endif %}
               {% endfor %}
 
             </div>
@@ -194,9 +189,8 @@
 {% endfor %}
 <script>
   var selectedGrievanceID;
-  $("a.grievance_lists_class_IDS").click(function(){
+  $("a.grievance_lists_class_IDS").click(function () {
     selectedGrievanceID = $(this).attr("id");
     console.log(selectedGrievanceID)
-});
+  });
 </script>
-

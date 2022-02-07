@@ -278,6 +278,6 @@ def grievancesDataModels(request,desk_obj,folder_obj):
     category =Category.objects.all()
     minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
     maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
-    status = Status.objects.values_list('status_name',flat=True).distinct()
+    status = Status.objects.values_list('status_name',flat=True).distinct().order_by('status_name')
     location = Location.objects.all().distinct('loc_city')
     return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location, 'profile':profile}
