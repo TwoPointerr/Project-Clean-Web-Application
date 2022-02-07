@@ -11,7 +11,7 @@
           <div class="d-flex">
             {% for status in gri.status_set.all%}
             {% if status.status_active%}
-            <h1 class="" style="margin-right: auto;"><a href="{% url 'dashboard:grievance' gri.id %}">{{ gri.gri_title}}</a></h1>
+            <h1 class="" style="margin-right: auto;"><a href="{% url 'dashboard:grievance-detail' gri.id %}">{{ gri.gri_title}}</a></h1>
 
             {% if status.status_name == "Pending" %}
             {% else %}
