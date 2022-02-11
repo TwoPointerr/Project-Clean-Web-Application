@@ -14,7 +14,7 @@ from pathlib import Path
 import dj_database_url
 import os
 from django.urls import reverse_lazy
-
+from decouple import config
 
 
 MESSAGE_TAGS = {
@@ -166,7 +166,7 @@ USE_TZ = True
 
 LOGIN_URL = reverse_lazy('dashboard:signin')
 
-
+#AWS settings
 AWS_ACCESS_KEY_ID = 'AKIAQJQHZ664IEFRMEX6'
 
 AWS_SECRET_ACCESS_KEY = '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'
