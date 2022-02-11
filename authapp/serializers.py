@@ -3,6 +3,9 @@ from djoser.serializers import UserCreateSerializer, UserSerializer, TokenSerial
 from rest_framework import serializers
 from .models import *
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserSerializer.Meta):
         model = User

@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'djoser',
     'geopy',
     'api',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -165,20 +166,55 @@ USE_TZ = True
 
 LOGIN_URL = reverse_lazy('dashboard:signin')
 
+
+AWS_ACCESS_KEY_ID = 'AKIAQJQHZ664IEFRMEX6'
+
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'project-clean-2021-2022'
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.ap-south-1.amazonaws.com'
+
+AWS_DEFAULT_ACL = 'public-read'
+
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+AWS_LOCATION = 'static'
+
+AWS_QUERYSTRING_AUTH = False
+
+AWS_HEADERS = {'Access-Control-Allow-Origin': '*'}
+
+DEFAULT_FILE_STORAGE = 'project_clean.storage_backends.MediaStorage'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+#STATIC_URL = 'static/'
 
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR,'static'),
 #     )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'project_clean.storage_backends.MediaStorage'
+# MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_MEDIA_LOCATION)
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 WHITENOISE_USE_FINDERS = True
 

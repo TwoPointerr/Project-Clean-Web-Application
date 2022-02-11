@@ -6,7 +6,7 @@ from authapp.models import Location
 from authapp.serializers import UserDisplaySrializer, CitizenDisplaySerializer
 from geopy.geocoders import Nominatim
 
-class LocationSerializer(serializers.ModelSerializer):
+class LocationCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         loc_long = validated_data.get('loc_long')
         loc_lat = validated_data.get('loc_lat')
@@ -17,7 +17,8 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
-        fields = ('loc_long', 'loc_lat')
+        fields = ('id','loc_long', 'loc_lat','loc_display_name','loc_suburb','loc_city','loc_postcode')
+        read_only_fields = ('id','loc_display_name','loc_suburb','loc_city','loc_postcode')
 
 class CategoryDisplaySerializer(serializers.ModelSerializer):
     class Meta:

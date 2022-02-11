@@ -10,7 +10,11 @@ from authapp import serializers
 from rest_framework.views import APIView
 from authapp.models import Post, User
 from authapp.serializers import UserDisplaySrializer, PostSerializer
-from api.serializers import LocationSerializer
+from api.serializers import LocationCreateSerializer
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_data(request, *args, **kwargs):
@@ -29,6 +33,7 @@ def get_post(request, *args, **kwargs):
     serializer = PostSerializer(posts,many=True)
     return Response(data={"POsts":serializer.data})
 
+
 class PostCreate(APIView):
     parser_classes = [MultiPartParser, FormParser]
     permission_classes = [IsAuthenticated]
@@ -42,7 +47,7 @@ class PostCreate(APIView):
 
 class Location(APIView):
     def post(self,request, format=None):
-        serializer = LocationSerializer(data=request.data)
+        serializer = LocationCreateSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_200_OK)
