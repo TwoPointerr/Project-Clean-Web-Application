@@ -19,7 +19,7 @@ def muncipalDashboard(request):
     
 @login_required
 def workSpace(request):
-    return render(request,"Work Space/WorkspaceDashboard.html")
+    return render(request,"Work Space/WorkspaceDashboard.html",grievancesDataModels(request,folder_obj=None,desk_obj=None))
 
 @login_required
 def grievance(request,gri_id):
