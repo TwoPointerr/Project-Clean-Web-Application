@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'geopy',
     'api',
     'storages',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
