@@ -62,8 +62,8 @@ INSTALLED_APPS = [
     'api',
     'storages',
     'django_cleanup.apps.CleanupConfig',
-    # 'cloudinary_storage',
-    # 'cloudinary',
+    #'cloudinary_storage',
+    #'cloudinary',
 ]
 
 MIDDLEWARE = [
