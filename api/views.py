@@ -18,6 +18,6 @@ def grievance_display(request,*args, **kwargs):
 @api_view(['POST'])
 def create_gri(request,*args, **kwargs):
     print(request.data)
-    return Response(data={"status":"OK"})
+    return Response(data={"status":"{request.data}"})
 
 # Create your views here.
