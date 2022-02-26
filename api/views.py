@@ -17,7 +17,14 @@ def grievance_display(request,*args, **kwargs):
 
 @api_view(['POST'])
 def create_gri(request,*args, **kwargs):
+    print("Inside create gri")
     print(request.data)
     return Response(data={"status":f"{request.data}"})
 
+# class GriCreate(APIView):
+#     parser_classes = [MultiPartParser, FormParser]
+#     def post(self, request, format=None):
+#         print(request.data)
+#         return Response(request.data)
+        
 # Create your views here.
