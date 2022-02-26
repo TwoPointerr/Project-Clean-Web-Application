@@ -1,7 +1,15 @@
-
+from ast import arg
 from django.db import models
+from django.dispatch import receiver
 from authapp.models import CitizenProfile, User, MCProfile, Location
-from cloudinary.models import CloudinaryField
+from django.db.models.signals import pre_save
+import datetime
+from PIL import Image
+import uuid
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
+from django.core.files import File
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=250)
@@ -10,7 +18,6 @@ class Category(models.Model):
         return self.cat_name
 
 class Grievance(models.Model):
-    #gri_img = CloudinaryField('image', transformation={'width': '450', 'height': '600', 'crop':'scale','quality':'80'}, folder='/media/grievance_pics', format="jpeg",)
     gri_img = models.ImageField(upload_to="grievance_pics")
     gri_title = models.CharField(max_length=250)
     gri_desc = models.TextField(null=True)
@@ -25,18 +32,18 @@ class Grievance(models.Model):
     def __str__(self):
         return self.gri_title
 
-    # def save(self,*args, **kwargs):
-    #     self.gri_img = self.reduce_image_size(self.gri_img) 
-    #     super().save(*args,**kwargs)
+    def save(self,*args, **kwargs):
+        self.gri_img = self.reduce_image_size(self.gri_img) 
+        super().save(*args,**kwargs)
 
-    # def reduce_image_size(self, profile_pic):
-    #     print(profile_pic)
-    #     img = Image.open(profile_pic)
-    #     thumb_io = BytesIO()
-    #     img.thumbnail((500,668))
-    #     img.save(thumb_io, "jpeg", quality=50)
-    #     new_image = File(thumb_io, name=profile_pic.name)
-    #     return new_image
+    def reduce_image_size(self, profile_pic):
+        print(profile_pic)
+        img = Image.open(profile_pic)
+        thumb_io = BytesIO()
+        img.thumbnail((500,668))
+        img.save(thumb_io, "jpeg", quality=50)
+        new_image = File(thumb_io, name=profile_pic.name)
+        return new_image
                  
 STATUS_NAME = (
     ("Register","Register"),
