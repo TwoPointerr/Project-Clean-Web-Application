@@ -14,11 +14,4 @@ def grievance_display(request,*args, **kwargs):
     gri_serializer = GrievanceDisplaySerializer(grievance_all_obj,many=True)
     return Response(data={"gri_data":gri_serializer.data})
 
-@api_view(['POST'])
-def create_gri(request,*args, **kwargs):
-    print(request)
-    return Response(data={"status":"OK"})
-
-
-
 # Create your views here.
