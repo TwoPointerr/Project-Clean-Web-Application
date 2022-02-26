@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+from django import conf
 from django.contrib.messages import constants as messages
 from pathlib import Path
 import dj_database_url
@@ -61,6 +62,8 @@ INSTALLED_APPS = [
     'api',
     'storages',
     'django_cleanup.apps.CleanupConfig',
+    # 'cloudinary_storage',
+    # 'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -178,16 +181,23 @@ LOGIN_URL = reverse_lazy('dashboard:signin')
 #     os.path.join(BASE_DIR,'static'),
 #     )
 
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'project-clean-22',
+#     'API_KEY': '682665573695911',
+#     'API_SECRET': '-nd0_PnW3ulQ-s6TC_X0TVEuZ84'
+# }
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' 
+
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-WHITENOISE_USE_FINDERS = True
 
 
 # Default primary key field type
