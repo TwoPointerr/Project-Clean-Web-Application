@@ -23,7 +23,7 @@ from rest_framework import status
 #     gri_serializer = GrievanceDisplaySerializer(grievance_all_obj,many=True)
 #     return Response(data={"gri_data":gri_serializer.data})
 
-@api_view(['POST'])
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def grievance_display(request,*args, **kwargs):
     # loc_long = request.data['loc_long']
