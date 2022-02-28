@@ -21,7 +21,7 @@ class CitizenDisplaySerializer(serializers.ModelSerializer):
     citi_user = UserDisplaySrializer()
     class Meta:
         model = CitizenProfile
-        fields = ("citi_user","citi_profile_img")
+        fields = ("id","citi_user","citi_profile_img")
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:

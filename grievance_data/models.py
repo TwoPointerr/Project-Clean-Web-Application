@@ -2,7 +2,7 @@ from ast import arg
 from django.db import models
 from django.dispatch import receiver
 from authapp.models import CitizenProfile, User, MCProfile, Location
-from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
 import datetime
 from PIL import Image
 import uuid
@@ -23,8 +23,8 @@ class Grievance(models.Model):
     gri_desc = models.TextField(null=True)
     gri_category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True, related_name='category')
     gri_upvote = models.PositiveIntegerField(default=0)
-    gri_severity = models.IntegerField()
-    gri_priority = models.IntegerField()
+    gri_severity = models.IntegerField(default=0)
+    gri_priority = models.IntegerField(default=0)
     gri_uploaded_user = models.ForeignKey(CitizenProfile,on_delete=models.CASCADE, related_name='uploaded_user')
     gri_location = models.OneToOneField(Location,on_delete=models.SET_NULL,null=True)
     gri_timeStamp = models.DateTimeField(auto_now_add=True)
@@ -44,7 +44,18 @@ class Grievance(models.Model):
         img.save(thumb_io, "jpeg", quality=50)
         new_image = File(thumb_io, name=profile_pic.name)
         return new_image
-                 
+
+@receiver(post_save,sender=Grievance,)
+def register_status(sender, instance, **kwargs):
+    print("postsave triggerd")
+    print(kwargs['created'])
+    if kwargs['created']:
+        status = Status(status_name="Register",status_grievance=instance,status_issuedByMC=None)
+        status.save()
+        status = Status(status_name="Pending",status_grievance=instance,status_active=True,status_issuedByMC=None)
+        status.save()
+
+
 STATUS_NAME = (
     ("Register","Register"),
     ("Pending","Pending"),
