@@ -10,16 +10,29 @@ from authapp.models import Location
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def grievance_display(request,*args, **kwargs):
+#     loc_long = request.data['loc_long']
+#     loc_lat = request.data['loc_lat']
+#     loc_suburb = [getLocationDetails(loc_long,loc_lat)['loc_suburb']]
+#     location = Location.objects.filter(loc_suburb__in=loc_suburb)
+#     print(location)
+#     grievance_all_obj = Grievance.objects.filter(gri_location_id__in=location)
+#     #grievance_all_obj = Grievance.objects.all()
+#     gri_serializer = GrievanceDisplaySerializer(grievance_all_obj,many=True)
+#     return Response(data={"gri_data":gri_serializer.data})
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def grievance_display(request,*args, **kwargs):
-    loc_long = request.data['loc_long']
-    loc_lat = request.data['loc_lat']
-    loc_suburb = [getLocationDetails(loc_long,loc_lat)['loc_suburb']]
-    location = Location.objects.filter(loc_suburb__in=loc_suburb)
-    print(location)
-    grievance_all_obj = Grievance.objects.filter(gri_location_id__in=location)
-    #grievance_all_obj = Grievance.objects.all()
+    # loc_long = request.data['loc_long']
+    # loc_lat = request.data['loc_lat']
+    # loc_suburb = [getLocationDetails(loc_long,loc_lat)['loc_suburb']]
+    # location = Location.objects.filter(loc_suburb__in=loc_suburb)
+    # print(location)
+    # grievance_all_obj = Grievance.objects.filter(gri_location_id__in=location)
+    grievance_all_obj = Grievance.objects.all()
     gri_serializer = GrievanceDisplaySerializer(grievance_all_obj,many=True)
     return Response(data={"gri_data":gri_serializer.data})
 
