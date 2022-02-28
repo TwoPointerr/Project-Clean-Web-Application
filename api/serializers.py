@@ -60,7 +60,7 @@ class GrievanceDisplaySerializer(serializers.ModelSerializer):
     gri_category = CategoryDisplaySerializer()
     class Meta:
         model = Grievance
-        fields = ("id","gri_img","gri_desc","gri_category","gri_upvote","gri_priority","gri_uploaded_user","gri_location","gri_timeStamp")
+        fields = "__all__"
 
 def getLocationDetails(long, lat):
     geolocator = Nominatim(user_agent="geoapiExercises")
