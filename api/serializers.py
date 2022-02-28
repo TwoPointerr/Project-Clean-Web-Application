@@ -5,7 +5,6 @@ from grievance_data.models import Grievance, Category
 from authapp.models import Location, CitizenProfile
 from authapp.serializers import UserDisplaySrializer, CitizenDisplaySerializer
 from geopy.geocoders import Nominatim
-from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 class LocationCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
