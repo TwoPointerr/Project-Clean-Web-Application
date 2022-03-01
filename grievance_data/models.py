@@ -22,7 +22,9 @@ class Grievance(models.Model):
     gri_title = models.CharField(max_length=250)
     gri_desc = models.TextField(null=True)
     gri_category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True, related_name='category')
-    gri_upvote = models.PositiveIntegerField(default=0)
+    #gri_upvote = models.PositiveIntegerField(default=0)
+    gri_upvote_list = models.ManyToManyField(CitizenProfile)
+    gri_upvote = models.IntegerField(default=0)
     gri_severity = models.IntegerField(default=0)
     gri_priority = models.IntegerField(default=0)
     gri_uploaded_user = models.ForeignKey(CitizenProfile,on_delete=models.CASCADE, related_name='uploaded_user')
@@ -33,7 +35,7 @@ class Grievance(models.Model):
         return self.gri_title
 
     def save(self,*args, **kwargs):
-        self.gri_img = self.reduce_image_size(self.gri_img) 
+        self.gri_img = self.reduce_image_size(self.gri_img)
         super().save(*args,**kwargs)
 
     def reduce_image_size(self, profile_pic):
@@ -47,8 +49,6 @@ class Grievance(models.Model):
 
 @receiver(post_save,sender=Grievance,)
 def register_status(sender, instance, **kwargs):
-    print("postsave triggerd")
-    print(kwargs['created'])
     if kwargs['created']:
         status = Status(status_name="Register",status_grievance=instance,status_issuedByMC=None)
         status.save()
