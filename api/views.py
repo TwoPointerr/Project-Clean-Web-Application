@@ -43,7 +43,7 @@ def grievance_display(request,*args, **kwargs):
     # location = Location.objects.filter(loc_suburb__in=loc_suburb)
     # print(location)
     # grievance_all_obj = Grievance.objects.filter(gri_location_id__in=location)
-    grievance_all_obj = Grievance.objects.all()
+    grievance_all_obj = Grievance.objects.all().order_by('-gri_timeStamp')
     gri_serializer = GrievanceDisplaySerializer(grievance_all_obj,many=True)
     return Response(data={"gri_data":gri_serializer.data})
 
