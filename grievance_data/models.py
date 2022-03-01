@@ -34,9 +34,9 @@ class Grievance(models.Model):
     def __str__(self):
         return self.gri_title
 
-    def save(self,*args, **kwargs):
-        self.gri_img = self.reduce_image_size(self.gri_img)
-        super().save(*args,**kwargs)
+    # def save(self,*args, **kwargs):
+    #     self.gri_img = self.reduce_image_size(self.gri_img)
+    #     super().save(*args,**kwargs)
 
     def reduce_image_size(self, profile_pic):
         print(profile_pic)
