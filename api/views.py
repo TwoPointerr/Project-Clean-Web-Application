@@ -52,17 +52,17 @@ def grievance_display(request,*args, **kwargs):
 def create_gri(request,*args, **kwargs):
     requestData = request.data.copy() 
     print(requestData)
-    # loc_long = requestData.pop('loc_long')[0]
-    # loc_lat = requestData.pop('loc_lat')[0]
-    # uploaded_user = User.objects.get(id=int(requestData.pop('gri_uploaded_user')[0]))
-    # citiProfile = CitizenProfile.objects.get(citi_user=uploaded_user)
-    # locationDict = getLocationDetails(loc_long,loc_lat)
-    # location = Location.objects.create(**locationDict)
-    # requestData.update({"gri_location":location.id,"gri_uploaded_user":citiProfile.id})
-    # gri_serializer = GrievanceCreateSerializer(data=requestData)
-    # if gri_serializer.is_valid():
-    #     gri_serializer.save()
-    #     return Response(data={"status":"ok"},status=status.HTTP_200_OK)
-    # else:
-    #     return Response(data={"status":f"{gri_serializer.errors}",},status=status.HTTP_200_OK)
-    return Response(data={"status":"OK"})
+    loc_long = requestData.pop('loc_long')[0]
+    loc_lat = requestData.pop('loc_lat')[0]
+    uploaded_user = User.objects.get(id=int(requestData.pop('gri_uploaded_user')[0]))
+    citiProfile = CitizenProfile.objects.get(citi_user=uploaded_user)
+    locationDict = getLocationDetails(loc_long,loc_lat)
+    location = Location.objects.create(**locationDict)
+    requestData.update({"gri_location":location.id,"gri_uploaded_user":citiProfile.id})
+    gri_serializer = GrievanceCreateSerializer(data=requestData)
+    if gri_serializer.is_valid():
+        gri_serializer.save()
+        return Response(data={"status":"ok"},status=status.HTTP_200_OK)
+    else:
+        return Response(data={"status":f"{gri_serializer.errors}",},status=status.HTTP_200_OK)
+    #return Response(data={"status":"OK"})
