@@ -68,7 +68,8 @@ def update_profile(request, *args, **kwargs):
                     })
             if citizen_profile_update_serializer.is_valid():
                 citizen_profile_update_serializer.save()
-                return Response(data={"user":user_update_serializer['email'][0],"user_update":"Successful","citi_profile":"Successful"})
+                user_email = str(user_update_serializer.data['email'])
+                return Response(data={"user":user_email,"user_update":"Successful","citi_profile":"Successful"})
             else:
                 return Response(citizen_profile_update_serializer.errors)
         else:
