@@ -8,8 +8,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from authapp import serializers
 from rest_framework.views import APIView
-from authapp.models import Post, User
-from authapp.serializers import UserDisplaySrializer, PostSerializer
+from authapp.models import CitizenProfile, Post, User
+from authapp.serializers import Citizen_CU_Serializer, UserDisplaySrializer, PostSerializer, UserUpdateSerializer
 from api.serializers import LocationCreateSerializer
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -33,6 +33,45 @@ def get_post(request, *args, **kwargs):
     serializer = PostSerializer(posts,many=True)
     return Response(data={"POsts":serializer.data})
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def update_profile(request, *args, **kwargs):
+    requestData = request.data.copy()
+    profile_img = requestData.pop('profile_img')[0]
+    print(profile_img)
+    #return Response(data={"status":"OK"})
+    try:
+        user = User.objects.get(id=int(requestData['id']))
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    try:
+        citizen_obj = CitizenProfile.objects.get(citi_user=user)
+    except CitizenProfile.DoesNotExist:
+        citizen_create_serializer = Citizen_CU_Serializer(data={"citi_user":user.id,"citi_profile_img":profile_img})
+        if citizen_create_serializer.is_valid():
+            citizen_create_serializer.save()
+            citizen_obj = CitizenProfile.objects.get(citi_user=user)
+        
+    if request.method == 'POST':
+        user_update_serializer = UserUpdateSerializer(user,data=requestData)
+        if user_update_serializer.is_valid():
+            user_update_serializer.save()
+            citizen_profile_update_serializer = Citizen_CU_Serializer(
+                citizen_obj,
+                data={
+                    "id":citizen_obj.id,
+                    "citi_user":user_update_serializer.data['id'],
+                    "citi_profile_img":profile_img
+                    })
+            if citizen_profile_update_serializer.is_valid():
+                citizen_profile_update_serializer.save()
+                return Response(data={"user":user_update_serializer['email'],"user_update":"Successful","citi_profile":"Successful"})
+            else:
+                return Response(citizen_profile_update_serializer.errors)
+        else:
+            return Response(user_update_serializer.errors)
+    
 
 class PostCreate(APIView):
     parser_classes = [MultiPartParser, FormParser]

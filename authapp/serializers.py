@@ -17,11 +17,27 @@ class UserDisplaySrializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email', 'username')
 
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id','email', 'username', 'password',
+                  'first_name', 'last_name', 'phone')
+
 class CitizenDisplaySerializer(serializers.ModelSerializer):
     citi_user = UserDisplaySrializer()
     class Meta:
         model = CitizenProfile
         fields = ("id","citi_user","citi_profile_img")
+
+class Citizen_CU_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = CitizenProfile
+        fields = ("citi_user","citi_profile_img")
+        
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        self.fields["citi_user"] = UserDisplaySrializer(instance.citi_user).data
+        return response
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
