@@ -34,7 +34,7 @@ def get_post(request, *args, **kwargs):
     return Response(data={"POsts":serializer.data})
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def update_profile(request, *args, **kwargs):
     requestData = request.data.copy()
     print(requestData)
