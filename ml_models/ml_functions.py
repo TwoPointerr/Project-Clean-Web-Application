@@ -4,7 +4,6 @@ import numpy as np
 import keras
 from django.utils.timezone import datetime
 from django.conf import settings
-import numpy as np
 import math
 def gri_severity(gri_img,category):
     gri_img = Image.open(gri_img)

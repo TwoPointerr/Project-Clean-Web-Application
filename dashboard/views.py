@@ -7,10 +7,8 @@ from dashboard.models import Desk, Folders
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Count, Min, Sum, Avg, Max
 from django.contrib import messages
-from django.http import HttpResponse, request
-from django.core import serializers
 from django.template.loader import render_to_string
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import JsonResponse
 
 # Create your views here.
 @login_required

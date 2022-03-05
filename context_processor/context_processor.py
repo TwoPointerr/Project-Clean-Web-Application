@@ -1,7 +1,3 @@
-from dashboard.models import Desk, Folders
-from authapp.models import MCProfile, User
-from dashboard.views import grievance
-from grievance_data.models import Grievance
 from django.core.exceptions import ObjectDoesNotExist
 
 def get_Desks(request):

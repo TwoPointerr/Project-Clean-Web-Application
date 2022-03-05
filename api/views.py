@@ -11,11 +11,6 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from ml_models.ml_functions import gri_priority, gri_severity
 
-from PIL import Image
-from numpy import *
-import numpy as np
-import keras
-
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
 # def grievance_display(request,*args, **kwargs):

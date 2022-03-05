@@ -14,7 +14,6 @@ from pathlib import Path
 import dj_database_url
 import os
 from django.urls import reverse_lazy
-from decouple import config
 
 
 MESSAGE_TAGS = {

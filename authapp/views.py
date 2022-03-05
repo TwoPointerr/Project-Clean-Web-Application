@@ -13,9 +13,6 @@ from authapp.models import CitizenProfile, Post, User
 from authapp.serializers import Citizen_CU_Serializer, UserDisplaySrializer, PostSerializer, UserUpdateSerializer, UserCreateSerializer
 from api.serializers import LocationCreateSerializer
 
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_data(request, *args, **kwargs):

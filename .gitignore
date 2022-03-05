@@ -112,6 +112,8 @@ __pypackages__/
 celerybeat-schedule
 celerybeat.pid
 
+products
+
 # SageMath parsed files
 *.sage.py
 
@@ -128,6 +130,9 @@ pythonenv*
 *.xml
 *.iml
 .idea
+
+*.jpg
+*.png
 
 # Spyder project settings
 .spyderproject
