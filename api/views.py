@@ -9,6 +9,12 @@ from grievance_data.models import Grievance
 from authapp.models import CitizenProfile, Location, User
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
+from ml_models.ml_functions import gri_priority, gri_severity
+
+from PIL import Image
+from numpy import *
+import numpy as np
+import keras
 
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
@@ -62,7 +68,21 @@ def create_gri(request,*args, **kwargs):
     gri_serializer = GrievanceCreateSerializer(data=requestData)
     if gri_serializer.is_valid():
         gri_serializer.save()
-        return Response(data={"status":"ok"},status=status.HTTP_200_OK)
+        gri_obj = Grievance.objects.get(id=gri_serializer.data['id'])
+        gri_obj.gri_severity = gri_severity(gri_obj.gri_img,gri_obj.gri_category.cat_name)
+        gri_obj.gri_priority = gri_priority(gri_obj)
+        gri_obj.save()
+        return Response(data=gri_serializer.data,status=status.HTTP_200_OK)
     else:
-        return Response(data={"status":f"{gri_serializer.errors}",},status=status.HTTP_200_OK)
+        return Response(gri_serializer.errors)
     #return Response(data={"status":"OK"})
+
+@api_view(['GET'])
+def get_severity(request,*args, **kwargs):
+    gri_obj = Grievance.objects.get(id=4)
+    priority = gri_priority(gri_obj)
+    severity = gri_severity(gri_obj.gri_img,"Garbage")
+    return Response(data={"severity":severity,"priority":priority,"gri_bj":str(gri_obj)})
+
+
+    

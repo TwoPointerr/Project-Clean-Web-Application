@@ -195,3 +195,16 @@ WHITENOISE_USE_FINDERS = True
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#ML priority setting constan
+MAX_UPVOTE = 200        #0-200
+MAX_SEVERITY = 2        #0-2
+MAX_CATEGORY_VALUE = 3  #1-3
+MAX_DAY = 30            #1-30
+
+UPVOTE_WEIGHT = 0.4
+SEVERITY_WEIGHT = 0.3
+CATEGORY_WEIGHT = 0.2
+DAYS_PAST_WEIGHT = 0.1
+
+WEIGHTS = [SEVERITY_WEIGHT,UPVOTE_WEIGHT,CATEGORY_WEIGHT,DAYS_PAST_WEIGHT]

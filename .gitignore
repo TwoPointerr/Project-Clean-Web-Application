@@ -21,6 +21,8 @@ media
 # C extensions
 *.so
 
+*.h5
+
 # Distribution / packaging
 .Python
 build/

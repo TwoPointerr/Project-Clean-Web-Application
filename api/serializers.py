@@ -48,9 +48,12 @@ class GrievanceCreateSerializer(serializers.ModelSerializer):
     
     def to_representation(self, instance):
         response = super().to_representation(instance)
+        # self.fields["gri_category"] = CategoryDisplaySerializer(instance.gri_category).data
+        # self.fields["gri_uploaded_user"] = CitizenDisplaySerializer(instance.gri_uploaded_user).data
+        # self.fields["gri_location"] = LocationDisplaySerializer(instance.gri_location).data
         response["gri_category"] = CategoryDisplaySerializer(instance.gri_category).data
-        self.fields["gri_uploaded_user"] = CitizenDisplaySerializer(instance.gri_uploaded_user).data
-        self.fields["gri_location"] = LocationDisplaySerializer(instance.gri_location).data
+        response["gri_uploaded_user"] = CitizenDisplaySerializer(instance.gri_uploaded_user).data
+        response["gri_location"] = LocationDisplaySerializer(instance.gri_location).data
         return response
 # Supporting  function
 
