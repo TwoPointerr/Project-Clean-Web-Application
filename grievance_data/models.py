@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files import File
-from ml_models.ml_functions import gri_priority, gri_severity
+#from ml_models.ml_functions import gri_priority, gri_severity              ML Functions
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=250)
@@ -34,8 +34,8 @@ class Grievance(models.Model):
 
     def save(self,*args, **kwargs):
 
-        if not self._state.adding:
-            self.gri_priority = gri_priority(self)
+        #if not self._state.adding:
+            #self.gri_priority = gri_priority(self)         ML functions
         super().save(*args,**kwargs)
 
 # def reduce_image_size(profile_pic):
