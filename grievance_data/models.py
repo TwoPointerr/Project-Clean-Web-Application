@@ -36,7 +36,6 @@ class Grievance(models.Model):
 
         if not self._state.adding:
             self.gri_priority = gri_priority(self)
-            self.gri_upvote = self.gri_upvote_list.all().count()
         super().save(*args,**kwargs)
 
 # def reduce_image_size(profile_pic):

@@ -197,7 +197,7 @@ WHITENOISE_USE_FINDERS = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #ML priority setting constan
-MAX_UPVOTE = 200        #0-200
+MAX_UPVOTE = 10        #0-200
 MAX_SEVERITY = 2        #0-2
 MAX_CATEGORY_VALUE = 3  #1-3
 MAX_DAY = 30            #1-30
