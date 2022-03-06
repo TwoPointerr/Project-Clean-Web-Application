@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files import File
-#from ml_models.ml_functions import gri_priority, gri_severity              ML Functions
+from ml_models.ml_functions import gri_priority, gri_severity             
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=250)
@@ -21,7 +21,7 @@ class Grievance(models.Model):
     gri_desc = models.TextField(null=True)
     gri_category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True, related_name='category')
     gri_upvote = models.PositiveIntegerField(default=0)
-    gri_upvote_list = models.ManyToManyField(CitizenProfile)
+    gri_upvote_list = models.ManyToManyField(CitizenProfile,blank=True)
     #gri_upvote = models.IntegerField(default=0)
     gri_severity = models.IntegerField(default=0)
     gri_priority = models.IntegerField(default=0)
@@ -33,9 +33,8 @@ class Grievance(models.Model):
         return self.gri_title
 
     def save(self,*args, **kwargs):
-
-        #if not self._state.adding:
-            #self.gri_priority = gri_priority(self)         ML functions
+        if not self._state.adding:
+            self.gri_priority = gri_priority(self)      
         super().save(*args,**kwargs)
 
 # def reduce_image_size(profile_pic):

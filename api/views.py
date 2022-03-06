@@ -9,7 +9,7 @@ from grievance_data.models import Grievance
 from authapp.models import CitizenProfile, Location, User
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-#from ml_models.ml_functions import gri_priority, gri_severity          ML Functions
+from ml_models.ml_functions import gri_priority, gri_severity          
 
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
@@ -33,7 +33,7 @@ def upvote_grievance(request,*args, **kwargs):
     gri_obj.gri_upvote_list.add(citi_user)
     gri_obj.gri_upvote=gri_obj.gri_upvote_list.all().count()
     gri_obj.save()
-    return Response(data={"gri_id":request.data['user_id'],"gri_title":f"{gri_obj.gri_title}","gri_upvotes":gri_obj.gri_upvote})
+    return Response(data={"gri_id":gri_obj.id,"gri_title":f"{gri_obj.gri_title}","gri_upvotes":gri_obj.gri_upvote})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -64,9 +64,10 @@ def create_gri(request,*args, **kwargs):
     if gri_serializer.is_valid():
         gri_serializer.save()
         gri_obj = Grievance.objects.get(id=gri_serializer.data['id'])
-        #gri_obj.gri_severity = gri_severity(gri_obj.gri_img,gri_obj.gri_category.cat_name)
-        #gri_obj.gri_priority = gri_priority(gri_obj)
+        gri_obj.gri_severity = gri_severity(gri_obj.gri_img,gri_obj.gri_category.cat_name)
+        gri_obj.gri_priority = gri_priority(gri_obj)
         gri_obj.save()
+        gri_serializer = GrievanceDisplaySerializer(gri_obj)
         return Response(data=gri_serializer.data,status=status.HTTP_200_OK)
     else:
         return Response(gri_serializer.errors)
@@ -75,8 +76,8 @@ def create_gri(request,*args, **kwargs):
 @api_view(['GET'])
 def get_severity(request,*args, **kwargs):
     gri_obj = Grievance.objects.get(id=4)
-    # priority = gri_priority(gri_obj)
-    # severity = gri_severity(gri_obj.gri_img,"Garbage")
+    priority = gri_priority(gri_obj)
+    severity = gri_severity(gri_obj.gri_img,"Garbage")
     return Response(data={"severity":0,"priority":0,"gri_bj":str(gri_obj)})
 
 
