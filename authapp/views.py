@@ -31,6 +31,13 @@ def get_post(request, *args, **kwargs):
     serializer = PostSerializer(posts,many=True)
     return Response(data={"POsts":serializer.data})
 
+@api_view(['POST']) #need to update later
+def create_citi_profile(request, *args, **kwargs):
+    citiSerializer = Citizen_CU_Serializer(data=request.data)
+    if citiSerializer.is_valid():
+        citiSerializer.save()
+    return Response(data=citiSerializer.data)
+    
 @api_view(['POST'])
 #@permission_classes([IsAuthenticated])
 def update_profile(request, *args, **kwargs):

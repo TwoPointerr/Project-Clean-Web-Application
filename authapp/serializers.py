@@ -57,7 +57,7 @@ class Citizen_CU_Serializer(serializers.ModelSerializer):
         
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        self.fields["citi_user"] = UserDisplaySrializer(instance.citi_user).data
+        response["citi_user"] = UserDisplaySrializer(instance.citi_user).data
         return response
 
 class PostSerializer(serializers.ModelSerializer):
