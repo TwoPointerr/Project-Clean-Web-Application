@@ -5,8 +5,11 @@ import keras
 from django.utils.timezone import datetime
 from django.conf import settings
 import math
+
 def gri_severity(gri_img,category):
-    gri_img = Image.open(gri_img)
+    #gri_img = CloudinaryImage(gri_img).image( format = "png")
+    gri_img = Image.open(gri_img,mode='r', formats=None)
+    print(gri_img)
     gri_gray_img = gri_img.resize((200,200)).convert('L') #resize and convert to gray scale
     gri_gray_img_matrix = array([array(gri_gray_img).flatten()],'f')
     gri_gray_img_matrix = gri_gray_img_matrix.reshape(gri_gray_img_matrix.shape[0],200,200,1).astype('float32')
@@ -15,13 +18,13 @@ def gri_severity(gri_img,category):
         garbage_severity_model = keras.models.load_model("ml_models/garbage_severity.h5")
         severity = garbage_severity_model.predict(gri_gray_img_matrix)
         severity = np.argmax(severity[0])
-    elif category == "Pothole":
+    elif category == "POTHOLE":
         print("No ML model for given category, default severity will: 0")
         severity = 0
         # pothole_severity_model = keras.models.load_model("ml_models/pothole_severity.h5")
         # severity = pothole_severity_model.predict(gri_gray_img_matrix)
         # severity = np.argmax(severity[0])
-    elif category == "FallenTree":
+    elif category == "Fallen Tree":
         print("No ML model for given category, default severity will: 0")
         severity = 0
         # FallenTree_severity_model = keras.models.load_model("ml_models/fallenTree_severity.h5")

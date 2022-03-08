@@ -191,11 +191,11 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
-cloudinary.config( 
-  cloud_name = "project-clean-22", 
-  api_key = "682665573695911", 
-  api_secret = "-nd0_PnW3ulQ-s6TC_X0TVEuZ84" 
-)
+# cloudinary.config( 
+#   cloud_name = "project-clean-22", 
+#   api_key = "682665573695911", 
+#   api_secret = "-nd0_PnW3ulQ-s6TC_X0TVEuZ84" 
+# )
 
 WHITENOISE_USE_FINDERS = True
 
