@@ -68,6 +68,7 @@ class GrievanceDisplaySerializer(serializers.ModelSerializer):
 def getLocationDetails(long, lat):
     geolocator = Nominatim(user_agent="geoapiExercises")
     geoLocation = geolocator.reverse(str(lat)+","+str(long))
+    print(geoLocation)
     address = geoLocation.raw['address']
 
     loc_display_name = geoLocation.raw.get('display_name')
