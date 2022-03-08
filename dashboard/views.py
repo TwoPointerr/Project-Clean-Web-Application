@@ -9,6 +9,7 @@ from django.db.models import Count, Min, Sum, Avg, Max
 from django.contrib import messages
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+from dashboard.models import Logs
 
 # Create your views here.
 @login_required
@@ -195,6 +196,7 @@ def change_status_gri(gri_file_obj,status_name,mc_user):
         status_obj.status_active = False
         status_obj.save()
 
+    Logs.objects.create(log_detailDesc=f"{mc_profile.mc_user.first_name} {mc_profile.mc_user.last_name} id:{mc_profile.id} Chnaged status of {gri_file_obj.gri_title} id:{gri_file_obj.id} to {status_name}")
     status_obj = Status.objects.create(status_name=status_name,status_grievance=gri_file_obj,status_active=True,status_issuedByMC=mc_profile)
     return status_obj
     
@@ -278,4 +280,41 @@ def grievancesDataModels(request,desk_obj,folder_obj):
     maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
     status = Status.objects.values_list('status_name',flat=True).distinct().order_by('status_name')
     location = Location.objects.all().distinct('loc_city')
-    return {'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location, 'profile':profile}
+    
+    #Dashboard Information
+    dashboard_info = getDashboardInfo(request)
+
+    return {'dashboard_info':dashboard_info,'grievances':grievance, 'category':category,'minVote':minvote,'maxVote':maxvote,'status':status,'location':location, 'profile':profile}
+
+def getDashboardInfo(request):
+    all_active_gri = Status.objects.filter(status_active = True).count()
+    pending_status = Status.objects.filter(status_active = True).filter(status_name="Pending").count()
+    inProgress_status = Status.objects.filter(status_active = True).filter(status_name="In Progress").count()
+    complete_status = Status.objects.filter(status_active = True).filter(status_name="Complete").count()
+    rejected_status = Status.objects.filter(status_active = True).filter(status_name="Rejected").count()
+
+    garbage_cat = Category.objects.get(cat_name="Garbage")
+    garbage_gri = Grievance.objects.filter(gri_category_id=garbage_cat).count()
+
+    pothole_cat = Category.objects.get(cat_name="POTHOLE")
+    pothole_gri = Grievance.objects.filter(gri_category_id=pothole_cat).count()
+
+    FTree_cat = Category.objects.get(cat_name="Fallen Tree")
+    FTree_gri = Grievance.objects.filter(gri_category_id=FTree_cat).count()
+    
+    mc_users = MCProfile.objects.all()
+    logs = Logs.objects.all()
+    dashboard_info = {
+        "ALL_GRIS_ACTIVE":all_active_gri,
+        "PENDING_GRIS":pending_status,
+        "INPROGRESS_GRIS": inProgress_status,
+        "COMPLETE_GRIS": complete_status,
+        "REJECTED_GRIS" : rejected_status,
+        "LOGS":logs,
+        "MC_USER":mc_users,
+        "GARBAGE_GRIS":garbage_gri,
+        "POTHOLE_GRIS":pothole_gri,
+        "FALLENTREE_GRIS":FTree_gri
+    }
+    return dashboard_info
+

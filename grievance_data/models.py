@@ -7,10 +7,17 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files import File
-from ml_models.ml_functions import gri_priority, gri_severity             
+from ml_models.ml_functions import gri_priority, gri_severity    
+
+CAT_NAME = (
+    ("Garbage","Garbage"),
+    ("POTHOLE","POTHOLE"),
+    ("Fallen Tree","Fallen Tree")
+)
+
 
 class Category(models.Model):
-    cat_name = models.CharField(max_length=250)
+    cat_name = models.CharField(max_length=250,choices=CAT_NAME)
     cat_value = models.IntegerField(default=0)
     def __str__(self):
         return self.cat_name

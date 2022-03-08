@@ -20,5 +20,10 @@ class Folders(models.Model):
     def __str__(self) -> str:
         return self.folder_name
 
+class Logs(models.Model):
+    log_detailDesc = models.TextField(null=True)
+    log_timeStamp = models.DateTimeField(auto_now=True)
+
+
 
 # Create your models here.
