@@ -16,7 +16,7 @@ from ml_models.ml_functions import gri_priority, gri_severity
 def grievance_display(request,*args, **kwargs):
     loc_long = request.data['loc_long']
     loc_lat = request.data['loc_lat']
-    print(type(loc_lat),type(loc_long))
+    print(f"lat-{loc_lat}, long-{loc_long}")
     loc_suburb = [getLocationDetails(loc_long,loc_lat)['loc_suburb']]
     location = Location.objects.filter(loc_suburb__in=loc_suburb)
     print(location)
