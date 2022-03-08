@@ -7,7 +7,8 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files import File
-from ml_models.ml_functions import gri_priority, gri_severity    
+from ml_models.ml_functions import gri_priority, gri_severity   
+from cloudinary.models import CloudinaryField 
 
 CAT_NAME = (
     ("Garbage","Garbage"),
@@ -23,7 +24,8 @@ class Category(models.Model):
         return self.cat_name
 
 class Grievance(models.Model):
-    gri_img = models.ImageField(upload_to="grievance_pics")
+    gri_img = CloudinaryField('image', transformation={'width': '450', 'height': '600', 'crop':'scale','quality':'80'}, folder='/media/grievance_pics', format="jpeg",)
+    #gri_img = models.ImageField(upload_to="grievance_pics")
     gri_title = models.CharField(max_length=250)
     gri_desc = models.TextField(null=True)
     gri_category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True, related_name='category')
