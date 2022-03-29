@@ -68,6 +68,7 @@ def create_gri(request,*args, **kwargs):
         gri_obj.gri_severity = gri_severity(gri_obj.gri_img,gri_obj.gri_category.cat_name)
         gri_obj.gri_priority = gri_priority(gri_obj)
         gri_obj.save()
+        print(type(gri_obj.gri_img))
         gri_serializer = GrievanceDisplaySerializer(gri_obj)
         return Response(data=gri_serializer.data,status=status.HTTP_200_OK)
     else:
