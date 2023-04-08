@@ -10,19 +10,7 @@ services:
       context: .
     ports: 
       - "8000:8000"
-    # depends_on:
-    #  - db
-
-  # db:
-  #   image: postgres
-  #   environment: 
-  #     - POSTGRES_DB=project_clean_db
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=1234
-  #   ports: 
-  #     - "5432:5432"
-  #   restart: always
-
+      
   nginx:
     build: ./nginx
     volumes: 
