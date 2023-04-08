@@ -105,10 +105,11 @@ WSGI_APPLICATION = 'project_clean.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project_clean_db',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'NAME': confif('name'),
+        'USER': config('user'),
+        'PASSWORD': config('pass'),
+        'HOST': config('host'),
+        'PORT':5431,
     }
 }
 
