@@ -18,7 +18,7 @@ class User(AbstractUser):
 
 class CitizenProfile(models.Model):
     citi_user = models.OneToOneField(User,on_delete=models.CASCADE)
-    citi_profile_img = models.ImageField(upload_to="profiles_pics",blank=True)
+    citi_profile_img = models.ImageField(upload_to="profiles_pics",blank=True, default='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png')
 
     def __str__(self):
         return self.citi_user.first_name
