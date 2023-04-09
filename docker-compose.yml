@@ -3,7 +3,7 @@ version: '2.15.1'
 services:  
   django_gunicorn:
     volumes: 
-      - static:/static
+      - static:/code/static
     env_file: 
       - .env
     build: 
