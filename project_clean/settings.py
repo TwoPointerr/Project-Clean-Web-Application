@@ -44,7 +44,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://*.compute-1.amazonaws.com','http://3.87.2.156/']
 # Application definition
 
 INSTALLED_APPS = [
