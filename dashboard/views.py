@@ -188,6 +188,12 @@ def reject_gri(request):
     change_status_gri(gri_file_obj,"Rejected",request.user)
     return JsonResponse({'data':'successful'})
 
+def complete_gri(request):
+    gri_id = int(request.GET.get('gri_id').split("_")[1])
+    gri_file_obj = Grievance.objects.get(id=gri_id)
+    change_status_gri(gri_file_obj,"Complete",request.user)
+    return JsonResponse({'data':'successful'})
+
 
 def change_status_gri(gri_file_obj,status_name,mc_user):
     mc_profile = MCProfile.objects.get(mc_user=mc_user)
@@ -239,7 +245,7 @@ def filter_data_functionality(request,grievance_list):
         grievance_list = grievance_list.filter(gri_category_id__in=category)
     
     gri_status= request.GET.getlist('grievance_status[]')
-    stat = Status.objects.filter(status_active=True).filter(status_name__in=gri_status).distinct('status_grievance')
+    stat = Status.objects.filter(status_active=True).filter(status_name__in=gri_status).values('status_grievance').distinct()
     
     if len(gri_status)>0:
         grievance_list = grievance_list.filter(status__in=stat)
@@ -278,8 +284,8 @@ def grievancesDataModels(request,desk_obj,folder_obj):
     category =Category.objects.all()
     minvote = Grievance.objects.all().aggregate(Min('gri_upvote'))['gri_upvote__min']
     maxvote = Grievance.objects.all().aggregate(Max('gri_upvote'))['gri_upvote__max']
-    status = Status.objects.values_list('status_name',flat=True).distinct().order_by('status_name')
-    location = Location.objects.all().distinct('loc_city')
+    status = Status.objects.values_list('status_name',flat=True).order_by('status_name').distinct()
+    location = Location.objects.all().values('loc_city').distinct()
     
     #Dashboard Information
     dashboard_info = getDashboardInfo(request)

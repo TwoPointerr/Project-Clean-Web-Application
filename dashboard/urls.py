@@ -30,6 +30,7 @@ urlpatterns = [
     path('move-gri-to-desk/',views.move_gri_to_desk,name="move-gri-to-desk"),
 
     path('reject-gri/',views.reject_gri,name="move-gri-to-desk"),
+    path('complete-gri/',views.complete_gri,name="move-gri-to-desk"),
 
     path('create-desk/',views.createDesk,name="create-desk"),
     path('create-folder/',views.createFolder,name="create-desk"),

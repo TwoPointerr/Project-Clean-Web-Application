@@ -44,7 +44,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['http://*.compute-1.amazonaws.com','http://3.87.2.156/']
+CSRF_TRUSTED_ORIGINS = ['http://*.database.windows.net']
 # Application definition
 
 INSTALLED_APPS = [
@@ -106,12 +106,18 @@ WSGI_APPLICATION = 'project_clean.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'mssql',
         'NAME': config('name'),
         'USER': config('user'),
         'PASSWORD': config('pass'),
         'HOST': config('host'),
-        'PORT':5431,
+        'PORT': config('port'),
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'MARS_Connection': True,
+            'Encrypt': 'yes',
+            'TrustServerCertificate': 'no',
+        },
     }
 }
 
