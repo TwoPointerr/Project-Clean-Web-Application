@@ -42,9 +42,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else ['*']
 
-CSRF_TRUSTED_ORIGINS = ['http://*.database.windows.net']
+CSRF_TRUSTED_ORIGINS = ['http://*.database.windows.net','https://*.azurewebsites.net']
 # Application definition
 
 INSTALLED_APPS = [

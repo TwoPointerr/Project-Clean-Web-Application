@@ -14,7 +14,7 @@ services:
   nginx:
     build: ./nginx
     volumes: 
-      - static:/static
+      - static:/code/static
     ports:
       - "80:80"
     depends_on:
