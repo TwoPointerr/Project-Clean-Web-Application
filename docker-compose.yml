@@ -1,24 +1,26 @@
 version: '2.15.1'
 
 services:  
-  django_gunicorn:
+  grievance_gunicorn:
+    image: mandharet/project-clean-django:latest
     volumes: 
       - static:/code/static
     env_file: 
       - .env
-    build: 
-      context: .
+    # build: 
+    #   context: .
     ports: 
       - "8000:8000"
       
   nginx:
-    build: ./nginx
+    # build: ./nginx
+    image: mandharet/project-clean:latest
     volumes: 
       - static:/code/static
     ports:
       - "80:80"
     depends_on:
-      - django_gunicorn
+      - grievance_gunicorn
 
 volumes:
   static:
