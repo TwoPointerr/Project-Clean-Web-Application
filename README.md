@@ -109,8 +109,16 @@ python manage.py runserver
 ```
 </details>
 
-### Screenshots
+-----
 
+### WEB App Screenshots
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/3d21c7b2-cb84-4bc5-b301-e09a53e1e6ad)
+
+<details>
+  
+<summary>More screenshots</summary>
+  
 ![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/19e8079b-8d20-4930-9e62-ebddaab9ed16)
 
 ![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/3d21c7b2-cb84-4bc5-b301-e09a53e1e6ad)
@@ -131,4 +139,22 @@ python manage.py runserver
 
 ![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/7c73ad86-50b6-41a5-806d-7795b17e942a)
 
+</details>
 
+-----
+
+### Android App Screenshots
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/2ba5fba7-8945-44b3-81c8-884a33437ac7)
+
+<details>
+<summary>More screenshots</summary>
+  
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/664c75ac-b7c2-4f7a-9c0f-497af4b99978)
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/4ce96a36-f385-43fa-8870-d1d9a946d50c)
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/2ba5fba7-8945-44b3-81c8-884a33437ac7)
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/3c151d96-5c55-471d-9ede-6f50bdc64b58)
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/c925923f-be56-45a3-8d9b-4d7d41fd59a2)
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/1bd48cf9-b932-4dc4-a46b-59766c195d27)
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/bdf6dac6-b1f5-4ae9-824d-97065cdf344b)
+</details>
