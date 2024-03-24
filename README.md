@@ -4,6 +4,8 @@
 
 [Project-Clean-Android-Application ![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/be1cbe45-b0bc-41de-892e-2970a57ec720)](https://github.com/TwoPointerr/Project-Clean-Android-Application)
 
+Download Android Application here: [Releases](https://github.com/TwoPointerr/Project-Clean-Android-Application/releases)
+
 ## Overview
 
 In today's interconnected world, our Grievance Registration Android Application leverages technology to address modern issues related to grievance registration. The project modules are designed to streamline and simplify the overall grievance registration process, saving users valuable time.
