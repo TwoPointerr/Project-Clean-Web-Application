@@ -18,7 +18,14 @@ In today's interconnected world, our Grievance Registration Android Application 
 
 - **Public Grievance Posts**: A grievance post is generated for each submission, visible to fellow citizens. Users can view and upvote these posts, creating a transparent system that encourages civic engagement.
 
+## Working
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/c445a3d3-1988-4028-ae5e-bcc0fe04f761)
+
+
 ## Installation using docker
+
+<details>
+
 ### 1. Clone the Repository
 
 ```bash
@@ -36,7 +43,12 @@ docker-compose up
 ```
 - Make sure docker is running
 
+</details>
+
+
 ## Installation on Local
+
+<details>
 
 ### 1. Clone the Repository
 
@@ -95,5 +107,28 @@ This command creates a superuser account for administrative access to the Django
 ```bash
 python manage.py runserver
 ```
+</details>
+
+### Screenshots
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/19e8079b-8d20-4930-9e62-ebddaab9ed16)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/3d21c7b2-cb84-4bc5-b301-e09a53e1e6ad)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/634f3f40-10d8-47c3-9038-257e7779e0e2)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/41d19e29-6ce9-4071-a85d-83f3903b7a82)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/089c94ec-bd8c-462d-9e98-93828ea7b476)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/6e900124-db2f-4f4e-970f-f9a4ff31124b)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/1134db73-f9ae-4164-b517-611f2b4372b3)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/258a4d30-acde-4bca-977a-1ef2e20c0a7d)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/39f77571-2b7b-4668-8a7d-d38a41e39df4)
+
+![image](https://github.com/TwoPointerr/Project-Clean-Web-Application/assets/45624147/7c73ad86-50b6-41a5-806d-7795b17e942a)
 
 
