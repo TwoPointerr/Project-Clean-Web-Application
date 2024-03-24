@@ -18,8 +18,25 @@ In today's interconnected world, our Grievance Registration Android Application 
 
 - **Public Grievance Posts**: A grievance post is generated for each submission, visible to fellow citizens. Users can view and upvote these posts, creating a transparent system that encourages civic engagement.
 
-## Installation
+## Installation using docker
+### 1. Clone the Repository
 
+```bash
+git clone https://github.com/TwoPointerr/Project-Clean-Web-Application.git
+cd ./Project-Clean-Web-Application
+```
+
+### 2. Configure Databse
+configure database as per project_clean/settings.py or adjust project_clean/settings.py as per your database configuration
+https://github.com/TwoPointerr/Project-Clean-Web-Application/blob/34f8d6bfbc10c6d324fcb6e35bda2201576aeef3/project_clean/settings.py#L107-L122
+
+### 3. Spin up Containers
+```bash
+docker-compose up
+```
+- Make sure docker is running
+
+## Installation on Local
 
 ### 1. Clone the Repository
 
